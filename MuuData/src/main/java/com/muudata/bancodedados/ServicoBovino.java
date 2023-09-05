@@ -4,10 +4,19 @@
  */
 package com.muudata.bancodedados;
 
+import com.muudata.entites.Bovino;
+import java.util.List;
+
 /**
  *
  * @author 0068943
  */
 public class ServicoBovino {
-    
+    public List<Bovino> consultaBovino() {
+        //TODO
+        return null;
+    }
+    public void registraBovino(Bovino bovino) {
+        //TODO  
+    }
 }
