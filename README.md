@@ -7,3 +7,4 @@ Trabalho Interdisciplinar do 2º ano do Curso Técnico Integrado em Informática
  - Valter dos Santos Simão Júnior
  - Arthur Ribeiro Melo
  - João Vitor Gomes Rodrigues
+teste
