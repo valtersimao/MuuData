@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 0068943
@@ -37,13 +39,34 @@ public class ServicoBovino {
                 atual.setRaca(resultado.getString("raca"));
                 retorno.add(atual);
             }
+            c.close();
         } catch (SQLException ex) {
             System.err.println("SQL ERROR "+ ex.getMessage());
         }
         
         return retorno;
     }
-    public void registraBovino(Bovino bovino) {
-        //TODO  
+    //Caso o bovino seja cadastrado sem nenhum problema a função retorna verdadeiro, caso contrário falso
+    public boolean registraBovino(Bovino bovino) {
+          
+        try {
+            Connection c = Conexao.obterConexao();
+            String sql = "INSERT INTO arthur_ribeiro.bovino(brinco, nome, peso, sexo, raca) "
+            + "VALUES (?,?,?,?,?);";
+            PreparedStatement insercao;
+            insercao = c.prepareStatement(sql);
+            insercao.setInt(1, bovino.getBrinco());
+            insercao.setString(2, bovino.getNome());
+            insercao.setInt(3, bovino.getPeso());
+            insercao.setBoolean(4, bovino.isSexo());
+            insercao.setString(5, bovino.getRaca());
+            insercao.executeQuery();
+            c.close();
+
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+          
     }
 }
