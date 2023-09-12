@@ -4,6 +4,7 @@
  */
 package gui;
 
+import com.muudata.bancodedados.ServicoBovino;
 import com.muudata.entites.Bovino;
 import java.util.HashSet;
 import javax.swing.ButtonGroup;
@@ -239,11 +240,28 @@ public class telaRegistro extends javax.swing.JFrame {
         Bovino novoBoi = new Bovino();
 
         try {
-            novoBoi.setBrinco(Integer.parseInt(this.jTextBrinco.getText()));
+            if (this.jTextBrinco != null) {
+                novoBoi.setBrinco(Integer.parseInt(this.jTextBrinco.getText()));
+            }
+            if (this.jTextNome != null) {
+                novoBoi.setNome(this.jTextNome.getText());
+            }
+            if (this.jTextRaca != null) {
+                novoBoi.setRaca(this.jTextRaca.getText());
+
+            }
+            if (this.jTextPeso != null) {
+                novoBoi.setPeso(Integer.parseInt(this.jTextPeso.getText()));
+            }
+
+            
+            novoBoi.setSexo(this.jRadioMacho.isSelected());
+            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Insira somente números no campo do 'Brinco' e do 'Peso'",
                     "Erro", JOptionPane.ERROR_MESSAGE);
         }
+        ServicoBovino.registraBovino(novoBoi);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

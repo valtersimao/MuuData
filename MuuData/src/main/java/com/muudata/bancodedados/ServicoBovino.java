@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author 0068943
  */
 public class ServicoBovino {
-    public List<Bovino> consultaBovino() {
+    public static List<Bovino> consultaBovino() {
         List<Bovino> retorno = new ArrayList<Bovino>();
         
         try {
@@ -47,7 +47,7 @@ public class ServicoBovino {
         return retorno;
     }
     //Caso o bovino seja cadastrado sem nenhum problema a função retorna verdadeiro, caso contrário falso
-    public boolean registraBovino(Bovino bovino) {
+    public static boolean registraBovino(Bovino bovino) {
           
         try {
             Connection c = Conexao.obterConexao();
