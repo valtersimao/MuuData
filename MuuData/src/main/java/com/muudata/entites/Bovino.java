@@ -15,7 +15,7 @@ public class Bovino {
     private int identificador;
     private String nome;
     private String raca;
-    private boolean sexo;
+    private boolean sexo; // macho-1 ; femea-0
     private Date nascimento;
     private int peso;
 
