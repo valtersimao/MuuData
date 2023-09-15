@@ -5,7 +5,7 @@
 package gui;
 
 import com.muudata.bancodedados.ServicoBovino;
-import com.muudata.entites.Bovino;
+import com.muudata.model.Bovino;
 import java.util.HashSet;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;

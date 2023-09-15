@@ -5,7 +5,7 @@
 package com.muudata.bancodedados;
 
 import com.muudata.bancodedados.conexao.Conexao;
-import com.muudata.entites.Bovino;
+import com.muudata.model.Bovino;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
