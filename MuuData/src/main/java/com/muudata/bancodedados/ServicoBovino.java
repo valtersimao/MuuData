@@ -65,6 +65,7 @@ public class ServicoBovino {
 
             return true;
         } catch (SQLException e) {
+            System.err.println(e.getMessage());
             return false;
         }
           
