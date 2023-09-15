@@ -20,8 +20,8 @@ public class Conexao {
     public static Connection obterConexao() {
         try {
             String url = "jdbc:postgresql://10.90.24.56:5432/aula";
-            String usuario = "Valter";
-            String senha = "senha123";
+            String usuario = "aula";
+            String senha = "aula";
 
             Connection con = DriverManager.getConnection(url, usuario, senha);
             return con;
