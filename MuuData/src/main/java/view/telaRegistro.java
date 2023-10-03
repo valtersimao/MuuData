@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package gui;
+package view;
 
 import com.muudata.bancodedados.ServicoBovino;
 import com.muudata.model.Bovino;
@@ -130,9 +130,10 @@ public class telaRegistro extends javax.swing.JFrame {
                                     .addComponent(jLabel1)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                             .addGroup(jPanelRegistraLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(86, 86, 86))
-                            .addComponent(jLabel5))
+                                .addGroup(jPanelRegistraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(37, 37, 37)))
                         .addGroup(jPanelRegistraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextNome)
                             .addComponent(jTextRaca, javax.swing.GroupLayout.Alignment.TRAILING)
