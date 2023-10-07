@@ -1,15 +1,31 @@
 package test;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+
 public class registraBovino extends javax.swing.JFrame {
+
+    private Register register;
+    private ButtonGroup grupoBut;
 
     public registraBovino() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+
+        config();
     }
 
-    public void config(){
-       
+    public void config() {
+        this.register = new Register();
+
+        this.grupoBut = new ButtonGroup();
+        this.grupoBut.add(jButtonMacho);
+        this.grupoBut.add(jRadioButton2);
+
     }
 
     /**
@@ -35,9 +51,9 @@ public class registraBovino extends javax.swing.JFrame {
         jTextData = new javax.swing.JTextField();
         jTextRaca = new javax.swing.JTextField();
         jTextPeso = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        jButtonMacho = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonSave = new javax.swing.JButton();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -89,14 +105,19 @@ public class registraBovino extends javax.swing.JFrame {
         jTextPeso.setBackground(new java.awt.Color(233, 233, 233));
         jTextPeso.setForeground(new java.awt.Color(0, 0, 51));
 
-        jRadioButton1.setForeground(new java.awt.Color(0, 0, 51));
-        jRadioButton1.setText("Macho");
+        jButtonMacho.setForeground(new java.awt.Color(0, 0, 51));
+        jButtonMacho.setText("Macho");
 
         jRadioButton2.setForeground(new java.awt.Color(0, 0, 51));
         jRadioButton2.setText("Fêmea");
 
-        jButton1.setForeground(new java.awt.Color(0, 0, 51));
-        jButton1.setText("Salvar");
+        jButtonSave.setForeground(new java.awt.Color(0, 0, 51));
+        jButtonSave.setText("Salvar");
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,12 +149,12 @@ public class registraBovino extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(26, 26, 26)
-                                        .addComponent(jRadioButton1)
+                                        .addComponent(jButtonMacho)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jRadioButton2)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(12, 12, 12)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,9 +174,9 @@ public class registraBovino extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jRadioButton1)
+                    .addComponent(jButtonMacho)
                     .addComponent(jRadioButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonSave))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -188,6 +209,35 @@ public class registraBovino extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void resetFields() {
+        this.jTextBrinco.setText("");
+        this.jTextNome.setText("");
+        this.jTextRaca.setText("");
+        this.jTextData.setText("");
+        this.jTextPeso.setText("");
+
+    }
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        // TODO add your handling code here:
+        int brinco = Integer.parseInt(this.jTextBrinco.getText());
+        String nome = this.jTextNome.getText();
+        String raca = this.jTextRaca.getText();
+        boolean sexo = this.jButtonMacho.isSelected();
+        String data = this.jTextData.getText();
+        int peso = Integer.parseInt(this.jTextPeso.getText());
+
+        Bovino novoBoi = new Bovino(brinco, nome, raca, sexo, data, peso);
+
+        try {
+            this.register.imprimeBoi(novoBoi);
+            this.register.imprimeSQL(novoBoi);
+
+            JOptionPane.showMessageDialog(this, "Animal salvo!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Ocorreu algum erro!", "Falha", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,7 +275,8 @@ public class registraBovino extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JRadioButton jButtonMacho;
+    private javax.swing.JButton jButtonSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -235,7 +286,6 @@ public class registraBovino extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextBrinco;
     private javax.swing.JTextField jTextData;

@@ -10,14 +10,14 @@ public class Bovino {
     
     private String sexoTxt;
 
-    public Bovino(int brinco, String nome, String raca, boolean sexo, String data) {
+    public Bovino(int brinco, String nome, String raca, boolean sexo, String data, int peso) {
         this.brinco = brinco;
         this.nome = nome.isEmpty() ? brinco + "" : nome;
         this.raca = raca;
         this.sexo = sexo;
         this.data = data;
         
-        this.peso = 0;
+        this.peso = peso;
         
         this.sexoTxt = sexo ? "M" : "F";
     }

@@ -31,11 +31,11 @@ public class Register {
     public void imprimeBoi(Bovino boi) throws IOException{
         BufferedWriter bw = new BufferedWriter(new FileWriter(this.planilha,true));
         
-        String linha = "nome, sexo, brinco, data, raca, peso\n";
+        //String linha0 = "nome, sexo, brinco, data, raca, peso\n";
         
-        bw.write(linha);
+        //bw.write(linha0);
         
-        linha = boi.getNome() + ", " + boi.getSexoTxt() + ", " +
+        String linha = boi.getNome() + ", " + boi.getSexoTxt() + ", " +
                 boi.getBrinco() + ", " + boi.getData() + ", " +
                 boi.getRaca() + ", " + boi.getPeso() + "\n";
         
