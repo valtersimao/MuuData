@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.muudata.bancodedados;
 
 import com.muudata.bancodedados.conexao.Conexao;
@@ -15,10 +11,6 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author 0068943
- */
 public class ServicoBovino {
     public static List<Bovino> consultaBovino() {
         List<Bovino> retorno = new ArrayList<Bovino>();
@@ -62,7 +54,7 @@ public class ServicoBovino {
             insercao.setString(5, bovino.getRaca());
             insercao.executeQuery();
             c.close();
-
+            
             return true;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
