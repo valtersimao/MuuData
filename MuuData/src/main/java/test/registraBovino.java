@@ -54,6 +54,8 @@ public class registraBovino extends javax.swing.JFrame {
         jButtonMacho = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jButtonSave = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jTextOrigem = new javax.swing.JTextField();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -119,6 +121,12 @@ public class registraBovino extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setForeground(new java.awt.Color(0, 0, 51));
+        jLabel8.setText("Origem:");
+
+        jTextOrigem.setBackground(new java.awt.Color(233, 233, 233));
+        jTextOrigem.setForeground(new java.awt.Color(0, 0, 51));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -156,10 +164,16 @@ public class registraBovino extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(111, 111, 111))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,7 +181,11 @@ public class registraBovino extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,7 +211,7 @@ public class registraBovino extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,9 +231,9 @@ public class registraBovino extends javax.swing.JFrame {
     private void resetFields() {
         this.jTextBrinco.setText("");
         this.jTextNome.setText("");
-        this.jTextRaca.setText("");
-        this.jTextData.setText("");
-        this.jTextPeso.setText("");
+        //this.jTextRaca.setText("");
+        //this.jTextData.setText("");
+        //this.jTextPeso.setText("");
 
     }
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
@@ -226,14 +244,17 @@ public class registraBovino extends javax.swing.JFrame {
         boolean sexo = this.jButtonMacho.isSelected();
         String data = this.jTextData.getText();
         int peso = Integer.parseInt(this.jTextPeso.getText());
+        String origem = this.jTextOrigem.getText();
 
-        Bovino novoBoi = new Bovino(brinco, nome, raca, sexo, data, peso);
+        Bovino novoBoi = new Bovino(brinco, nome, raca, sexo, data, peso, origem);
 
         try {
             this.register.imprimeBoi(novoBoi);
             this.register.imprimeSQL(novoBoi);
 
             JOptionPane.showMessageDialog(this, "Animal salvo!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            resetFields();
+            this.jTextBrinco.setText(brinco + 1 + "");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Ocorreu algum erro!", "Falha", JOptionPane.ERROR_MESSAGE);
         }
@@ -284,12 +305,14 @@ public class registraBovino extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextBrinco;
     private javax.swing.JTextField jTextData;
     private javax.swing.JTextField jTextNome;
+    private javax.swing.JTextField jTextOrigem;
     private javax.swing.JTextField jTextPeso;
     private javax.swing.JTextField jTextRaca;
     // End of variables declaration//GEN-END:variables

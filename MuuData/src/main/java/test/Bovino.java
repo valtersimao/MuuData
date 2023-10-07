@@ -7,16 +7,17 @@ public class Bovino {
     private boolean sexo;  // macho-1 ; femea-0
     private String data; // dd/mm/aaaa;
     private int peso;
+    private String origem;
     
     private String sexoTxt;
 
-    public Bovino(int brinco, String nome, String raca, boolean sexo, String data, int peso) {
+    public Bovino(int brinco, String nome, String raca, boolean sexo, String data, int peso, String origem) {
         this.brinco = brinco;
         this.nome = nome.isEmpty() ? brinco + "" : nome;
         this.raca = raca;
         this.sexo = sexo;
         this.data = data;
-        
+        this.origem = origem;
         this.peso = peso;
         
         this.sexoTxt = sexo ? "M" : "F";
@@ -44,6 +45,10 @@ public class Bovino {
 
     public String getData() {
         return data;
+    }
+
+    public String getOrigem() {
+        return origem;
     }
 
     public int getPeso() {

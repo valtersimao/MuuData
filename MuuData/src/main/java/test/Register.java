@@ -35,9 +35,9 @@ public class Register {
         
         //bw.write(linha0);
         
-        String linha = boi.getNome() + ", " + boi.getSexoTxt() + ", " +
-                boi.getBrinco() + ", " + boi.getData() + ", " +
-                boi.getRaca() + ", " + boi.getPeso() + "\n";
+        String linha = boi.getNome() + "," + boi.getSexoTxt() + "," +
+                boi.getBrinco() + "," + boi.getData() + "," +
+                boi.getRaca() + "," + boi.getPeso() + "," + boi.getOrigem() + "\n";
         
         bw.write(linha);
         bw.flush();
