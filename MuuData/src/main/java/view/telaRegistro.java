@@ -5,7 +5,7 @@
 package view;
 
 import com.muudata.bancodedados.ServicoBovino;
-import com.muudata.model.Bovino;
+import model.Bovino;
 import java.util.HashSet;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
