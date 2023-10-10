@@ -23,13 +23,13 @@ public class BovinoDAO {
         
         try {
             Connection c = FactoryPostgres.getConexaoPostgres();
-            String sql = "SELECT * FROM muudata.bovino";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino";
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while(resultado.next()) {
                 Bovino atual = new Bovino();
                 atual.setBrinco(resultado.getInt("brinco"));
-                atual.setIdentificador(resultado.getInt("identificador"));
+                atual.setIdentificador(resultado.getInt("id"));
                 atual.setNascimento(resultado.getDate("nascimento"));
                 atual.setNome(resultado.getString("nome"));
                 atual.setPeso(resultado.getShort("peso"));

@@ -10,9 +10,6 @@ package view;
  */
 public class JCadastraAnimal extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JCadastraAnimal
-     */
     public JCadastraAnimal() {
         initComponents();
     }
@@ -36,7 +33,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

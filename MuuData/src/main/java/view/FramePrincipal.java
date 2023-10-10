@@ -18,7 +18,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         configuraTrocaPaineis();
         
-        trocaPainel("inicio", new JTelaInicial());
+        trocaPainel("inicio", new JCadastraAnimal());
     }
     
     private void configuraTrocaPaineis(){
