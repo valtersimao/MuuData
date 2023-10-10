@@ -1,23 +1,29 @@
-package com.muudata.bancodedados;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package model.dao;
 
-import com.muudata.bancodedados.conexao.Conexao;
-import com.muudata.model.Bovino;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Bovino;
+import tools.FactoryPostgres;
 
-import javax.swing.JOptionPane;
-
-public class ServicoBovino {
+/**
+ *
+ * @author 0068943
+ */
+public class BovinoDAO {
     public static List<Bovino> consultaBovino() {
         List<Bovino> retorno = new ArrayList<Bovino>();
         
         try {
-            Connection c = new Conexao().obterConexao();
-            String sql = "SELECT * FROM arthur_ribeiro.bovino";
+            Connection c = FactoryPostgres.getConexaoPostgres();
+            String sql = "SELECT * FROM muudata.bovino";
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while(resultado.next()) {
@@ -38,12 +44,13 @@ public class ServicoBovino {
         
         return retorno;
     }
+    
     //Caso o bovino seja cadastrado sem nenhum problema a função retorna verdadeiro, caso contrário falso
     public static boolean registraBovino(Bovino bovino) {
           
         try {
-            Connection c = Conexao.obterConexao();
-            String sql = "INSERT INTO arthur_ribeiro.bovino(brinco, nome, peso, sexo, raca) "
+            Connection c = FactoryPostgres.getConexaoPostgres();
+            String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca) "
             + "VALUES (?,?,?,?,?);";
             PreparedStatement insercao;
             insercao = c.prepareStatement(sql);
