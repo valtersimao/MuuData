@@ -1,13 +1,14 @@
 
 package view;
 
+import control.BovinoControl;
 import javax.swing.DefaultComboBoxModel;
 import model.Bovino;
-import model.dao.BovinoDAO;
 
 public class JCadastraNascimento extends javax.swing.JPanel {
 
     private DefaultComboBoxModel comboMae;
+    private BovinoControl boiControl;
     
     public JCadastraNascimento() {
         initComponents();  
@@ -15,9 +16,11 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         config();
     }
     private void config(){
+        this.boiControl = new BovinoControl();
+        
         this.comboMae = new DefaultComboBoxModel();
         this.jComboBoxMae.setModel(comboMae);
-        comboMae.addAll(BovinoDAO.consultaBovino());
+        this.comboMae.addAll(boiControl.getAll());
     }
 
     @SuppressWarnings("unchecked")
