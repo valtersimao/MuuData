@@ -18,6 +18,7 @@ public class Bovino {
     private boolean sexo; // macho-1 ; femea-0
     private Date nascimento;
     private int peso;
+    private int idMae;
 
     public int getBrinco() {
         return brinco;
@@ -53,7 +54,8 @@ public class Bovino {
 
     @Override
     public String toString() {
-        return "Bovino{" + "brinco=" + brinco + ", identificador=" + identificador + ", nome=" + nome + ", raca=" + raca + ", sexo=" + sexo + ", nascimento=" + nascimento + ", peso=" + peso + '}';
+        char sex = sexo ? 'M' : 'F';
+        return brinco + " : " + nome + " ("+ sex+")";
     }
 
     public boolean isSexo() {
