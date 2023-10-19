@@ -35,6 +35,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         //vamos add os elementos para o frame
         this.add(painelRolagem);
         painelRolagem.setViewportView(painelTroca);
+       // painelRolagem.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     }
     
     public static void trocaPainel(String nome, JPanel novoPainel){
