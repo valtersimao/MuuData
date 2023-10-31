@@ -60,12 +60,10 @@
     <Component class="javax.swing.JLabel" name="jLabelIcon">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="LOGO"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="C:\Users\0068967\Desktop\interdisciplinar\muuDataLogo.png"/>
         </Property>
+        <Property name="text" type="java.lang.String" value="LOGO"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCadastroNascimento">
