@@ -1,7 +1,7 @@
-
 package view;
 
 import control.BovinoControl;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import model.Bovino;
 
@@ -9,18 +9,35 @@ public class JCadastraNascimento extends javax.swing.JPanel {
 
     private DefaultComboBoxModel comboMae;
     private BovinoControl boiControl;
-    
+    private ButtonGroup grupoButao;
+
     public JCadastraNascimento() {
-        initComponents();  
-        
+        initComponents();
+
         config();
     }
-    private void config(){
+
+    private void config() {
+        this.limpaFields();
+        this.grupoButao = new ButtonGroup();
+        this.grupoButao.add(jRadioButtonM);
+        this.grupoButao.add(jRadioButtonF);
+
         this.boiControl = new BovinoControl();
-        
+
         this.comboMae = new DefaultComboBoxModel();
         this.jComboBoxMae.setModel(comboMae);
         this.comboMae.addAll(boiControl.getAll());
+    }
+
+    private void limpaFields() {
+        this.jComboBoxMae.setSelectedIndex(-1);
+        this.jTextData.setText("");
+        this.jTextBrinco.setText("");
+        this.jTextNome.setText("");
+        this.jTextRaca.setText("");
+        this.jRadioButtonF.setSelected(false);
+        this.jRadioButtonM.setSelected(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,11 +54,12 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jTextNome = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jTextData = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButtonM = new javax.swing.JRadioButton();
+        jRadioButtonF = new javax.swing.JRadioButton();
         jButtonVoltar = new javax.swing.JButton();
+        jButtonCadastrar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 153));
 
@@ -102,38 +120,39 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(25, 25, 25));
         jLabel6.setText("Data:");
 
-        jFormattedTextField1.setBackground(new java.awt.Color(233, 233, 233));
-        jFormattedTextField1.setForeground(new java.awt.Color(25, 25, 25));
+        jTextData.setBackground(new java.awt.Color(233, 233, 233));
+        jTextData.setForeground(new java.awt.Color(25, 25, 25));
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            jTextData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jFormattedTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jTextData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextData.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 25, 25));
-        jLabel7.setText("Data:");
+        jLabel7.setText("Sexo:");
 
-        jRadioButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(25, 25, 25));
-        jRadioButton1.setText("F");
-        jRadioButton1.setContentAreaFilled(false);
-        jRadioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jRadioButton1.setFocusable(false);
+        jRadioButtonM.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jRadioButtonM.setForeground(new java.awt.Color(25, 25, 25));
+        jRadioButtonM.setText("M");
+        jRadioButtonM.setContentAreaFilled(false);
+        jRadioButtonM.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButtonM.setFocusable(false);
 
-        jRadioButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(25, 25, 25));
-        jRadioButton2.setText("M");
-        jRadioButton2.setContentAreaFilled(false);
-        jRadioButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jRadioButton2.setFocusable(false);
+        jRadioButtonF.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jRadioButtonF.setForeground(new java.awt.Color(25, 25, 25));
+        jRadioButtonF.setText("F");
+        jRadioButtonF.setContentAreaFilled(false);
+        jRadioButtonF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jRadioButtonF.setFocusable(false);
 
         jButtonVoltar.setBackground(new java.awt.Color(233, 233, 233));
         jButtonVoltar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButtonVoltar.setForeground(new java.awt.Color(25, 25, 25));
         jButtonVoltar.setText("Voltar");
+        jButtonVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonVoltar.setFocusable(false);
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,10 +160,28 @@ public class JCadastraNascimento extends javax.swing.JPanel {
             }
         });
 
+        jButtonCadastrar.setBackground(new java.awt.Color(233, 233, 233));
+        jButtonCadastrar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jButtonCadastrar.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonCadastrar.setText("Cadastrar");
+        jButtonCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrar.setFocusable(false);
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonVoltar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(146, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,19 +196,15 @@ public class JCadastraNascimento extends javax.swing.JPanel {
                     .addComponent(jComboBoxMae, 0, 292, Short.MAX_VALUE)
                     .addComponent(jTextBrinco)
                     .addComponent(jTextRaca)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextNome)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(jRadioButtonM)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2)))
+                        .addComponent(jRadioButtonF)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonVoltar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,21 +232,24 @@ public class JCadastraNascimento extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                    .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(jRadioButtonM)
+                    .addComponent(jRadioButtonF)
+                    .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxMaeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMaeItemStateChanged
-        Bovino mae = (Bovino) this.jComboBoxMae.getSelectedItem();
-        
-        this.jTextBrinco.setText(mae.getBrinco() + "");
-        this.jTextRaca.setText(mae.getRaca() + "");
+        if (this.jComboBoxMae.getSelectedIndex() >= 0) {
+            Bovino mae = (Bovino) this.jComboBoxMae.getSelectedItem();
+
+            this.jTextBrinco.setText(mae.getBrinco() + "");
+            this.jTextRaca.setText(mae.getRaca() + "");
+        }
     }//GEN-LAST:event_jComboBoxMaeItemStateChanged
 
     private void jTextRacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextRacaActionPerformed
@@ -229,11 +265,17 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         FramePrincipal.trocaPainel("inicio", new JTelaInicial());
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+        // TODO add your handling code here:
+        this.limpaFields();
+        //boiControl.insert(bovino);
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<Bovino> jComboBoxMae;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -241,9 +283,10 @@ public class JCadastraNascimento extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonF;
+    private javax.swing.JRadioButton jRadioButtonM;
     private javax.swing.JTextField jTextBrinco;
+    private javax.swing.JFormattedTextField jTextData;
     private javax.swing.JTextField jTextNome;
     private javax.swing.JTextField jTextRaca;
     // End of variables declaration//GEN-END:variables
