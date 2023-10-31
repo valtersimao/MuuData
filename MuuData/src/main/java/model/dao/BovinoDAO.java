@@ -20,30 +20,6 @@ import tools.FactoryPostgres;
 public class BovinoDAO implements DAO{
     
     private Connection c;
-    //Caso o bovino seja cadastrado sem nenhum problema a função retorna verdadeiro, caso contrário falso
-    public static boolean registraBovino(Bovino bovino) {
-          
-        try {
-            Connection c = FactoryPostgres.getConexaoPostgres();
-            String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca) "
-            + "VALUES (?,?,?,?,?);";
-            PreparedStatement trans;
-            trans = c.prepareStatement(sql);
-            trans.setInt(1, bovino.getBrinco());
-            trans.setString(2, bovino.getNome());
-            trans.setInt(3, bovino.getPeso());
-            trans.setBoolean(4, bovino.isSexo());
-            trans.setString(5, bovino.getRaca());
-            trans.executeQuery();
-            c.close();
-            
-            return true;
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            return false;
-        }
-          
-    }
 
     public BovinoDAO() {
          c = FactoryPostgres.getConexaoPostgres();
@@ -53,8 +29,8 @@ public class BovinoDAO implements DAO{
     public boolean insert(Object entite) {
         Bovino bovino = (Bovino) entite;
         
-        String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca) "
-            + "VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca, id_mae) "
+            + "VALUES (?,?,?,?,?,?);";
         
         try(PreparedStatement trans = this.c.prepareStatement(sql, 
                 Statement.RETURN_GENERATED_KEYS)){
@@ -64,6 +40,7 @@ public class BovinoDAO implements DAO{
             trans.setInt(3, bovino.getPeso());
             trans.setBoolean(4, bovino.isSexo());
             trans.setString(5, bovino.getRaca());
+            trans.setInt(6, bovino.getIdMae());
             trans.executeQuery();
             
             ResultSet resultSet = trans.getGeneratedKeys();
@@ -102,7 +79,7 @@ public class BovinoDAO implements DAO{
         
         try {
             Connection c = FactoryPostgres.getConexaoPostgres();
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino ORDER BY brinco ASC";
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while(resultado.next()) {

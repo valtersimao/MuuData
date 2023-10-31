@@ -17,8 +17,8 @@ public class Bovino {
     private String raca;
     private boolean sexo; // macho-1 ; femea-0
     private Date nascimento;
-    private int peso;
-    private int idMae;
+    private Integer peso;
+    private Integer idMae;
 
     public int getBrinco() {
         return brinco;
@@ -26,6 +26,14 @@ public class Bovino {
 
     public void setBrinco(int brinco) {
         this.brinco = brinco;
+    }
+
+    public int getIdMae() {
+        return idMae;
+    }
+
+    public void setIdMae(int idMae) {
+        this.idMae = idMae;
     }
 
     public int getIdentificador() {
