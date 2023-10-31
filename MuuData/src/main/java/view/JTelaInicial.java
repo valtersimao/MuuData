@@ -21,7 +21,7 @@ public class JTelaInicial extends javax.swing.JPanel {
         jButtonConsultaAnimal = new javax.swing.JButton();
         jButtonUndefined = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(235, 233, 225));
+        setBackground(new java.awt.Color(255, 255, 153));
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelIcon.setText("LOGO");
