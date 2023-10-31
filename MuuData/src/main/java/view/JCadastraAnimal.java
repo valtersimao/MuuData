@@ -25,7 +25,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(235, 233, 225));
+        setBackground(new java.awt.Color(255, 255, 153));
         setFont(new java.awt.Font("DejaVu Serif", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N

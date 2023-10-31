@@ -43,7 +43,7 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         jRadioButton2 = new javax.swing.JRadioButton();
         jButtonVoltar = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(235, 233, 225));
+        setBackground(new java.awt.Color(255, 255, 153));
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(25, 25, 25));
