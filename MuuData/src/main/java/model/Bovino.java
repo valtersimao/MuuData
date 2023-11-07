@@ -4,19 +4,21 @@
  */
 package model;
 
-import java.sql.Date;
+import java.util.Calendar;
 
 /**
  *
  * @author 0068943
  */
 public class Bovino {
+    public static final boolean MACHO = true, FEMEA = false;
+    
     private int brinco;
     private int identificador;
     private String nome;
     private String raca;
-    private boolean sexo; // macho-1 ; femea-0
-    private Date nascimento;
+    private boolean sexo;
+    private Calendar nascimento;
     private Integer peso;
     private Integer idMae;
 
@@ -74,11 +76,11 @@ public class Bovino {
         this.sexo = sexo;
     }
 
-    public Date getNascimento() {
+    public Calendar getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(Calendar nascimento) {
         this.nascimento = nascimento;
     }
 
