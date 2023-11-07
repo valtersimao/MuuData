@@ -72,7 +72,34 @@ public class BovinoDAO implements DAO {
 
     @Override
     public Object getById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Bovino retorno;
+        try {
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino WHERE id = ? ORDER BY brinco ASC";
+            PreparedStatement consulta = c.prepareStatement(sql);
+            consulta.setLong(1, id);
+            ResultSet resultado = consulta.executeQuery();
+            if (resultado.next()) {
+                retorno = new Bovino();
+                retorno.setBrinco(resultado.getInt("brinco"));
+                retorno.setIdentificador(resultado.getInt("id"));
+                retorno.setNome(resultado.getString("nome"));
+                retorno.setPeso(resultado.getShort("peso"));
+                retorno.setSexo(resultado.getBoolean("sexo"));
+                retorno.setRaca(resultado.getString("raca"));
+                if (resultado.getDate("nascimento") != null) {
+                    Calendar nascimento = Calendar.getInstance();
+                    nascimento.setTime(resultado.getDate("nascimento"));
+                    retorno.setNascimento(nascimento);
+                }
+
+                return retorno;
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.err.println("SQL ERROR " + ex.getMessage());
+            return null;
+        }
     }
 
     @Override
