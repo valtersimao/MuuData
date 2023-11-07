@@ -67,7 +67,18 @@ public class BovinoDAO implements DAO {
 
     @Override
     public boolean delete(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "DELETE FROM muudata.bovino WHERE id = " + id;
+        try (PreparedStatement trans = c.prepareStatement(sql)) {
+
+            trans.setLong(1, id);
+
+            trans.execute();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+
     }
 
     @Override
