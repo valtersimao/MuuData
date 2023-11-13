@@ -31,7 +31,7 @@ public class BovinoDAO implements DAO {
         Bovino bovino = (Bovino) entite;
 
         String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca, id_mae, nascimento) "
-                + "VALUES (?,?,?,?,?,?,?);";
+                + "VALUES (?,?,?,?,?,?,?) returning id;";
 
         try (PreparedStatement trans = this.c.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS)) {
@@ -47,6 +47,36 @@ public class BovinoDAO implements DAO {
 
             ResultSet resultSet = trans.getGeneratedKeys();
 
+            if (resultSet.next()) {
+                bovino.setIdentificador(resultSet.getInt("id"));
+
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+
+    public boolean insertSemPeso(Object entite) {
+        Bovino bovino = (Bovino) entite;
+
+        String sql = "INSERT INTO muudata.bovino(brinco, nome, sexo, raca, id_mae, nascimento) "
+                + "VALUES (?,?,?,?,?,?) returning id;";
+
+        try (PreparedStatement trans = this.c.prepareStatement(sql)) {
+
+            trans.setInt(1, bovino.getBrinco());
+            trans.setString(2, bovino.getNome());
+            trans.setBoolean(3, bovino.isSexo());
+            trans.setString(4, bovino.getRaca());
+            trans.setInt(5, bovino.getIdMae());
+            trans.setDate(6, new java.sql.Date(bovino.getNascimento().getTimeInMillis()));
+            ResultSet resultSet = trans.executeQuery();
+
+            //= trans.getGeneratedKeys();
             if (resultSet.next()) {
                 bovino.setIdentificador(resultSet.getInt("id"));
 

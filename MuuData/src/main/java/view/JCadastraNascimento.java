@@ -317,7 +317,7 @@ public class JCadastraNascimento extends javax.swing.JPanel {
                                 boi.setIdMae(idMae);
                                 boi.setNascimento(data);
 
-                                if (boiControl.insert(boi)) {
+                                if (boiControl.insertSemPeso(boi)) {
                                     this.limpaFields();
 
                                     JOptionPane.showMessageDialog(this, "Bezerro cadastrado com sucesso!",
