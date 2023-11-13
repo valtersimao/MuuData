@@ -1,8 +1,13 @@
 package view;
 
 import control.BovinoControl;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import model.Bovino;
 
 public class JCadastraNascimento extends javax.swing.JPanel {
@@ -270,8 +275,78 @@ public class JCadastraNascimento extends javax.swing.JPanel {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         // TODO add your handling code here:
-        this.limpaFields();
-        //boiControl.insert(bovino);
+
+        //verificação para evitar valores nulos
+        if (this.jComboBoxMae.getSelectedIndex() != -1) {
+            int idMae = ((Bovino) this.jComboBoxMae.getSelectedItem()).getIdentificador();
+
+            if (!this.jTextBrinco.getText().isEmpty()) {
+                int brinco = Integer.parseInt(this.jTextBrinco.getText());
+
+                if (!this.jTextRaca.getText().isEmpty()) {
+                    String raca = this.jTextRaca.getText();
+
+                    int op = JOptionPane.NO_OPTION;
+                    if (this.jTextNome.getText().isEmpty()) {
+                        op = JOptionPane.showConfirmDialog(this, "O bezerro está sem nome, você deseja mudar?",
+                                "Dados incompletps", JOptionPane.YES_NO_OPTION);
+                    }
+
+                    if (op == JOptionPane.NO_OPTION) {
+                        String nome = this.jTextNome.getText();
+
+                        SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        try {
+                            Date dateNascimento = (Date) dataFormat.parse(this.jTextData.getText());
+                            Calendar data = Calendar.getInstance();
+                            data.setTime(dateNascimento);
+
+                            boolean sexo = this.jRadioButtonM.isSelected();
+
+                            op = JOptionPane.showConfirmDialog(this, "Você deseja cadastrar esse animal?",
+                                    "Finalizar", JOptionPane.YES_NO_OPTION);
+
+                            if (op == JOptionPane.YES_OPTION) {
+
+                                //TODO
+                                Bovino boi = new Bovino();
+                                boi.setNome(nome);
+                                boi.setBrinco(brinco);
+                                boi.setRaca(raca);
+                                boi.setSexo(sexo);
+                                boi.setIdMae(idMae);
+                                boi.setNascimento(data);
+
+                                if (boiControl.insert(boi)) {
+                                    this.limpaFields();
+
+                                    JOptionPane.showMessageDialog(this, "Bezerro cadastrado com sucesso!",
+                                            "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro",
+                                            "Falha", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
+
+                        } catch (ParseException ex) {
+                            JOptionPane.showMessageDialog(this, "Erro na data de nascimento!",
+                                    "Dados incorretos", JOptionPane.WARNING_MESSAGE);
+                        }
+
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Insira a raça do bezerro!",
+                            "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Insira o número do brinco do bezerro!",
+                        "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione a mãe do bezerro!",
+                    "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
 

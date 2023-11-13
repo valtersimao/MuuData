@@ -129,13 +129,13 @@ public class BovinoDAO implements DAO {
                 atual.setPeso(resultado.getShort("peso"));
                 atual.setSexo(resultado.getBoolean("sexo"));
                 atual.setRaca(resultado.getString("raca"));
-                
+
                 if (resultado.getDate("nascimento") != null) {
                     Calendar nascimento = Calendar.getInstance();
                     nascimento.setTime(resultado.getDate("nascimento"));
                     atual.setNascimento(nascimento);
                 }
-                
+
                 retorno.add(atual);
             }
         } catch (SQLException ex) {

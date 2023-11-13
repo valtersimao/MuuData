@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import java.util.Calendar;
 
-/**
- *
- * @author 0068943
- */
 public class Bovino {
     public static final boolean MACHO = true, FEMEA = false;
     
@@ -65,6 +57,9 @@ public class Bovino {
     @Override
     public String toString() {
         char sex = sexo ? 'M' : 'F';
+        if(nome == null) {
+            return brinco + " :  ("+ sex+")";
+        }
         return brinco + " : " + nome + " ("+ sex+")";
     }
 
@@ -84,7 +79,7 @@ public class Bovino {
         this.nascimento = nascimento;
     }
 
-    public int getPeso() {
+    public Integer getPeso() {
         return peso;
     }
 

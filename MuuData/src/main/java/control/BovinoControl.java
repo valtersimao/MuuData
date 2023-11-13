@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
 import java.util.ArrayList;
 import model.Bovino;
 import model.dao.BovinoDAO;
 
-/**
- *
- * @author Arthur
- */
 public class BovinoControl {
     private BovinoDAO dao;
 
