@@ -39,4 +39,12 @@ public class BovinoControl {
         
         return bovinos;
     }
+    
+    public boolean delete(Bovino bovino) {
+        return this.dao.delete(bovino.getIdentificador());
+    }
+    
+    public boolean delete(int id) {
+        return this.dao.delete(id);
+    }
 }
