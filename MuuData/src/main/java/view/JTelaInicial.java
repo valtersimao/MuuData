@@ -24,7 +24,7 @@ public class JTelaInicial extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 153));
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\0068967\\Desktop\\interdisciplinar\\muuDataLogo.png")); // NOI18N
+        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/muuDataLogo.png"))); // NOI18N
         jLabelIcon.setText("LOGO");
 
         jButtonCadastroNascimento.setBackground(new java.awt.Color(235, 233, 225));
