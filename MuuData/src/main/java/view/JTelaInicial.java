@@ -60,6 +60,11 @@ public class JTelaInicial extends javax.swing.JPanel {
         jButtonConsultaAnimal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonConsultaAnimal.setFocusPainted(false);
         jButtonConsultaAnimal.setFocusable(false);
+        jButtonConsultaAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultaAnimalActionPerformed(evt);
+            }
+        });
 
         jButtonUndefined.setBackground(new java.awt.Color(235, 233, 225));
         jButtonUndefined.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -109,6 +114,11 @@ public class JTelaInicial extends javax.swing.JPanel {
         // TODO add your handling code here:
         FramePrincipal.trocaPainel("cadastraNascimento", new JCadastraNascimento());
     }//GEN-LAST:event_jButtonCadastroNascimentoActionPerformed
+
+    private void jButtonConsultaAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaAnimalActionPerformed
+        // TODO add your handling code here:
+        FramePrincipal.trocaPainel("consultaAnimais", new JConsulta());
+    }//GEN-LAST:event_jButtonConsultaAnimalActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
