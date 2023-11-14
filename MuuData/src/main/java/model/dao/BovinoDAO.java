@@ -92,7 +92,20 @@ public class BovinoDAO implements DAO {
 
     @Override
     public boolean update(Object entite) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Bovino bovino = (Bovino) entite;
+        String sql = "UPDATE muudata.bovino SET nome = ?, peso = ?, brinco = ? WHERE id = ?";
+        
+        try (PreparedStatement trans = c.prepareStatement(sql)) {
+            trans.setString(1, bovino.getNome());
+            trans.setInt(2, bovino.getPeso());
+            trans.setInt(3, bovino.getBrinco());
+            trans.setInt(4, bovino.getIdentificador());
+            
+            trans.execute();
+            return true;
+        }catch(SQLException ex) {
+            return false;
+        }
     }
 
     @Override
@@ -132,9 +145,10 @@ public class BovinoDAO implements DAO {
                     nascimento.setTime(resultado.getDate("nascimento"));
                     retorno.setNascimento(nascimento);
                 }
-
+                consulta.close();
                 return retorno;
             } else {
+                consulta.close();
                 return null;
             }
         } catch (SQLException ex) {
@@ -168,6 +182,39 @@ public class BovinoDAO implements DAO {
 
                 retorno.add(atual);
             }
+            consulta.close();;
+        } catch (SQLException ex) {
+            System.err.println("SQL ERROR " + ex.getMessage());
+        }
+
+        return retorno;
+    }
+    
+    public ArrayList<Object> getFemale() {
+        ArrayList<Object> retorno = new ArrayList<>();
+
+        try {
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino  WHERE sexo = false ORDER BY brinco ASC";
+            PreparedStatement consulta = c.prepareStatement(sql);
+            ResultSet resultado = consulta.executeQuery();
+            while (resultado.next()) {
+                Bovino atual = new Bovino();
+                atual.setBrinco(resultado.getInt("brinco"));
+                atual.setIdentificador(resultado.getInt("id"));
+                atual.setNome(resultado.getString("nome"));
+                atual.setPeso(resultado.getShort("peso"));
+                atual.setSexo(resultado.getBoolean("sexo"));
+                atual.setRaca(resultado.getString("raca"));
+
+                if (resultado.getDate("nascimento") != null) {
+                    Calendar nascimento = Calendar.getInstance();
+                    nascimento.setTime(resultado.getDate("nascimento"));
+                    atual.setNascimento(nascimento);
+                }
+
+                retorno.add(atual);
+            }
+            consulta.close();;
         } catch (SQLException ex) {
             System.err.println("SQL ERROR " + ex.getMessage());
         }
@@ -177,6 +224,67 @@ public class BovinoDAO implements DAO {
 
     @Override
     public ArrayList<Object> getWithFilter(Object filter) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //brinco, nome, idMae
+        Bovino bovino = (Bovino) filter;
+        ArrayList<Object> retorno = new ArrayList<>();
+
+        boolean possuiNome = false, possuiBrinco = false, possuiIdMae = false;
+        String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino WHERE ";
+        if (bovino.getNome() != null) {
+            possuiNome = true;
+            sql += "nome LIKE ? OR nome LIKE ? OR nome LIKE ?";
+        }
+        if (bovino.getBrinco() != 0) {
+            if (possuiNome) {
+                sql += " OR";
+            }
+            sql += " brinco = ?";
+            possuiBrinco = true;
+        }
+        if (bovino.getIdMae() != 0) {
+            if (possuiNome || possuiBrinco) {
+                sql += " OR";
+            }
+            sql += " id_mae = ?";
+            possuiIdMae = true;
+        }
+        if (!possuiNome && !possuiBrinco && !possuiIdMae) {
+            return null;
+        }
+        try (PreparedStatement trans = this.c.prepareStatement(sql)) {
+            int i = 1;
+            if (possuiNome) {
+                trans.setString(i, bovino.getNome() + "%");
+                trans.setString(i + 1, "%" + bovino.getNome());
+                trans.setString(i + 2, "%" + bovino.getNome() + "%");
+                i = 4;
+            }
+            if (possuiBrinco) {
+                trans.setInt(i, bovino.getBrinco());
+                i++;
+            }
+            if (possuiIdMae) {
+                trans.setInt(i, bovino.getIdMae());
+            }
+
+            ResultSet resultado = trans.executeQuery();
+            while (resultado.next()) {
+                Bovino atual = new Bovino();
+                atual.setBrinco(resultado.getInt("brinco"));
+                atual.setIdentificador(resultado.getInt("id"));
+                atual.setNome(resultado.getString("nome"));
+                atual.setPeso(resultado.getShort("peso"));
+                atual.setSexo(resultado.getBoolean("sexo"));
+                atual.setRaca(resultado.getString("raca"));
+                Calendar nascimento = Calendar.getInstance();
+                nascimento.setTime(resultado.getDate("nascimento"));
+                atual.setNascimento(nascimento);
+
+                retorno.add(atual);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return retorno;
     }
 }

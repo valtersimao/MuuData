@@ -38,6 +38,12 @@ public class FramePrincipal extends javax.swing.JFrame {
        // painelRolagem.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     }
     
+    public static void removePainel(String nome) {
+        if(historicoPaineis.containsKey(nome)){
+            historicoPaineis.remove(nome);
+        }
+    }
+    
     public static void trocaPainel(String nome, JPanel novoPainel){
         
         //se o novo painel não estive no histórico
