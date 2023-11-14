@@ -47,4 +47,8 @@ public class BovinoControl {
     public boolean delete(int id) {
         return this.dao.delete(id);
     }
+    
+    public boolean update(Bovino bovino) {
+        return this.dao.update(bovino);
+    }
 }

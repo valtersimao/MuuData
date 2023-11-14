@@ -92,7 +92,20 @@ public class BovinoDAO implements DAO {
 
     @Override
     public boolean update(Object entite) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Bovino bovino = (Bovino) entite;
+        String sql = "UPDATE muudata.bovino SET nome = ?, peso = ?, brinco = ? WHERE id = ?";
+        
+        try (PreparedStatement trans = c.prepareStatement(sql)) {
+            trans.setString(1, bovino.getNome());
+            trans.setInt(2, bovino.getPeso());
+            trans.setInt(3, bovino.getBrinco());
+            trans.setInt(4, bovino.getIdentificador());
+            
+            trans.execute();
+            return true;
+        }catch(SQLException ex) {
+            return false;
+        }
     }
 
     @Override
