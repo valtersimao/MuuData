@@ -24,6 +24,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jButtonVoltar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 153));
         setFont(new java.awt.Font("DejaVu Serif", 0, 14)); // NOI18N
@@ -32,12 +33,26 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(25, 25, 25));
         jLabel1.setText("Cadastrar Novo Animal");
 
+        jButtonVoltar.setBackground(new java.awt.Color(233, 233, 233));
+        jButtonVoltar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jButtonVoltar.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonVoltar.setFocusable(false);
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(jButtonVoltar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap(174, Short.MAX_VALUE))
         );
@@ -45,13 +60,22 @@ public class JCadastraAnimal extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButtonVoltar))
+                .addContainerGap(316, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        // TODO add your handling code here:
+        this.limpaFields();
+        FramePrincipal.trocaPainel("inicio", new JTelaInicial());
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
