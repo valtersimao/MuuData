@@ -29,6 +29,21 @@ public class BovinoControl {
         return bovinos;
     }
     
+    public Bovino getById(long id) {
+        return (Bovino) this.dao.getById(id);
+    }
+    
+    public ArrayList<Bovino> getFemale() {
+        ArrayList<Object> retorno = this.dao.getFemale();
+        ArrayList<Bovino> bovinos = new ArrayList<>();
+        
+        retorno.forEach((it) -> {
+            bovinos.add((Bovino) it);
+        });
+        
+        return bovinos;
+    }
+    
     public ArrayList<Bovino> getWithFilter(Bovino filter) {
         ArrayList<Object> retorno = this.dao.getWithFilter(filter);
         ArrayList<Bovino> bovinos = new ArrayList<>();

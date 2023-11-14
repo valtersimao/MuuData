@@ -145,9 +145,10 @@ public class BovinoDAO implements DAO {
                     nascimento.setTime(resultado.getDate("nascimento"));
                     retorno.setNascimento(nascimento);
                 }
-
+                consulta.close();
                 return retorno;
             } else {
+                consulta.close();
                 return null;
             }
         } catch (SQLException ex) {
@@ -181,6 +182,39 @@ public class BovinoDAO implements DAO {
 
                 retorno.add(atual);
             }
+            consulta.close();;
+        } catch (SQLException ex) {
+            System.err.println("SQL ERROR " + ex.getMessage());
+        }
+
+        return retorno;
+    }
+    
+    public ArrayList<Object> getFemale() {
+        ArrayList<Object> retorno = new ArrayList<>();
+
+        try {
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino  WHERE sexo = false ORDER BY brinco ASC";
+            PreparedStatement consulta = c.prepareStatement(sql);
+            ResultSet resultado = consulta.executeQuery();
+            while (resultado.next()) {
+                Bovino atual = new Bovino();
+                atual.setBrinco(resultado.getInt("brinco"));
+                atual.setIdentificador(resultado.getInt("id"));
+                atual.setNome(resultado.getString("nome"));
+                atual.setPeso(resultado.getShort("peso"));
+                atual.setSexo(resultado.getBoolean("sexo"));
+                atual.setRaca(resultado.getString("raca"));
+
+                if (resultado.getDate("nascimento") != null) {
+                    Calendar nascimento = Calendar.getInstance();
+                    nascimento.setTime(resultado.getDate("nascimento"));
+                    atual.setNascimento(nascimento);
+                }
+
+                retorno.add(atual);
+            }
+            consulta.close();;
         } catch (SQLException ex) {
             System.err.println("SQL ERROR " + ex.getMessage());
         }
