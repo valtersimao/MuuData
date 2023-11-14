@@ -177,6 +177,67 @@ public class BovinoDAO implements DAO {
 
     @Override
     public ArrayList<Object> getWithFilter(Object filter) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //brinco, nome, idMae
+        Bovino bovino = (Bovino) filter;
+        ArrayList<Object> retorno = new ArrayList<>();
+
+        boolean possuiNome = false, possuiBrinco = false, possuiIdMae = false;
+        String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino WHERE ";
+        if (bovino.getNome() != null) {
+            possuiNome = true;
+            sql += "nome LIKE ? OR nome LIKE ? OR nome LIKE ?";
+        }
+        if (bovino.getBrinco() != 0) {
+            if (possuiNome) {
+                sql += " OR";
+            }
+            sql += " brinco = ?";
+            possuiBrinco = true;
+        }
+        if (bovino.getIdMae() != 0) {
+            if (possuiNome || possuiBrinco) {
+                sql += " OR";
+            }
+            sql += " id_mae = ?";
+            possuiIdMae = true;
+        }
+        if (!possuiNome && !possuiBrinco && !possuiIdMae) {
+            return null;
+        }
+        try (PreparedStatement trans = this.c.prepareStatement(sql)) {
+            int i = 1;
+            if (possuiNome) {
+                trans.setString(i, bovino.getNome() + "%");
+                trans.setString(i + 1, "%" + bovino.getNome());
+                trans.setString(i + 2, "%" + bovino.getNome() + "%");
+                i = 4;
+            }
+            if (possuiBrinco) {
+                trans.setInt(i, bovino.getBrinco());
+                i++;
+            }
+            if (possuiIdMae) {
+                trans.setInt(i, bovino.getIdMae());
+            }
+
+            ResultSet resultado = trans.executeQuery();
+            while (resultado.next()) {
+                Bovino atual = new Bovino();
+                atual.setBrinco(resultado.getInt("brinco"));
+                atual.setIdentificador(resultado.getInt("id"));
+                atual.setNome(resultado.getString("nome"));
+                atual.setPeso(resultado.getShort("peso"));
+                atual.setSexo(resultado.getBoolean("sexo"));
+                atual.setRaca(resultado.getString("raca"));
+                Calendar nascimento = Calendar.getInstance();
+                nascimento.setTime(resultado.getDate("nascimento"));
+                atual.setNascimento(nascimento);
+
+                retorno.add(atual);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return retorno;
     }
 }
