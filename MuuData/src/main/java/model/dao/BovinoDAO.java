@@ -30,53 +30,33 @@ public class BovinoDAO implements DAO {
     public boolean insert(Object entite) {
         Bovino bovino = (Bovino) entite;
 
-        String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca, id_mae, nascimento) "
-                + "VALUES (?,?,?,?,?,?,?) returning id;";
+        String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca, nascimento";
+                
+        if(bovino.getIdMae() != 0){
+            sql+=", id_mae) VALUES (?,?,?,?,?,?,?) returning id";
+        }else {
+            sql+= ") VALUES (?,?,?,?,?,?) returning id";
+        }
 
-        try (PreparedStatement trans = this.c.prepareStatement(sql,
-                Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement trans = this.c.prepareStatement(sql)) {
 
             trans.setInt(1, bovino.getBrinco());
             trans.setString(2, bovino.getNome());
             trans.setInt(3, bovino.getPeso());
             trans.setBoolean(4, bovino.isSexo());
             trans.setString(5, bovino.getRaca());
-            trans.setInt(6, bovino.getIdMae());
-            trans.setDate(7, new java.sql.Date(bovino.getNascimento().getTimeInMillis()));
-            trans.executeQuery();
-
-            ResultSet resultSet = trans.getGeneratedKeys();
-
-            if (resultSet.next()) {
-                bovino.setIdentificador(resultSet.getInt("id"));
-
-                return true;
-            } else {
-                return false;
+            
+            if(bovino.getNascimento() == null) {
+                trans.setDate(6, null);
+            }else {
+                trans.setDate(6, new java.sql.Date(bovino.getNascimento().getTimeInMillis()));
             }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        }
-    }
+            if(bovino.getIdMae() != 0) {
+                trans.setInt(7, bovino.getIdMae());
+            }
+            
+            ResultSet resultSet = trans.executeQuery();;
 
-    public boolean insertSemPeso(Object entite) {
-        Bovino bovino = (Bovino) entite;
-
-        String sql = "INSERT INTO muudata.bovino(brinco, nome, sexo, raca, id_mae, nascimento) "
-                + "VALUES (?,?,?,?,?,?) returning id;";
-
-        try (PreparedStatement trans = this.c.prepareStatement(sql)) {
-
-            trans.setInt(1, bovino.getBrinco());
-            trans.setString(2, bovino.getNome());
-            trans.setBoolean(3, bovino.isSexo());
-            trans.setString(4, bovino.getRaca());
-            trans.setInt(5, bovino.getIdMae());
-            trans.setDate(6, new java.sql.Date(bovino.getNascimento().getTimeInMillis()));
-            ResultSet resultSet = trans.executeQuery();
-
-            //= trans.getGeneratedKeys();
             if (resultSet.next()) {
                 bovino.setIdentificador(resultSet.getInt("id"));
 

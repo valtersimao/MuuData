@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 public class Bovino {
     public static final boolean MACHO = true, FEMEA = false;
+    public static final int ID_DEFAULT = 0;
     
     private int brinco;
     private int identificador;

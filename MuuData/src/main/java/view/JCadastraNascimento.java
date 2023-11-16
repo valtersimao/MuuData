@@ -32,7 +32,7 @@ public class JCadastraNascimento extends javax.swing.JPanel {
 
         this.comboMae = new DefaultComboBoxModel();
         this.jComboBoxMae.setModel(comboMae);
-        this.comboMae.addAll(boiControl.getAll());
+        this.comboMae.addAll(boiControl.getFemale());
     }
 
     private void limpaFields() {
@@ -318,8 +318,9 @@ public class JCadastraNascimento extends javax.swing.JPanel {
                                     boi.setSexo(sexo);
                                     boi.setIdMae(idMae);
                                     boi.setNascimento(data);
+                                    boi.setPeso(0);
 
-                                    if (boiControl.insertSemPeso(boi)) {
+                                    if (boiControl.insert(boi)) {
                                         JOptionPane.showMessageDialog(this, "Bezerro cadastrado com sucesso!",
                                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                                         

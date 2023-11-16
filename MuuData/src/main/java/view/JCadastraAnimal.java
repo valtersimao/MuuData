@@ -277,6 +277,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
                                 boi.setPeso(peso);
                                 boi.setRaca(raca);
                                 boi.setSexo(sexo);
+                                boi.setIdMae(Bovino.ID_DEFAULT);
 
                                 if (boiControl.insert(boi)) {
                                     this.limpaFields();
