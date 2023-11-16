@@ -4,7 +4,6 @@ package model;
 import java.util.Calendar;
 
 public class Gestacao {
-    private int id;
     private int idBovino;
     private Calendar dataEvento;
     private String tipoAtividade;
@@ -12,29 +11,12 @@ public class Gestacao {
 
     public Gestacao() {
     }
-
     
-    public Gestacao(int id, int idBovino, Calendar dataEvento, String tipoAtividade, String situacaoGestacao) {
-        this.id = id;
-        this.idBovino = idBovino;
-        this.dataEvento = dataEvento;
-        this.tipoAtividade = tipoAtividade;
-        this.situacaoGestacao = situacaoGestacao;
-    }
-
     public Gestacao(int idBovino, Calendar dataEvento, String tipoAtividade, String situacaoGestacao) {
         this.idBovino = idBovino;
         this.dataEvento = dataEvento;
         this.tipoAtividade = tipoAtividade;
         this.situacaoGestacao = situacaoGestacao;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getIdBovino() {
