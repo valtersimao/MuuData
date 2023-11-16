@@ -5,7 +5,14 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Gestacao;
 import tools.FactoryPostgres;
 
 /**
@@ -22,7 +29,21 @@ public class GestacaoDAO implements DAO{
 
     @Override
     public boolean insert(Object entite) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Gestacao gestacao = (Gestacao) entite;
+        String sql = "INSERT INTO muudata.gestacao (id_bovino, data_evento, tipo_atividade, situacao_gestacao) VALUES (?,?,?,?)";
+        
+        try(PreparedStatement trans = c.prepareStatement(sql)){
+            trans.setInt(1, gestacao.getIdBovino());
+            trans.setDate(2, new Date(gestacao.getDataEvento().getTimeInMillis()));
+            trans.setString(3, gestacao.getTipoAtividade());
+            trans.setString(4, gestacao.getSituacaoGestacao());
+            
+            trans.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(GestacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 
     @Override
@@ -37,7 +58,22 @@ public class GestacaoDAO implements DAO{
 
     @Override
     public Object getById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Gestacao retorno = new Gestacao();
+        String sql = "SELECT id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao WHERE id_bovino = ?";
+        
+        try(PreparedStatement trans = c.prepareStatement(sql)){
+            trans.setInt(1, (int)id);
+            
+            ResultSet resultado = trans.executeQuery();
+            
+            if(resultado.next()) {
+                retorno = new Gestacao(resultado.getInt("id_bovino"), 
+                        dataEvento, sql, sql)
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GestacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
     }
 
     @Override
