@@ -1,7 +1,10 @@
 package control;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import model.Bovino;
 import model.dao.BovinoDAO;
 
@@ -29,14 +32,22 @@ public class BovinoControl {
         return this.dao.insert(boi);
     }
 
-    public boolean insert(String nome, int brinco, String raca, boolean sexo, int idMae, Calendar data) {
+    public boolean insert(String nome, int brinco, String raca, boolean sexo, int idMae, String data) throws ParseException{
+        //TODO
+        //ADICIONAR VERIFICAÇÕES DA DATA
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataNascimento = dateFormat.parse(data);
+        Calendar c = Calendar.getInstance();
+        c.setTime(dataNascimento);
+        
         Bovino boi = new Bovino();
         boi.setNome(nome);
         boi.setBrinco(brinco);
         boi.setRaca(raca);
         boi.setSexo(sexo);
         boi.setIdMae(idMae);
-        boi.setNascimento(data);
+        boi.setNascimento(c);
         boi.setPeso(0);
 
         return this.dao.insert(boi);

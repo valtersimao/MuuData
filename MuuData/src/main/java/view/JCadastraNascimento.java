@@ -297,11 +297,7 @@ public class JCadastraNascimento extends javax.swing.JPanel {
                         if (op == JOptionPane.NO_OPTION) {
                             String nome = this.jTextNome.getText();
 
-                            SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
                             try {
-                                Date dateNascimento = (Date) dataFormat.parse(this.jTextData.getText());
-                                Calendar data = Calendar.getInstance();
-                                data.setTime(dateNascimento);
 
                                 boolean sexo = this.jRadioButtonM.isSelected();
 
@@ -310,7 +306,7 @@ public class JCadastraNascimento extends javax.swing.JPanel {
 
                                 if (op == JOptionPane.YES_OPTION) {
 
-                                    if (boiControl.insert(nome, brinco, raca, sexo, idMae, data)) {
+                                    if (boiControl.insert(nome, brinco, raca, sexo, idMae, this.jTextData.getText())) {
                                         JOptionPane.showMessageDialog(this, "Bezerro cadastrado com sucesso!",
                                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
