@@ -11,24 +11,25 @@ import model.Bovino;
  * @author 0068967
  */
 public class JCadastraAnimal extends javax.swing.JPanel {
+
     private ButtonGroup grupoButao;
     private BovinoControl boiControl;
-    
+
     public JCadastraAnimal() {
         initComponents();
-        
+
         config();
     }
-    
+
     private void config() {
         this.limpaFields();
         this.grupoButao = new ButtonGroup();
         this.grupoButao.add(jRadioButtonM);
         this.grupoButao.add(jRadioButtonF);
-        
+
         this.boiControl = new BovinoControl();
     }
-    
+
     private void limpaFields() {
         this.jTextNome.setText("");
         this.jTextBrinco.setText("");
@@ -37,7 +38,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         this.jRadioButtonF.setSelected(false);
         this.jRadioButtonM.setSelected(true);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -271,15 +272,8 @@ public class JCadastraAnimal extends javax.swing.JPanel {
                                     "Finalizar", JOptionPane.YES_NO_OPTION);
 
                             if (op == JOptionPane.YES_OPTION) {
-                                Bovino boi = new Bovino();
-                                boi.setNome(nome);
-                                boi.setBrinco(brinco);
-                                boi.setPeso(peso);
-                                boi.setRaca(raca);
-                                boi.setSexo(sexo);
-                                boi.setIdMae(Bovino.ID_DEFAULT);
 
-                                if (boiControl.insert(boi)) {
+                                if (boiControl.insert(nome, brinco, peso, raca, sexo)) {
                                     this.limpaFields();
 
                                     JOptionPane.showMessageDialog(this, "Novo animal cadastrado com sucesso!",

@@ -310,23 +310,13 @@ public class JCadastraNascimento extends javax.swing.JPanel {
 
                                 if (op == JOptionPane.YES_OPTION) {
 
-                                    //TODO
-                                    Bovino boi = new Bovino();
-                                    boi.setNome(nome);
-                                    boi.setBrinco(brinco);
-                                    boi.setRaca(raca);
-                                    boi.setSexo(sexo);
-                                    boi.setIdMae(idMae);
-                                    boi.setNascimento(data);
-                                    boi.setPeso(0);
-
-                                    if (boiControl.insert(boi)) {
+                                    if (boiControl.insert(nome, brinco, raca, sexo, idMae, data)) {
                                         JOptionPane.showMessageDialog(this, "Bezerro cadastrado com sucesso!",
                                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                                        
+
                                         op = JOptionPane.showConfirmDialog(this, "Você deseja cadastrar outro nascimento?",
                                                 "", JOptionPane.YES_NO_OPTION);
-                                        if(op == JOptionPane.YES_OPTION) {
+                                        if (op == JOptionPane.YES_OPTION) {
                                             this.limpaFields();
                                         } else {
                                             this.jButtonVoltarActionPerformed(evt);

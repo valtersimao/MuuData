@@ -24,7 +24,7 @@ public class JTelaInicial extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 153));
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/muuDataLogo.png"))); // NOI18N
+        jLabelIcon.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\resources\\muuDataLogo.png"));
         jLabelIcon.setText("LOGO");
 
         jButtonCadastroNascimento.setBackground(new java.awt.Color(235, 233, 225));
@@ -42,7 +42,6 @@ public class JTelaInicial extends javax.swing.JPanel {
 
         jButtonCadastroAnimal1.setBackground(new java.awt.Color(235, 233, 225));
         jButtonCadastroAnimal1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButtonCadastroAnimal1.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCadastroAnimal1.setText("Cadastrar Animal");
         jButtonCadastroAnimal1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastroAnimal1.setFocusPainted(false);
@@ -55,7 +54,6 @@ public class JTelaInicial extends javax.swing.JPanel {
 
         jButtonConsultaAnimal.setBackground(new java.awt.Color(235, 233, 225));
         jButtonConsultaAnimal.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButtonConsultaAnimal.setForeground(new java.awt.Color(0, 0, 0));
         jButtonConsultaAnimal.setText("Consultar Animal");
         jButtonConsultaAnimal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonConsultaAnimal.setFocusPainted(false);
