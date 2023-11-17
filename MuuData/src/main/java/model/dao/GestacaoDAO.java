@@ -36,8 +36,8 @@ public class GestacaoDAO implements DAO {
         try (PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setInt(1, gestacao.getIdBovino());
             trans.setDate(2, new Date(gestacao.getDataEvento().getTimeInMillis()));
-            trans.setString(3, gestacao.getTipoAtividade());
-            trans.setString(4, gestacao.getSituacaoGestacao());
+            trans.setInt(3, gestacao.getTipoAtividade());
+            trans.setInt(4, gestacao.getSituacaoGestacao());
 
             ResultSet result = trans.executeQuery();
             if (result.next()) {
@@ -57,7 +57,7 @@ public class GestacaoDAO implements DAO {
         String sql = "UPDATE muudata.gestacao SET situacao_gestacao = ?, data_evento = ? WHERE id = ?";
         
         try (PreparedStatement trans = c.prepareStatement(sql)) {
-            trans.setString(1, gestacao.getSituacaoGestacao());
+            trans.setInt(1, gestacao.getSituacaoGestacao());
             if(gestacao.getDataEvento()== null) {
                 trans.setDate(2, null);
             }else {
@@ -81,7 +81,7 @@ public class GestacaoDAO implements DAO {
     @Override
     public Object getById(long id) {
         Gestacao retorno;
-        String sql = "SELECT id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao WHERE id = ?";
+        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao WHERE id_bovino = ?";
 
         try (PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setInt(1, (int) id);
@@ -92,7 +92,9 @@ public class GestacaoDAO implements DAO {
                 Calendar dataEvento = Calendar.getInstance();
                 dataEvento.setTime(resultado.getDate("data_evento"));
                 retorno = new Gestacao(resultado.getInt("id_bovino"),
-                        dataEvento, resultado.getString("tipo_atividade"), "situacao_gestacao");
+                        resultado.getInt("id_bovino"),
+                        dataEvento, resultado.getInt("tipo_atividade"), 
+                        resultado.getInt("situacao_gestacao"));
                 return retorno;
             }
         } catch (SQLException ex) {
@@ -104,7 +106,7 @@ public class GestacaoDAO implements DAO {
     @Override
     public ArrayList<Object> getAll() {
         ArrayList<Object> retorno = new ArrayList<>();
-        String sql = "SELECT id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao";
+        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao";
 
         try (PreparedStatement trans = c.prepareStatement(sql)) {
 
@@ -115,7 +117,9 @@ public class GestacaoDAO implements DAO {
                 Calendar dataEvento = Calendar.getInstance();
                 dataEvento.setTime(resultado.getDate("data_evento"));
                 gestacao = new Gestacao(resultado.getInt("id_bovino"),
-                        dataEvento, resultado.getString("tipo_atividade"), "situacao_gestacao");
+                        resultado.getInt("id_bovino"),
+                        dataEvento, resultado.getInt("tipo_atividade"), 
+                        resultado.getInt("situacao_gestacao"));
                 retorno.add(gestacao);
                 
             }
@@ -127,7 +131,29 @@ public class GestacaoDAO implements DAO {
 
     @Override
     public ArrayList<Object> getWithFilter(Object filter) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Gestacao gestacao = (Gestacao) filter;
+        ArrayList<Object> retorno = new ArrayList<>();
+        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade FROM muudata.gestacao WHERE situacao_gestacao = ?";
+        
+        try (PreparedStatement trans = c.prepareStatement(sql)) {
+            trans.setInt(1, gestacao.getSituacaoGestacao());
+            
+            ResultSet result = trans.executeQuery();
+            
+            while(result.next()) {
+                Gestacao gest = new Gestacao();
+                Calendar dataEvento = Calendar.getInstance();
+                dataEvento.setTime(result.getDate("data_evento"));
+                gest = new Gestacao(result.getInt("id_bovino"),
+                        result.getInt("id_bovino"),
+                        dataEvento, result.getInt("tipo_atividade"), 
+                        result.getInt("situacao_gestacao"));
+                retorno.add(gestacao);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GestacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
     }
 
 }

@@ -8,13 +8,13 @@ public class Gestacao {
     private int id;
     private int idBovino;
     private Calendar dataEvento;
-    private String tipoAtividade;
-    private String situacaoGestacao;
+    private int tipoAtividade;
+    private int situacaoGestacao;
 
     public Gestacao() {
     }
 
-    public Gestacao(int id, int idBovino, Calendar dataEvento, String tipoAtividade, String situacaoGestacao) {
+    public Gestacao(int id, int idBovino, Calendar dataEvento, int tipoAtividade, int situacaoGestacao) {
         this.id = id;
         this.idBovino = idBovino;
         this.dataEvento = dataEvento;
@@ -22,7 +22,7 @@ public class Gestacao {
         this.situacaoGestacao = situacaoGestacao;
     }
     
-    public Gestacao(int idBovino, Calendar dataEvento, String tipoAtividade, String situacaoGestacao) {
+    public Gestacao(int idBovino, Calendar dataEvento, int tipoAtividade, int situacaoGestacao) {
         this.idBovino = idBovino;
         this.dataEvento = dataEvento;
         this.tipoAtividade = tipoAtividade;
@@ -53,19 +53,19 @@ public class Gestacao {
         this.dataEvento = dataEvento;
     }
 
-    public String getTipoAtividade() {
+    public int getTipoAtividade() {
         return tipoAtividade;
     }
 
-    public void setTipoAtividade(String tipoAtividade) {
+    public void setTipoAtividade(int tipoAtividade) {
         this.tipoAtividade = tipoAtividade;
     }
 
-    public String getSituacaoGestacao() {
+    public int getSituacaoGestacao() {
         return situacaoGestacao;
     }
 
-    public void setSituacaoGestacao(String situacaoGestacao) {
+    public void setSituacaoGestacao(int situacaoGestacao) {
         this.situacaoGestacao = situacaoGestacao;
     }
     
