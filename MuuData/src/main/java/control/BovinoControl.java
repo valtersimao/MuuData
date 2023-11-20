@@ -33,10 +33,9 @@ public class BovinoControl {
     }
 
     public boolean insert(String nome, int brinco, String raca, boolean sexo, int idMae, String data) throws ParseException{
-        //TODO
-        //ADICIONAR VERIFICAÇÕES DA DATA
         
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
         Date dataNascimento = dateFormat.parse(data);
         Calendar c = Calendar.getInstance();
         c.setTime(dataNascimento);
