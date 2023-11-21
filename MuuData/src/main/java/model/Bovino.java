@@ -31,7 +31,7 @@ public class Bovino {
         this.idMae = idMae;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
