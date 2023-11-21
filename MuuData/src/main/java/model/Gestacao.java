@@ -4,6 +4,8 @@ package model;
 import java.util.Calendar;
 
 public class Gestacao {
+    public static final int EM_ANDAMENTO = 0, FINALIZADA = 1, ABORTADA = 2;
+    public static final int NATURAL = 0, ARTIFICIAL = 1;
     
     private int id;
     private int idBovino;
