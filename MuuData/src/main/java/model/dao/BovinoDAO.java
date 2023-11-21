@@ -31,11 +31,11 @@ public class BovinoDAO implements DAO {
         Bovino bovino = (Bovino) entite;
 
         String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca, nascimento";
-                
-        if(bovino.getIdMae() != Bovino.ID_DEFAULT){
-            sql+=", id_mae) VALUES (?,?,?,?,?,?,?) returning id";
-        }else {
-            sql+= ") VALUES (?,?,?,?,?,?) returning id";
+
+        if (bovino.getIdMae() != Bovino.ID_DEFAULT) {
+            sql += ", id_mae) VALUES (?,?,?,?,?,?,?) returning id";
+        } else {
+            sql += ") VALUES (?,?,?,?,?,?) returning id";
         }
 
         try (PreparedStatement trans = this.c.prepareStatement(sql)) {
@@ -45,16 +45,16 @@ public class BovinoDAO implements DAO {
             trans.setInt(3, bovino.getPeso());
             trans.setBoolean(4, bovino.isSexo());
             trans.setString(5, bovino.getRaca());
-            
-            if(bovino.getNascimento() == null) {
+
+            if (bovino.getNascimento() == null) {
                 trans.setDate(6, null);
-            }else {
+            } else {
                 trans.setDate(6, new java.sql.Date(bovino.getNascimento().getTimeInMillis()));
             }
-            if(bovino.getIdMae() != 0) {
+            if (bovino.getIdMae() != 0) {
                 trans.setInt(7, bovino.getIdMae());
             }
-            
+
             ResultSet resultSet = trans.executeQuery();;
 
             if (resultSet.next()) {
@@ -74,16 +74,16 @@ public class BovinoDAO implements DAO {
     public boolean update(Object entite) {
         Bovino bovino = (Bovino) entite;
         String sql = "UPDATE muudata.bovino SET nome = ?, peso = ?, brinco = ? WHERE id = ?";
-        
+
         try (PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setString(1, bovino.getNome());
             trans.setInt(2, bovino.getPeso());
             trans.setInt(3, bovino.getBrinco());
             trans.setInt(4, bovino.getId());
-            
+
             trans.execute();
             return true;
-        }catch(SQLException ex) {
+        } catch (SQLException ex) {
             return false;
         }
     }
@@ -113,19 +113,17 @@ public class BovinoDAO implements DAO {
             consulta.setLong(1, id);
             ResultSet resultado = consulta.executeQuery();
             if (resultado.next()) {
-                retorno = new Bovino();
-                retorno.setBrinco(resultado.getInt("brinco"));
-                retorno.setId(resultado.getInt("id"));
-                retorno.setNome(resultado.getString("nome"));
-                retorno.setPeso(resultado.getShort("peso"));
-                retorno.setSexo(resultado.getBoolean("sexo"));
-                retorno.setRaca(resultado.getString("raca"));
-                retorno.setIdMae(resultado.getInt("id_mae"));
-                if (resultado.getDate("nascimento") != null) {
-                    Calendar nascimento = Calendar.getInstance();
-                    nascimento.setTime(resultado.getDate("nascimento"));
-                    retorno.setNascimento(nascimento);
-                }
+                Calendar nascimento = Calendar.getInstance();
+                nascimento.setTime(resultado.getDate("nascimento"));
+
+                retorno = new Bovino(resultado.getInt("brinco"),
+                        resultado.getInt("id"),
+                        resultado.getString("nome"),
+                        resultado.getString("raca"),
+                        resultado.getBoolean("sexo"),
+                        nascimento, resultado.getInt("peso"),
+                        resultado.getInt("id_mae"));
+
                 consulta.close();
                 return retorno;
             } else {
@@ -147,20 +145,16 @@ public class BovinoDAO implements DAO {
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while (resultado.next()) {
-                Bovino atual = new Bovino();
-                atual.setBrinco(resultado.getInt("brinco"));
-                atual.setId(resultado.getInt("id"));
-                atual.setNome(resultado.getString("nome"));
-                atual.setPeso(resultado.getShort("peso"));
-                atual.setSexo(resultado.getBoolean("sexo"));
-                atual.setRaca(resultado.getString("raca"));
-                atual.setIdMae(resultado.getInt("id_mae"));
-
-                if (resultado.getDate("nascimento") != null) {
-                    Calendar nascimento = Calendar.getInstance();
-                    nascimento.setTime(resultado.getDate("nascimento"));
-                    atual.setNascimento(nascimento);
-                }
+                Calendar nascimento = Calendar.getInstance();
+                nascimento.setTime(resultado.getDate("nascimento"));
+                
+                Bovino atual = new Bovino(resultado.getInt("brinco"),
+                        resultado.getInt("id"),
+                        resultado.getString("nome"),
+                        resultado.getString("raca"),
+                        resultado.getBoolean("sexo"),
+                        nascimento, resultado.getInt("peso"),
+                        resultado.getInt("id_mae"));
 
                 retorno.add(atual);
             }
@@ -171,7 +165,7 @@ public class BovinoDAO implements DAO {
 
         return retorno;
     }
-    
+
     public ArrayList<Object> getFemale() {
         ArrayList<Object> retorno = new ArrayList<>();
 
@@ -180,20 +174,16 @@ public class BovinoDAO implements DAO {
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while (resultado.next()) {
-                Bovino atual = new Bovino();
-                atual.setBrinco(resultado.getInt("brinco"));
-                atual.setId(resultado.getInt("id"));
-                atual.setNome(resultado.getString("nome"));
-                atual.setPeso(resultado.getShort("peso"));
-                atual.setSexo(resultado.getBoolean("sexo"));
-                atual.setRaca(resultado.getString("raca"));
-                atual.setIdMae(resultado.getInt("id_mae"));
-
-                if (resultado.getDate("nascimento") != null) {
-                    Calendar nascimento = Calendar.getInstance();
-                    nascimento.setTime(resultado.getDate("nascimento"));
-                    atual.setNascimento(nascimento);
-                }
+                Calendar nascimento = Calendar.getInstance();
+                nascimento.setTime(resultado.getDate("nascimento"));
+                
+                Bovino atual = new Bovino(resultado.getInt("brinco"),
+                        resultado.getInt("id"),
+                        resultado.getString("nome"),
+                        resultado.getString("raca"),
+                        resultado.getBoolean("sexo"),
+                        nascimento, resultado.getInt("peso"),
+                        resultado.getInt("id_mae"));
 
                 retorno.add(atual);
             }
@@ -252,18 +242,17 @@ public class BovinoDAO implements DAO {
 
             ResultSet resultado = trans.executeQuery();
             while (resultado.next()) {
-                Bovino atual = new Bovino();
-                atual.setBrinco(resultado.getInt("brinco"));
-                atual.setId(resultado.getInt("id"));
-                atual.setNome(resultado.getString("nome"));
-                atual.setPeso(resultado.getShort("peso"));
-                atual.setSexo(resultado.getBoolean("sexo"));
-                atual.setRaca(resultado.getString("raca"));
-                atual.setIdMae(resultado.getInt("id_mae"));
-                
                 Calendar nascimento = Calendar.getInstance();
                 nascimento.setTime(resultado.getDate("nascimento"));
-                atual.setNascimento(nascimento);
+                
+                Bovino atual = new Bovino(resultado.getInt("brinco"),
+                        resultado.getInt("id"),
+                        resultado.getString("nome"),
+                        resultado.getString("raca"),
+                        resultado.getBoolean("sexo"),
+                        nascimento, resultado.getInt("peso"),
+                        resultado.getInt("id_mae"));
+
 
                 retorno.add(atual);
             }
