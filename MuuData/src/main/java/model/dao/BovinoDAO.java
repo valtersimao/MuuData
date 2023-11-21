@@ -143,7 +143,7 @@ public class BovinoDAO implements DAO {
         ArrayList<Object> retorno = new ArrayList<>();
 
         try {
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino ORDER BY brinco ASC";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino WHERE id != 0 ORDER BY brinco ASC";
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while (resultado.next()) {
@@ -176,7 +176,7 @@ public class BovinoDAO implements DAO {
         ArrayList<Object> retorno = new ArrayList<>();
 
         try {
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino  WHERE sexo = false ORDER BY brinco ASC";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino  WHERE sexo = false AND id != 0 ORDER BY brinco ASC";
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while (resultado.next()) {
@@ -212,7 +212,7 @@ public class BovinoDAO implements DAO {
         ArrayList<Object> retorno = new ArrayList<>();
 
         boolean possuiNome = false, possuiBrinco = false, possuiIdMae = false;
-        String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino WHERE ";
+        String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino WHERE id != 0";
         if (bovino.getNome() != null) {
             possuiNome = true;
             sql += "nome LIKE ? OR nome LIKE ? OR nome LIKE ?";
