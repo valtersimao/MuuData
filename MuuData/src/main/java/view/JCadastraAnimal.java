@@ -82,16 +82,16 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         jLabel3.setText("Brinco:");
 
         jTextBrinco.setBackground(new java.awt.Color(233, 233, 233));
-        jTextBrinco.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextBrinco.setForeground(new java.awt.Color(25, 25, 25));
+        jTextBrinco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextBrinco.setForeground(new java.awt.Color(60, 63, 65));
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 25, 25));
         jLabel4.setText("Raça:");
 
         jTextRaca.setBackground(new java.awt.Color(233, 233, 233));
-        jTextRaca.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextRaca.setForeground(new java.awt.Color(25, 25, 25));
+        jTextRaca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextRaca.setForeground(new java.awt.Color(60, 63, 65));
         jTextRaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextRacaActionPerformed(evt);
@@ -103,8 +103,8 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         jLabel5.setText("Peso:");
 
         jTextPeso.setBackground(new java.awt.Color(233, 233, 233));
-        jTextPeso.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextPeso.setForeground(new java.awt.Color(25, 25, 25));
+        jTextPeso.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextPeso.setForeground(new java.awt.Color(60, 63, 65));
         jTextPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextPesoActionPerformed(evt);
@@ -116,8 +116,8 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         jLabel6.setText("Nome:");
 
         jTextNome.setBackground(new java.awt.Color(233, 233, 233));
-        jTextNome.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextNome.setForeground(new java.awt.Color(25, 25, 25));
+        jTextNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextNome.setForeground(new java.awt.Color(60, 63, 65));
         jTextNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextNomeActionPerformed(evt);
@@ -199,7 +199,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
                 .addComponent(jButtonVoltar)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextBrinco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -217,7 +217,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
                     .addComponent(jLabel6))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -225,7 +225,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
                             .addComponent(jRadioButtonF)
                             .addComponent(jRadioButtonM)
                             .addComponent(jLabel7))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
