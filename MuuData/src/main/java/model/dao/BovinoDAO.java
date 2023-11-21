@@ -108,7 +108,7 @@ public class BovinoDAO implements DAO {
     public Object getById(long id) {
         Bovino retorno;
         try {
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino WHERE id = ? ORDER BY brinco ASC";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae FROM muudata.bovino WHERE id = ? ORDER BY brinco ASC";
             PreparedStatement consulta = c.prepareStatement(sql);
             consulta.setLong(1, id);
             ResultSet resultado = consulta.executeQuery();
@@ -143,7 +143,7 @@ public class BovinoDAO implements DAO {
         ArrayList<Object> retorno = new ArrayList<>();
 
         try {
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino WHERE id != 0 ORDER BY brinco ASC";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino WHERE id != 0 ORDER BY brinco ASC";
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while (resultado.next()) {
@@ -176,7 +176,7 @@ public class BovinoDAO implements DAO {
         ArrayList<Object> retorno = new ArrayList<>();
 
         try {
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca FROM muudata.bovino  WHERE sexo = false AND id != 0 ORDER BY brinco ASC";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino  WHERE sexo = false AND id != 0 ORDER BY brinco ASC";
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while (resultado.next()) {
