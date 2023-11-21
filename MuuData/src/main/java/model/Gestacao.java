@@ -16,6 +16,12 @@ public class Gestacao {
     public Gestacao() {
     }
 
+    public Gestacao(int id, Calendar dataEvento, int situacaoGestacao) {
+        this.id = id;
+        this.dataEvento = dataEvento;
+        this.situacaoGestacao = situacaoGestacao;
+    }
+    
     public Gestacao(int id, int idBovino, Calendar dataEvento, int tipoAtividade, int situacaoGestacao) {
         this.id = id;
         this.idBovino = idBovino;
