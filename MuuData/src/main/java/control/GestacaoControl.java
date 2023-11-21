@@ -5,10 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Gestacao;
 import model.dao.GestacaoDAO;
+import tools.Converter;
 
 public class GestacaoControl {
 
@@ -20,7 +19,7 @@ public class GestacaoControl {
 
     public boolean insert(String data, int idBovino, int tipoAtividade, int situacaoGestacao) {
         try {
-            Calendar c = convertToCalendar(data);
+            Calendar c = Converter.convertToCalendar(data);
 
             Gestacao gest = new Gestacao(idBovino, c, tipoAtividade, situacaoGestacao);
 
@@ -36,7 +35,7 @@ public class GestacaoControl {
 
     public boolean update(String data, int idBovino,int id) {
         try {
-            Calendar c = convertToCalendar(data);
+            Calendar c = Converter.convertToCalendar(data);
             
             Gestacao gest = new Gestacao(id, c, idBovino);
             
