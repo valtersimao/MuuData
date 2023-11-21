@@ -77,8 +77,8 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         jLabel2.setText("Maternidade:");
 
         jComboBoxMae.setBackground(new java.awt.Color(233, 233, 233));
-        jComboBoxMae.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBoxMae.setForeground(new java.awt.Color(25, 25, 25));
+        jComboBoxMae.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jComboBoxMae.setForeground(new java.awt.Color(60, 63, 65));
         jComboBoxMae.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jComboBoxMae.setFocusable(false);
         jComboBoxMae.addItemListener(new java.awt.event.ItemListener() {
@@ -92,16 +92,16 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         jLabel3.setText("Brinco:");
 
         jTextBrinco.setBackground(new java.awt.Color(233, 233, 233));
-        jTextBrinco.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextBrinco.setForeground(new java.awt.Color(25, 25, 25));
+        jTextBrinco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextBrinco.setForeground(new java.awt.Color(60, 63, 65));
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(25, 25, 25));
         jLabel4.setText("Raça:");
 
         jTextRaca.setBackground(new java.awt.Color(233, 233, 233));
-        jTextRaca.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextRaca.setForeground(new java.awt.Color(25, 25, 25));
+        jTextRaca.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextRaca.setForeground(new java.awt.Color(60, 63, 65));
         jTextRaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextRacaActionPerformed(evt);
@@ -113,8 +113,8 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         jLabel5.setText("Nome:");
 
         jTextNome.setBackground(new java.awt.Color(233, 233, 233));
-        jTextNome.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextNome.setForeground(new java.awt.Color(25, 25, 25));
+        jTextNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextNome.setForeground(new java.awt.Color(60, 63, 65));
         jTextNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextNomeActionPerformed(evt);
@@ -126,14 +126,14 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         jLabel6.setText("Data:");
 
         jTextData.setBackground(new java.awt.Color(233, 233, 233));
-        jTextData.setForeground(new java.awt.Color(25, 25, 25));
+        jTextData.setForeground(new java.awt.Color(60, 63, 65));
         try {
             jTextData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         jTextData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextData.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jTextData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(25, 25, 25));
@@ -182,45 +182,48 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBoxMae, 0, 292, Short.MAX_VALUE)
-                    .addComponent(jTextBrinco)
-                    .addComponent(jTextRaca)
-                    .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextNome)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButtonM)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButtonF)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxMae, 0, 292, Short.MAX_VALUE)
+                            .addComponent(jTextBrinco)
+                            .addComponent(jTextRaca)
+                            .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextNome)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButtonM)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButtonF)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButtonVoltar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(146, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonVoltar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBoxMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -246,7 +249,7 @@ public class JCadastraNascimento extends javax.swing.JPanel {
                     .addComponent(jRadioButtonM)
                     .addComponent(jRadioButtonF)
                     .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
