@@ -8,20 +8,34 @@ public class JConsulta extends javax.swing.JPanel {
 
     DefaultComboBoxModel<Bovino> comboAnimais;
     BovinoControl boiControl;
-    
+
     public JConsulta() {
         initComponents();
-        
+
         config();
     }
 
     private void config() {
         boiControl = new BovinoControl();
-        
+
         this.comboAnimais = new DefaultComboBoxModel();
         this.jComboBoxMae.setModel(comboAnimais);
         this.comboAnimais.addAll(boiControl.getAll());
+        
+        this.setMaeVisible(false);
+        this.setDateVisible(false);
     }
+
+    private void setMaeVisible(boolean op) {
+        this.jTextMae.setVisible(op);
+        this.jLabelMae.setVisible(op);
+    }
+
+    private void setDateVisible(boolean op) {
+        this.jLabelDate.setVisible(op);
+       // this.jTextDate.setVisible(op);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,6 +56,7 @@ public class JConsulta extends javax.swing.JPanel {
         jTextRaca = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextMae = new javax.swing.JTextField();
+        jLabelDate = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 153));
 
@@ -130,52 +145,61 @@ public class JConsulta extends javax.swing.JPanel {
         jTextMae.setDisabledTextColor(new java.awt.Color(60, 63, 65));
         jTextMae.setEnabled(false);
 
+        jLabelDate.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        jLabelDate.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDate.setText("Data de Nascimento:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jButtonVoltar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(48, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBoxMae, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabelMae))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextNome, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                            .addComponent(jTextBrinco)
-                                            .addComponent(jTextRaca))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel9)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(jLabel7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jTextMae))))))
-                .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jButtonVoltar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap(47, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxMae, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelDate)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabelMae))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jTextNome, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                                    .addComponent(jTextBrinco))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel9)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jTextSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(6, 6, 6)
+                                                        .addComponent(jLabel7)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(jTextMae)
+                                            .addComponent(jTextRaca))))))))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +234,9 @@ public class JConsulta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelMae)
                     .addComponent(jTextMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelDate)
+                .addContainerGap(243, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -224,9 +250,8 @@ public class JConsulta extends javax.swing.JPanel {
             this.jTextPeso.setText(boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
             this.jTextNome.setText(boi.getNome() == null ? "-/-" : boi.getNome());
             this.jTextSexo.setText(boi.isSexo() == Bovino.MACHO ? "Macho" : "Fêmea");
-            
-            this.jTextMae.setVisible(temMae);
-            this.jLabelMae.setVisible(temMae);
+
+            this.setMaeVisible(temMae);
             if (temMae) {
                 this.jTextMae.setText(this.boiControl.getById(boi.getIdMae()).toString());
             }
@@ -249,6 +274,7 @@ public class JConsulta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelDate;
     private javax.swing.JLabel jLabelMae;
     private javax.swing.JTextField jTextBrinco;
     private javax.swing.JTextField jTextMae;
