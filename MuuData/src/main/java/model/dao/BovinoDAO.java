@@ -32,7 +32,7 @@ public class BovinoDAO implements DAO {
 
         String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca, nascimento";
                 
-        if(bovino.getIdMae() != 0){
+        if(bovino.getIdMae() != Bovino.ID_DEFAULT){
             sql+=", id_mae) VALUES (?,?,?,?,?,?,?) returning id";
         }else {
             sql+= ") VALUES (?,?,?,?,?,?) returning id";
