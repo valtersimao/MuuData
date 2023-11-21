@@ -217,7 +217,7 @@ public class JConsulta extends javax.swing.JPanel {
     private void jComboBoxMaeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMaeItemStateChanged
         if (this.jComboBoxMae.getSelectedIndex() >= 0) {
             Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
-            boolean temMae = (boi.getIdMae() != null) && (boi.getIdMae() != Bovino.ID_DEFAULT);
+            boolean temMae = (boi.getIdMae() != Bovino.ID_DEFAULT) && (boi.getIdMae() != null);
 
             this.jTextBrinco.setText(boi.getBrinco() + "");
             this.jTextRaca.setText(boi.getRaca());
@@ -227,6 +227,9 @@ public class JConsulta extends javax.swing.JPanel {
             
             this.jTextMae.setVisible(temMae);
             this.jLabelMae.setVisible(temMae);
+            if (temMae) {
+                this.jTextMae.setText(this.boiControl.getById(boi.getIdMae()).toString());
+            }
         }
     }//GEN-LAST:event_jComboBoxMaeItemStateChanged
 
