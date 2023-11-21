@@ -85,14 +85,5 @@ public class GestacaoControl {
         
         return retorno;
     }
-
-    private Calendar convertToCalendar(String source) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        dateFormat.setLenient(false);
-        Date dataNascimento = dateFormat.parse(source);
-        Calendar c = Calendar.getInstance();
-        c.setTime(dataNascimento);
-        
-        return c;
-    }
+    
 }
