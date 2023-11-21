@@ -145,9 +145,11 @@ public class BovinoDAO implements DAO {
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while (resultado.next()) {
-                Calendar nascimento = Calendar.getInstance();
-                nascimento.setTime(resultado.getDate("nascimento"));
-                
+                Calendar nascimento = null;
+                if(resultado.getDate("nascimento") != null) {
+                    nascimento = Calendar.getInstance();
+                    nascimento.setTime(resultado.getDate("nascimento"));
+                }
                 Bovino atual = new Bovino(resultado.getInt("brinco"),
                         resultado.getInt("id"),
                         resultado.getString("nome"),
@@ -174,8 +176,11 @@ public class BovinoDAO implements DAO {
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while (resultado.next()) {
-                Calendar nascimento = Calendar.getInstance();
-                nascimento.setTime(resultado.getDate("nascimento"));
+                Calendar nascimento = null;
+                if(resultado.getDate("nascimento") != null) {
+                    nascimento = Calendar.getInstance();
+                    nascimento.setTime(resultado.getDate("nascimento"));
+                }
                 
                 Bovino atual = new Bovino(resultado.getInt("brinco"),
                         resultado.getInt("id"),
@@ -242,9 +247,11 @@ public class BovinoDAO implements DAO {
 
             ResultSet resultado = trans.executeQuery();
             while (resultado.next()) {
-                Calendar nascimento = Calendar.getInstance();
-                nascimento.setTime(resultado.getDate("nascimento"));
-                
+                Calendar nascimento = null;
+                if(resultado.getDate("nascimento") != null) {
+                    nascimento = Calendar.getInstance();
+                    nascimento.setTime(resultado.getDate("nascimento"));
+                }
                 Bovino atual = new Bovino(resultado.getInt("brinco"),
                         resultado.getInt("id"),
                         resultado.getString("nome"),
