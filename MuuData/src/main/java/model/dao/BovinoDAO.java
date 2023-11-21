@@ -120,6 +120,7 @@ public class BovinoDAO implements DAO {
                 retorno.setPeso(resultado.getShort("peso"));
                 retorno.setSexo(resultado.getBoolean("sexo"));
                 retorno.setRaca(resultado.getString("raca"));
+                retorno.setIdMae(resultado.getInt("id_mae"));
                 if (resultado.getDate("nascimento") != null) {
                     Calendar nascimento = Calendar.getInstance();
                     nascimento.setTime(resultado.getDate("nascimento"));
@@ -153,6 +154,7 @@ public class BovinoDAO implements DAO {
                 atual.setPeso(resultado.getShort("peso"));
                 atual.setSexo(resultado.getBoolean("sexo"));
                 atual.setRaca(resultado.getString("raca"));
+                atual.setIdMae(resultado.getInt("id_mae"));
 
                 if (resultado.getDate("nascimento") != null) {
                     Calendar nascimento = Calendar.getInstance();
@@ -185,6 +187,7 @@ public class BovinoDAO implements DAO {
                 atual.setPeso(resultado.getShort("peso"));
                 atual.setSexo(resultado.getBoolean("sexo"));
                 atual.setRaca(resultado.getString("raca"));
+                atual.setIdMae(resultado.getInt("id_mae"));
 
                 if (resultado.getDate("nascimento") != null) {
                     Calendar nascimento = Calendar.getInstance();
@@ -256,6 +259,8 @@ public class BovinoDAO implements DAO {
                 atual.setPeso(resultado.getShort("peso"));
                 atual.setSexo(resultado.getBoolean("sexo"));
                 atual.setRaca(resultado.getString("raca"));
+                atual.setIdMae(resultado.getInt("id_mae"));
+                
                 Calendar nascimento = Calendar.getInstance();
                 nascimento.setTime(resultado.getDate("nascimento"));
                 atual.setNascimento(nascimento);
