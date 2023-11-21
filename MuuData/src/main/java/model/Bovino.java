@@ -23,7 +23,7 @@ public class Bovino {
         this.brinco = brinco;
     }
 
-    public int getIdMae() {
+    public Integer getIdMae() {
         return idMae;
     }
 
