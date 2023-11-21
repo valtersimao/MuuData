@@ -80,23 +80,25 @@ public class GestacaoDAO implements DAO {
 
     @Override
     public Object getById(long id) {
-        Gestacao retorno;
-        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao WHERE id_bovino = ?";
+        ArrayList<Gestacao> retorno = new ArrayList<>();
+        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao WHERE id_bovino = ? ORDER BY data_evento DESC";
 
         try (PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setInt(1, (int) id);
 
             ResultSet resultado = trans.executeQuery();
 
-            if (resultado.next()) {
+            while (resultado.next()) {
+                Gestacao temp;
                 Calendar dataEvento = Calendar.getInstance();
                 dataEvento.setTime(resultado.getDate("data_evento"));
-                retorno = new Gestacao(resultado.getInt("id_bovino"),
+                temp = new Gestacao(resultado.getInt("id_bovino"),
                         resultado.getInt("id_bovino"),
                         dataEvento, resultado.getInt("tipo_atividade"), 
                         resultado.getInt("situacao_gestacao"));
-                return retorno;
+                retorno.add(temp);
             }
+            return retorno;
         } catch (SQLException ex) {
             Logger.getLogger(GestacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -106,7 +108,7 @@ public class GestacaoDAO implements DAO {
     @Override
     public ArrayList<Object> getAll() {
         ArrayList<Object> retorno = new ArrayList<>();
-        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao";
+        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao ORDER BY data_evento DESC";
 
         try (PreparedStatement trans = c.prepareStatement(sql)) {
 
@@ -133,7 +135,7 @@ public class GestacaoDAO implements DAO {
     public ArrayList<Object> getWithFilter(Object filter) {
         Gestacao gestacao = (Gestacao) filter;
         ArrayList<Object> retorno = new ArrayList<>();
-        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade FROM muudata.gestacao WHERE situacao_gestacao = ?";
+        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade FROM muudata.gestacao WHERE situacao_gestacao = ? ORDER BY data_evento DESC";
         
         try (PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setInt(1, gestacao.getSituacaoGestacao());
@@ -141,14 +143,14 @@ public class GestacaoDAO implements DAO {
             ResultSet result = trans.executeQuery();
             
             while(result.next()) {
-                Gestacao gest = new Gestacao();
+                Gestacao gest;
                 Calendar dataEvento = Calendar.getInstance();
                 dataEvento.setTime(result.getDate("data_evento"));
                 gest = new Gestacao(result.getInt("id_bovino"),
                         result.getInt("id_bovino"),
                         dataEvento, result.getInt("tipo_atividade"), 
                         result.getInt("situacao_gestacao"));
-                retorno.add(gestacao);
+                retorno.add(gest);
             }
         } catch (SQLException ex) {
             Logger.getLogger(GestacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
