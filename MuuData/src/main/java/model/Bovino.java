@@ -15,6 +15,40 @@ public class Bovino {
     private Integer peso;
     private Integer idMae;
 
+    public Bovino() {
+    }
+
+    public Bovino(int brinco, String nome, String raca, boolean sexo, Integer peso) {
+        this.brinco = brinco;
+        this.nome = nome;
+        this.raca = raca;
+        this.sexo = sexo;
+        this.peso = peso;
+        this.idMae = ID_DEFAULT;
+    }
+
+    public Bovino(int brinco, String nome, String raca, boolean sexo, Calendar nascimento, Integer idMae) {
+        this.brinco = brinco;
+        this.nome = nome;
+        this.raca = raca;
+        this.sexo = sexo;
+        this.nascimento = nascimento;
+        this.idMae = idMae;
+        this.peso = 0;
+    }
+
+    public Bovino(int brinco, int id, String nome, String raca, boolean sexo, Calendar nascimento, Integer peso, Integer idMae) {
+        this.brinco = brinco;
+        this.id = id;
+        this.nome = nome;
+        this.raca = raca;
+        this.sexo = sexo;
+        this.nascimento = nascimento;
+        this.peso = peso;
+        this.idMae = idMae;
+    }
+
+    
     public int getBrinco() {
         return brinco;
     }

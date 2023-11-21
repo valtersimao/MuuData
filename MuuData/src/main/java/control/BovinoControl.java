@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import model.Bovino;
 import model.dao.BovinoDAO;
+import tools.Converter;
 
 public class BovinoControl {
 
@@ -21,33 +22,15 @@ public class BovinoControl {
     }
 
     public boolean insert(String nome, int brinco, int peso, String raca, boolean sexo) {
-        Bovino boi = new Bovino();
-        boi.setNome(nome);
-        boi.setBrinco(brinco);
-        boi.setPeso(peso);
-        boi.setRaca(raca);
-        boi.setSexo(sexo);
-        boi.setIdMae(Bovino.ID_DEFAULT);
+        Bovino boi = new Bovino(brinco, nome, raca, sexo, peso);
 
         return this.dao.insert(boi);
     }
 
     public boolean insert(String nome, int brinco, String raca, boolean sexo, int idMae, String data) throws ParseException{
+        Calendar c = Converter.convertToCalendar(data);
         
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        dateFormat.setLenient(false);
-        Date dataNascimento = dateFormat.parse(data);
-        Calendar c = Calendar.getInstance();
-        c.setTime(dataNascimento);
-        
-        Bovino boi = new Bovino();
-        boi.setNome(nome);
-        boi.setBrinco(brinco);
-        boi.setRaca(raca);
-        boi.setSexo(sexo);
-        boi.setIdMae(idMae);
-        boi.setNascimento(c);
-        boi.setPeso(0);
+        Bovino boi = new Bovino(brinco, nome, raca, sexo, c, idMae);
 
         return this.dao.insert(boi);
     }
