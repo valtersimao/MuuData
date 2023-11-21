@@ -90,7 +90,7 @@ public class BovinoControl {
     }
 
     public boolean delete(Bovino bovino) {
-        return this.dao.delete(bovino.getIdentificador());
+        return this.dao.delete(bovino.getId());
     }
 
     public boolean delete(int id) {

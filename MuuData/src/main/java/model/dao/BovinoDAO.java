@@ -58,7 +58,7 @@ public class BovinoDAO implements DAO {
             ResultSet resultSet = trans.executeQuery();;
 
             if (resultSet.next()) {
-                bovino.setIdentificador(resultSet.getInt("id"));
+                bovino.setId(resultSet.getInt("id"));
 
                 return true;
             } else {
@@ -79,7 +79,7 @@ public class BovinoDAO implements DAO {
             trans.setString(1, bovino.getNome());
             trans.setInt(2, bovino.getPeso());
             trans.setInt(3, bovino.getBrinco());
-            trans.setInt(4, bovino.getIdentificador());
+            trans.setInt(4, bovino.getId());
             
             trans.execute();
             return true;
@@ -115,7 +115,7 @@ public class BovinoDAO implements DAO {
             if (resultado.next()) {
                 retorno = new Bovino();
                 retorno.setBrinco(resultado.getInt("brinco"));
-                retorno.setIdentificador(resultado.getInt("id"));
+                retorno.setId(resultado.getInt("id"));
                 retorno.setNome(resultado.getString("nome"));
                 retorno.setPeso(resultado.getShort("peso"));
                 retorno.setSexo(resultado.getBoolean("sexo"));
@@ -148,7 +148,7 @@ public class BovinoDAO implements DAO {
             while (resultado.next()) {
                 Bovino atual = new Bovino();
                 atual.setBrinco(resultado.getInt("brinco"));
-                atual.setIdentificador(resultado.getInt("id"));
+                atual.setId(resultado.getInt("id"));
                 atual.setNome(resultado.getString("nome"));
                 atual.setPeso(resultado.getShort("peso"));
                 atual.setSexo(resultado.getBoolean("sexo"));
@@ -180,7 +180,7 @@ public class BovinoDAO implements DAO {
             while (resultado.next()) {
                 Bovino atual = new Bovino();
                 atual.setBrinco(resultado.getInt("brinco"));
-                atual.setIdentificador(resultado.getInt("id"));
+                atual.setId(resultado.getInt("id"));
                 atual.setNome(resultado.getString("nome"));
                 atual.setPeso(resultado.getShort("peso"));
                 atual.setSexo(resultado.getBoolean("sexo"));
@@ -251,7 +251,7 @@ public class BovinoDAO implements DAO {
             while (resultado.next()) {
                 Bovino atual = new Bovino();
                 atual.setBrinco(resultado.getInt("brinco"));
-                atual.setIdentificador(resultado.getInt("id"));
+                atual.setId(resultado.getInt("id"));
                 atual.setNome(resultado.getString("nome"));
                 atual.setPeso(resultado.getShort("peso"));
                 atual.setSexo(resultado.getBoolean("sexo"));

@@ -280,7 +280,7 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         try {
 
             if (this.jComboBoxMae.getSelectedIndex() != -1) {
-                int idMae = ((Bovino) this.jComboBoxMae.getSelectedItem()).getIdentificador();
+                int idMae = ((Bovino) this.jComboBoxMae.getSelectedItem()).getId();
 
                 if (!this.jTextBrinco.getText().isEmpty()) {
                     int brinco = Integer.parseInt(this.jTextBrinco.getText());

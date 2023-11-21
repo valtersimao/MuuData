@@ -7,7 +7,7 @@ public class Bovino {
     public static final int ID_DEFAULT = 0;
     
     private int brinco;
-    private int identificador;
+    private int id;
     private String nome;
     private String raca;
     private boolean sexo;
@@ -31,12 +31,12 @@ public class Bovino {
         this.idMae = idMae;
     }
 
-    public int getIdentificador() {
-        return identificador;
+    public int getId() {
+        return id;
     }
 
-    public void setIdentificador(int identificador) {
-        this.identificador = identificador;
+    public void setId(int identificador) {
+        this.id = identificador;
     }
 
     public String getNome() {
