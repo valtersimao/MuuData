@@ -114,7 +114,11 @@ public class BovinoDAO implements DAO {
             ResultSet resultado = consulta.executeQuery();
             if (resultado.next()) {
                 Calendar nascimento = Calendar.getInstance();
-                nascimento.setTime(resultado.getDate("nascimento"));
+                if(resultado.getDate("nascimento")!=null){
+                    nascimento.setTime(resultado.getDate("nascimento"));
+                }else{
+                    nascimento = null;
+                }
 
                 retorno = new Bovino(resultado.getInt("brinco"),
                         resultado.getInt("id"),
