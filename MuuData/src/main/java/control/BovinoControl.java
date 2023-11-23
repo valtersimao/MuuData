@@ -40,7 +40,11 @@ public class BovinoControl {
         ArrayList<Bovino> bovinos = new ArrayList<>();
 
         retorno.forEach((it) -> {
-            bovinos.add((Bovino) it);
+            Bovino boi = (Bovino) it;
+            if(boi.getNascimento() != null) {
+                boi.setIdadeMeses((int)calcIdade(boi.getNascimento()));
+            }
+            bovinos.add(boi);
         });
 
         return bovinos;
@@ -59,7 +63,11 @@ public class BovinoControl {
         ArrayList<Bovino> bovinos = new ArrayList<>();
 
         retorno.forEach((it) -> {
-            bovinos.add((Bovino) it);
+            Bovino boi = (Bovino) it;
+            if(boi.getNascimento() != null) {
+                boi.setIdadeMeses((int)calcIdade(boi.getNascimento()));
+            }
+            bovinos.add(boi);
         });
 
         return bovinos;
@@ -70,7 +78,11 @@ public class BovinoControl {
         ArrayList<Bovino> bovinos = new ArrayList<>();
 
         retorno.forEach((it) -> {
-            bovinos.add((Bovino) it);
+            Bovino boi = (Bovino) it;
+            if(boi.getNascimento() != null) {
+                boi.setIdadeMeses((int)calcIdade(boi.getNascimento()));
+            }
+            bovinos.add(boi);
         });
 
         return bovinos;
