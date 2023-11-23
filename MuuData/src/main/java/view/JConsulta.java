@@ -1,6 +1,7 @@
 package view;
 
 import control.BovinoControl;
+import java.text.SimpleDateFormat;
 import javax.swing.DefaultComboBoxModel;
 import model.Bovino;
 
@@ -21,7 +22,7 @@ public class JConsulta extends javax.swing.JPanel {
         this.comboAnimais = new DefaultComboBoxModel();
         this.jComboBoxMae.setModel(comboAnimais);
         this.comboAnimais.addAll(boiControl.getAll());
-        
+
         this.setMaeVisible(false);
         this.setDateVisible(false);
     }
@@ -36,6 +37,17 @@ public class JConsulta extends javax.swing.JPanel {
         this.jTextData.setVisible(op);
         this.jTextIdade.setVisible(op);
         this.jLabelIdade.setVisible(op);
+    }
+
+    private void limpaFields() {
+        this.jComboBoxMae.setSelectedIndex(-1);
+        this.jTextData.setText("");
+        this.jTextBrinco.setText("");
+        this.jTextNome.setText("");
+        this.jTextRaca.setText("");
+        this.jTextMae.setText("");
+        this.jTextIdade.setText("");
+        this.jTextSexo.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -280,23 +292,31 @@ public class JConsulta extends javax.swing.JPanel {
             this.jTextBrinco.setText(boi.getBrinco() + "");
             this.jTextRaca.setText(boi.getRaca());
             this.jTextData.setText(boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
-            this.jTextNome.setText(boi.getNome() == null ? "-/-" : boi.getNome());
+            this.jTextNome.setText((boi.getNome() == null || boi.getNome().isEmpty()) ? "-/-" : boi.getNome());
             this.jTextSexo.setText(boi.isSexo() == Bovino.MACHO ? "Macho" : "Fêmea");
 
             this.setMaeVisible(temMae);
             if (temMae) {
                 this.jTextMae.setText(this.boiControl.getById(boi.getIdMae()).toString());
             }
-            
+
             this.setDateVisible(boi.getNascimento() != null);
             if (boi.getNascimento() != null) {
-                
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                this.jTextData.setText(sdf.format(boi.getNascimento().getTime()));
+
+                int anos = boi.getIdadeMeses() / 12;
+                int meses = boi.getIdadeMeses() - (anos * 12);
+                String idade = anos > 0 ? anos + " anos e " : "";
+                idade += meses + " meses";
+                this.jTextIdade.setText(idade);
             }
         }
     }//GEN-LAST:event_jComboBoxMaeItemStateChanged
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         // TODO add your handling code here:
+        this.limpaFields();
         FramePrincipal.trocaPainel("inicio", new JTelaInicial());
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
