@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 public class Bovino {
 
@@ -12,7 +12,7 @@ public class Bovino {
     private String nome;
     private String raca;
     private boolean sexo;
-    private Calendar nascimento;
+    private LocalDate nascimento;
     private Integer peso;
     private Integer idMae;
     private int idadeMeses;
@@ -29,7 +29,7 @@ public class Bovino {
         this.idMae = ID_DEFAULT;
     }
 
-    public Bovino(int brinco, String nome, String raca, boolean sexo, Calendar nascimento, Integer idMae) {
+    public Bovino(int brinco, String nome, String raca, boolean sexo, LocalDate nascimento, Integer idMae) {
         this.brinco = brinco;
         this.nome = nome;
         this.raca = raca;
@@ -39,7 +39,7 @@ public class Bovino {
         this.peso = 0;
     }
 
-    public Bovino(int brinco, int id, String nome, String raca, boolean sexo, Calendar nascimento, Integer peso, Integer idMae) {
+    public Bovino(int brinco, int id, String nome, String raca, boolean sexo, LocalDate nascimento, Integer peso, Integer idMae) {
         this.brinco = brinco;
         this.id = id;
         this.nome = nome;
@@ -115,11 +115,11 @@ public class Bovino {
         this.sexo = sexo;
     }
 
-    public Calendar getNascimento() {
+    public LocalDate getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Calendar nascimento) {
+    public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
 

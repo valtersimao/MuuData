@@ -2,6 +2,7 @@ package view;
 
 import control.BovinoControl;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import javax.swing.DefaultComboBoxModel;
 import model.Bovino;
 
@@ -302,8 +303,8 @@ public class JConsulta extends javax.swing.JPanel {
 
             this.setDateVisible(boi.getNascimento() != null);
             if (boi.getNascimento() != null) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                this.jTextData.setText(sdf.format(boi.getNascimento().getTime()));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                this.jTextData.setText(formatter.format(boi.getNascimento()));
 
                 int anos = boi.getIdadeMeses() / 12;
                 int meses = boi.getIdadeMeses() - (anos * 12);

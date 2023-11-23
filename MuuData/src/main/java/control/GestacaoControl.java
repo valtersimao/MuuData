@@ -1,13 +1,11 @@
 package control;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import model.Gestacao;
 import model.dao.GestacaoDAO;
-import tools.Converter;
 
 public class GestacaoControl {
 
@@ -19,12 +17,13 @@ public class GestacaoControl {
 
     public boolean insert(String data, int idBovino, int tipoAtividade, int situacaoGestacao) {
         try {
-            Calendar c = Converter.convertToCalendar(data);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dataEvento = LocalDate.parse(data, formatter);
 
-            Gestacao gest = new Gestacao(idBovino, c, tipoAtividade, situacaoGestacao);
+            Gestacao gest = new Gestacao(idBovino, dataEvento, tipoAtividade, situacaoGestacao);
 
             return dao.insert(gest);
-        } catch (ParseException ex) {
+        } catch (DateTimeParseException e) {
             return false;
         }
     }
@@ -33,57 +32,58 @@ public class GestacaoControl {
         return this.dao.update(gestacao);
     }
 
-    public boolean update(String data, int idBovino,int id) {
+    public boolean update(String data, int idBovino, int id) {
         try {
-            Calendar c = Converter.convertToCalendar(data);
-            
-            Gestacao gest = new Gestacao(id, c, idBovino);
-            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dataEvento = LocalDate.parse(data, formatter);
+
+            Gestacao gest = new Gestacao(id, dataEvento, idBovino);
+
             return dao.update(gest);
-            
-        } catch (ParseException ex) {
+        } catch (DateTimeParseException e) {
             return false;
         }
+
     }
-    
+
     public ArrayList<Gestacao> getById(int id) {
-        return (ArrayList<Gestacao>)this.dao.getById(id);
+        return (ArrayList<Gestacao>) this.dao.getById(id);
     }
-    
+
     public ArrayList<Gestacao> getAll() {
         ArrayList<Gestacao> retorno = new ArrayList<>();
         ArrayList<Object> temp = this.dao.getAll();
-        
+
         temp.forEach(it -> {
-            retorno.add((Gestacao)it);
+            retorno.add((Gestacao) it);
         });
-        
+
         return retorno;
     }
-    
+
     public ArrayList<Gestacao> getWithFilter(Gestacao gest) {
         ArrayList<Gestacao> retorno = new ArrayList<>();
         ArrayList<Object> temp = this.dao.getWithFilter(gest);
-        
+
         temp.forEach(it -> {
-            retorno.add((Gestacao)it);
+            retorno.add((Gestacao) it);
         });
-        
+
         return retorno;
     }
-    
+
     public ArrayList<Gestacao> getWithFilter(int situacaoGestacao) {
         Gestacao gest = new Gestacao();
         gest.setSituacaoGestacao(situacaoGestacao);
-        
+
         ArrayList<Gestacao> retorno = new ArrayList<>();
         ArrayList<Object> temp = this.dao.getWithFilter(gest);
-        
+
         temp.forEach(it -> {
-            retorno.add((Gestacao)it);
+            retorno.add((Gestacao) it);
         });
-        
+
         return retorno;
     }
-    
+
 }
