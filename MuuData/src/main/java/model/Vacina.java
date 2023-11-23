@@ -6,24 +6,28 @@ import java.time.LocalTime;
 public class Vacina {
     private int idVacina;
     private String nome;
+    private String detalhes;
     private short dosesRecomendadas;
     
     private int idHistorico;
     private LocalTime dataEvento;
     private short dose;
 
-    public Vacina(int idVacina, String nome, short dosesRecomendadas) {
+    public Vacina(int idVacina, String nome, short dosesRecomendadas, String detalhes) {
+        this.detalhes = detalhes;
         this.idVacina = idVacina;
         this.nome = nome;
         this.dosesRecomendadas = dosesRecomendadas;
     }
 
-    public Vacina(String nome, short dosesRecomendadas) {
+    public Vacina(String nome, short dosesRecomendadas, String detalhes) {
+        this.detalhes = detalhes;
         this.nome = nome;
         this.dosesRecomendadas = dosesRecomendadas;
     }
 
-    public Vacina(int idVacina, String nome, short dosesRecomendadas, int idHistorico, LocalTime dataEvento, short dose) {
+    public Vacina(int idVacina, String nome, short dosesRecomendadas, String detalhes, int idHistorico, LocalTime dataEvento, short dose) {
+        this.detalhes = detalhes;
         this.idVacina = idVacina;
         this.nome = nome;
         this.dosesRecomendadas = dosesRecomendadas;
