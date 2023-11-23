@@ -36,6 +36,14 @@ public class Vacina {
         this.dose = dose;
     }
 
+    public String getDetalhes() {
+        return detalhes;
+    }
+
+    public void setDetalhes(String detalhes) {
+        this.detalhes = detalhes;
+    }
+
     public int getIdVacina() {
         return idVacina;
     }
