@@ -8,9 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import model.Bovino;
 import tools.FactoryPostgres;
 
@@ -20,7 +19,7 @@ import tools.FactoryPostgres;
  */
 public class BovinoDAO implements DAO {
 
-    private Connection c;
+    private final Connection c;
 
     public BovinoDAO() {
         c = FactoryPostgres.getConexaoPostgres();
@@ -49,13 +48,13 @@ public class BovinoDAO implements DAO {
             if (bovino.getNascimento() == null) {
                 trans.setDate(6, null);
             } else {
-                trans.setDate(6, new java.sql.Date(bovino.getNascimento().getTimeInMillis()));
+                trans.setDate(6, java.sql.Date.valueOf(bovino.getNascimento()));
             }
             if (bovino.getIdMae() != 0) {
                 trans.setInt(7, bovino.getIdMae());
             }
 
-            ResultSet resultSet = trans.executeQuery();;
+            ResultSet resultSet = trans.executeQuery();
 
             if (resultSet.next()) {
                 bovino.setId(resultSet.getInt("id"));
@@ -113,9 +112,9 @@ public class BovinoDAO implements DAO {
             consulta.setLong(1, id);
             ResultSet resultado = consulta.executeQuery();
             if (resultado.next()) {
-                Calendar nascimento = Calendar.getInstance();
+                LocalDate nascimento;
                 if(resultado.getDate("nascimento")!=null){
-                    nascimento.setTime(resultado.getDate("nascimento"));
+                    nascimento = resultado.getDate("nascimento").toLocalDate();
                 }else{
                     nascimento = null;
                 }
@@ -146,25 +145,26 @@ public class BovinoDAO implements DAO {
 
         try {
             String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino WHERE id != 0 ORDER BY brinco ASC";
-            PreparedStatement consulta = c.prepareStatement(sql);
-            ResultSet resultado = consulta.executeQuery();
-            while (resultado.next()) {
-                Calendar nascimento = null;
-                if(resultado.getDate("nascimento") != null) {
-                    nascimento = Calendar.getInstance();
-                    nascimento.setTime(resultado.getDate("nascimento"));
+            try (PreparedStatement consulta = c.prepareStatement(sql)) {
+                ResultSet resultado = consulta.executeQuery();
+                while (resultado.next()) {
+                    LocalDate nascimento;
+                    if(resultado.getDate("nascimento")!=null){
+                        nascimento = resultado.getDate("nascimento").toLocalDate();
+                    }else{
+                        nascimento = null;
+                    }
+                    Bovino atual = new Bovino(resultado.getInt("brinco"),
+                            resultado.getInt("id"),
+                            resultado.getString("nome"),
+                            resultado.getString("raca"),
+                            resultado.getBoolean("sexo"),
+                            nascimento, resultado.getInt("peso"),
+                            resultado.getInt("id_mae"));
+                    
+                    retorno.add(atual);
                 }
-                Bovino atual = new Bovino(resultado.getInt("brinco"),
-                        resultado.getInt("id"),
-                        resultado.getString("nome"),
-                        resultado.getString("raca"),
-                        resultado.getBoolean("sexo"),
-                        nascimento, resultado.getInt("peso"),
-                        resultado.getInt("id_mae"));
-
-                retorno.add(atual);
             }
-            consulta.close();;
         } catch (SQLException ex) {
             System.err.println("SQL ERROR " + ex.getMessage());
         }
@@ -177,26 +177,27 @@ public class BovinoDAO implements DAO {
 
         try {
             String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino  WHERE sexo = false AND id != 0 ORDER BY brinco ASC";
-            PreparedStatement consulta = c.prepareStatement(sql);
-            ResultSet resultado = consulta.executeQuery();
-            while (resultado.next()) {
-                Calendar nascimento = null;
-                if(resultado.getDate("nascimento") != null) {
-                    nascimento = Calendar.getInstance();
-                    nascimento.setTime(resultado.getDate("nascimento"));
+            try (PreparedStatement consulta = c.prepareStatement(sql)) {
+                ResultSet resultado = consulta.executeQuery();
+                while (resultado.next()) {
+                    LocalDate nascimento;
+                    if(resultado.getDate("nascimento")!=null){
+                        nascimento = resultado.getDate("nascimento").toLocalDate();
+                    }else{
+                        nascimento = null;
+                    }
+                    
+                    Bovino atual = new Bovino(resultado.getInt("brinco"),
+                            resultado.getInt("id"),
+                            resultado.getString("nome"),
+                            resultado.getString("raca"),
+                            resultado.getBoolean("sexo"),
+                            nascimento, resultado.getInt("peso"),
+                            resultado.getInt("id_mae"));
+                    
+                    retorno.add(atual);
                 }
-                
-                Bovino atual = new Bovino(resultado.getInt("brinco"),
-                        resultado.getInt("id"),
-                        resultado.getString("nome"),
-                        resultado.getString("raca"),
-                        resultado.getBoolean("sexo"),
-                        nascimento, resultado.getInt("peso"),
-                        resultado.getInt("id_mae"));
-
-                retorno.add(atual);
             }
-            consulta.close();;
         } catch (SQLException ex) {
             System.err.println("SQL ERROR " + ex.getMessage());
         }
@@ -251,10 +252,11 @@ public class BovinoDAO implements DAO {
 
             ResultSet resultado = trans.executeQuery();
             while (resultado.next()) {
-                Calendar nascimento = null;
-                if(resultado.getDate("nascimento") != null) {
-                    nascimento = Calendar.getInstance();
-                    nascimento.setTime(resultado.getDate("nascimento"));
+                LocalDate nascimento;
+                if(resultado.getDate("nascimento")!=null){
+                    nascimento = resultado.getDate("nascimento").toLocalDate();
+                }else{
+                    nascimento = null;
                 }
                 Bovino atual = new Bovino(resultado.getInt("brinco"),
                         resultado.getInt("id"),
