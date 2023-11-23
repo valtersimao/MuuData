@@ -291,7 +291,7 @@ public class JConsulta extends javax.swing.JPanel {
 
             this.jTextBrinco.setText(boi.getBrinco() + "");
             this.jTextRaca.setText(boi.getRaca());
-            this.jTextData.setText(boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
+            this.jTextPeso.setText(boi.getPeso() == null || boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
             this.jTextNome.setText((boi.getNome() == null || boi.getNome().isEmpty()) ? "-/-" : boi.getNome());
             this.jTextSexo.setText(boi.isSexo() == Bovino.MACHO ? "Macho" : "Fêmea");
 
