@@ -1,10 +1,8 @@
 package view;
 
 import control.BovinoControl;
-import java.text.ParseException;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
-import model.Bovino;
 
 /**
  *

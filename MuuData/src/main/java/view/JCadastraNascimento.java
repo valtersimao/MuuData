@@ -1,10 +1,7 @@
 package view;
 
 import control.BovinoControl;
-import java.util.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;

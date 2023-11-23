@@ -27,9 +27,9 @@ public class BovinoControl {
         return this.dao.insert(boi);
     }
 
-    public boolean insert(String nome, int brinco, String raca, boolean sexo, int idMae, String data) throws ParseException{
+    public boolean insert(String nome, int brinco, String raca, boolean sexo, int idMae, String data) throws ParseException {
         Calendar c = Converter.convertToCalendar(data);
-        
+
         Bovino boi = new Bovino(brinco, nome, raca, sexo, c, idMae);
 
         return this.dao.insert(boi);
@@ -41,8 +41,8 @@ public class BovinoControl {
 
         retorno.forEach((it) -> {
             Bovino boi = (Bovino) it;
-            if(boi.getNascimento() != null) {
-                boi.setIdadeMeses((int)calcIdade(boi.getNascimento()));
+            if (boi.getNascimento() != null) {
+                boi.setIdadeMeses((int) calcIdade(boi.getNascimento()));
             }
             bovinos.add(boi);
         });
@@ -64,8 +64,8 @@ public class BovinoControl {
 
         retorno.forEach((it) -> {
             Bovino boi = (Bovino) it;
-            if(boi.getNascimento() != null) {
-                boi.setIdadeMeses((int)calcIdade(boi.getNascimento()));
+            if (boi.getNascimento() != null) {
+                boi.setIdadeMeses((int) calcIdade(boi.getNascimento()));
             }
             bovinos.add(boi);
         });
@@ -79,8 +79,8 @@ public class BovinoControl {
 
         retorno.forEach((it) -> {
             Bovino boi = (Bovino) it;
-            if(boi.getNascimento() != null) {
-                boi.setIdadeMeses((int)calcIdade(boi.getNascimento()));
+            if (boi.getNascimento() != null) {
+                boi.setIdadeMeses((int) calcIdade(boi.getNascimento()));
             }
             bovinos.add(boi);
         });
@@ -99,12 +99,12 @@ public class BovinoControl {
     public boolean update(Bovino bovino) {
         return this.dao.update(bovino);
     }
-    
+
     public long calcIdade(Calendar nascimento) {
         //this.nascimento.
         LocalDate dataAtual = LocalDate.now();
         LocalDate dataNascimento = LocalDate.ofInstant(nascimento.toInstant(), nascimento.getTimeZone().toZoneId());
 
-        return ChronoUnit.MONTHS.between(dataAtual, dataNascimento);
+        return ChronoUnit.MONTHS.between(dataNascimento, dataAtual);
     }
 }
