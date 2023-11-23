@@ -2,16 +2,16 @@ package control;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Calendar;
 import model.Bovino;
 import model.dao.BovinoDAO;
-import tools.Converter;
 
 public class BovinoControl {
 
-    private BovinoDAO dao;
+    private final BovinoDAO dao;
 
     public BovinoControl() {
         this.dao = new BovinoDAO();
@@ -28,11 +28,16 @@ public class BovinoControl {
     }
 
     public boolean insert(String nome, int brinco, String raca, boolean sexo, int idMae, String data) throws ParseException {
-        Calendar c = Converter.convertToCalendar(data);
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate nascimento = LocalDate.parse(data, formatter);
 
-        Bovino boi = new Bovino(brinco, nome, raca, sexo, c, idMae);
+            Bovino boi = new Bovino(brinco, nome, raca, sexo, nascimento, idMae);
 
-        return this.dao.insert(boi);
+            return this.dao.insert(boi);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     public ArrayList<Bovino> getAll() {
@@ -100,11 +105,10 @@ public class BovinoControl {
         return this.dao.update(bovino);
     }
 
-    public long calcIdade(Calendar nascimento) {
+    public long calcIdade(LocalDate nascimento) {
         //this.nascimento.
         LocalDate dataAtual = LocalDate.now();
-        LocalDate dataNascimento = LocalDate.ofInstant(nascimento.toInstant(), nascimento.getTimeZone().toZoneId());
 
-        return ChronoUnit.MONTHS.between(dataNascimento, dataAtual);
+        return ChronoUnit.MONTHS.between(nascimento, dataAtual);
     }
 }

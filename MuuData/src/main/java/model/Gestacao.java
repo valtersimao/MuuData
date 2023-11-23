@@ -1,7 +1,7 @@
 
 package model;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 public class Gestacao {
     public static final int EM_ANDAMENTO = 0, FINALIZADA = 1, ABORTADA = 2;
@@ -9,20 +9,20 @@ public class Gestacao {
     
     private int id;
     private int idBovino;
-    private Calendar dataEvento;
+    private LocalDate dataEvento;
     private int tipoAtividade;
     private int situacaoGestacao;
 
     public Gestacao() {
     }
 
-    public Gestacao(int id, Calendar dataEvento, int situacaoGestacao) {
+    public Gestacao(int id, LocalDate dataEvento, int situacaoGestacao) {
         this.id = id;
         this.dataEvento = dataEvento;
         this.situacaoGestacao = situacaoGestacao;
     }
     
-    public Gestacao(int id, int idBovino, Calendar dataEvento, int tipoAtividade, int situacaoGestacao) {
+    public Gestacao(int id, int idBovino, LocalDate dataEvento, int tipoAtividade, int situacaoGestacao) {
         this.id = id;
         this.idBovino = idBovino;
         this.dataEvento = dataEvento;
@@ -30,7 +30,7 @@ public class Gestacao {
         this.situacaoGestacao = situacaoGestacao;
     }
     
-    public Gestacao(int idBovino, Calendar dataEvento, int tipoAtividade, int situacaoGestacao) {
+    public Gestacao(int idBovino, LocalDate dataEvento, int tipoAtividade, int situacaoGestacao) {
         this.idBovino = idBovino;
         this.dataEvento = dataEvento;
         this.tipoAtividade = tipoAtividade;
@@ -53,11 +53,11 @@ public class Gestacao {
         this.idBovino = idBovino;
     }
 
-    public Calendar getDataEvento() {
+    public LocalDate getDataEvento() {
         return dataEvento;
     }
 
-    public void setDataEvento(Calendar dataEvento) {
+    public void setDataEvento(LocalDate dataEvento) {
         this.dataEvento = dataEvento;
     }
 
