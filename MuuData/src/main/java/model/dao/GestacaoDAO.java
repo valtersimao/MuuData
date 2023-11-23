@@ -9,8 +9,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Gestacao;
@@ -35,7 +35,7 @@ public class GestacaoDAO implements DAO {
 
         try (PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setInt(1, gestacao.getIdBovino());
-            trans.setDate(2, new Date(gestacao.getDataEvento().getTimeInMillis()));
+            trans.setDate(2, Date.valueOf(gestacao.getDataEvento()));
             trans.setInt(3, gestacao.getTipoAtividade());
             trans.setInt(4, gestacao.getSituacaoGestacao());
 
@@ -61,7 +61,7 @@ public class GestacaoDAO implements DAO {
             if(gestacao.getDataEvento()== null) {
                 trans.setDate(2, null);
             }else {
-                trans.setDate(6, new java.sql.Date(gestacao.getDataEvento().getTimeInMillis()));
+                trans.setDate(2,Date.valueOf(gestacao.getDataEvento()));
             }
             trans.setInt(3, gestacao.getId());
             
@@ -90,8 +90,7 @@ public class GestacaoDAO implements DAO {
 
             while (resultado.next()) {
                 Gestacao temp;
-                Calendar dataEvento = Calendar.getInstance();
-                dataEvento.setTime(resultado.getDate("data_evento"));
+                LocalDate dataEvento = resultado.getDate("data_evento").toLocalDate();
                 temp = new Gestacao(resultado.getInt("id_bovino"),
                         resultado.getInt("id_bovino"),
                         dataEvento, resultado.getInt("tipo_atividade"), 
@@ -115,9 +114,8 @@ public class GestacaoDAO implements DAO {
             ResultSet resultado = trans.executeQuery();
 
             while (resultado.next()) {
-                Gestacao gestacao = new Gestacao();
-                Calendar dataEvento = Calendar.getInstance();
-                dataEvento.setTime(resultado.getDate("data_evento"));
+                Gestacao gestacao;
+                LocalDate dataEvento = resultado.getDate("data_evento").toLocalDate();
                 gestacao = new Gestacao(resultado.getInt("id_bovino"),
                         resultado.getInt("id_bovino"),
                         dataEvento, resultado.getInt("tipo_atividade"), 
@@ -144,8 +142,7 @@ public class GestacaoDAO implements DAO {
             
             while(result.next()) {
                 Gestacao gest;
-                Calendar dataEvento = Calendar.getInstance();
-                dataEvento.setTime(result.getDate("data_evento"));
+                LocalDate dataEvento = result.getDate("data_evento").toLocalDate();
                 gest = new Gestacao(result.getInt("id_bovino"),
                         result.getInt("id_bovino"),
                         dataEvento, result.getInt("tipo_atividade"), 
