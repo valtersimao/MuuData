@@ -3,9 +3,10 @@ package model;
 import java.util.Calendar;
 
 public class Bovino {
+
     public static final boolean MACHO = true, FEMEA = false;
     public static final int ID_DEFAULT = 0;
-    
+
     private int brinco;
     private int id;
     private String nome;
@@ -14,6 +15,7 @@ public class Bovino {
     private Calendar nascimento;
     private Integer peso;
     private Integer idMae;
+    private int idadeMeses;
 
     public Bovino() {
     }
@@ -48,6 +50,13 @@ public class Bovino {
         this.idMae = idMae;
     }
 
+    public int getIdadeMeses() {
+        return idadeMeses;
+    }
+
+    public void setIdadeMeses(int idadeMeses) {
+        this.idadeMeses = idadeMeses;
+    }
     
     public int getBrinco() {
         return brinco;
@@ -92,10 +101,10 @@ public class Bovino {
     @Override
     public String toString() {
         char sex = sexo ? 'M' : 'F';
-        if(nome == null) {
-            return brinco + " :  ("+ sex+")";
+        if (nome == null) {
+            return brinco + " :  (" + sex + ")";
         }
-        return brinco + " : " + nome + " ("+ sex+")";
+        return brinco + " : " + nome + " (" + sex + ")";
     }
 
     public boolean isSexo() {
@@ -121,5 +130,5 @@ public class Bovino {
     public void setPeso(int peso) {
         this.peso = peso;
     }
-    
+
 }

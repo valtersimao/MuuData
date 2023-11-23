@@ -33,7 +33,9 @@ public class JConsulta extends javax.swing.JPanel {
 
     private void setDateVisible(boolean op) {
         this.jLabelDate.setVisible(op);
-       // this.jTextDate.setVisible(op);
+        this.jTextData.setVisible(op);
+        this.jTextIdade.setVisible(op);
+        this.jLabelIdade.setVisible(op);
     }
 
     @SuppressWarnings("unchecked")
@@ -51,12 +53,15 @@ public class JConsulta extends javax.swing.JPanel {
         jLabelMae = new javax.swing.JLabel();
         jTextSexo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextPeso = new javax.swing.JTextField();
+        jTextData = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jTextRaca = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextMae = new javax.swing.JTextField();
         jLabelDate = new javax.swing.JLabel();
+        jTextPeso = new javax.swing.JTextField();
+        jLabelIdade = new javax.swing.JLabel();
+        jTextIdade = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 153));
 
@@ -122,10 +127,10 @@ public class JConsulta extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Peso:");
 
-        jTextPeso.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextPeso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextPeso.setDisabledTextColor(new java.awt.Color(60, 63, 65));
-        jTextPeso.setEnabled(false);
+        jTextData.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextData.setDisabledTextColor(new java.awt.Color(60, 63, 65));
+        jTextData.setEnabled(false);
 
         jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
@@ -148,6 +153,20 @@ public class JConsulta extends javax.swing.JPanel {
         jLabelDate.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabelDate.setForeground(new java.awt.Color(0, 0, 0));
         jLabelDate.setText("Data de Nascimento:");
+
+        jTextPeso.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextPeso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextPeso.setDisabledTextColor(new java.awt.Color(60, 63, 65));
+        jTextPeso.setEnabled(false);
+
+        jLabelIdade.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        jLabelIdade.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelIdade.setText("Idade:");
+
+        jTextIdade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextIdade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextIdade.setDisabledTextColor(new java.awt.Color(60, 63, 65));
+        jTextIdade.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -172,8 +191,11 @@ public class JConsulta extends javax.swing.JPanel {
                                 .addComponent(jComboBoxMae, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelDate)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelDate)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextData))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel3)
@@ -198,7 +220,11 @@ public class JConsulta extends javax.swing.JPanel {
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                             .addComponent(jTextMae)
-                                            .addComponent(jTextRaca))))))))
+                                            .addComponent(jTextRaca)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelIdade)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextIdade)))))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -235,25 +261,36 @@ public class JConsulta extends javax.swing.JPanel {
                     .addComponent(jLabelMae)
                     .addComponent(jTextMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelDate)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDate)
+                    .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelIdade))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxMaeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMaeItemStateChanged
         if (this.jComboBoxMae.getSelectedIndex() >= 0) {
             Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
-            boolean temMae = (boi.getIdMae() != Bovino.ID_DEFAULT) && (boi.getIdMae() != null);
+            boolean temMae = (boi.getIdMae() != null) && (boi.getIdMae() != Bovino.ID_DEFAULT);
 
             this.jTextBrinco.setText(boi.getBrinco() + "");
             this.jTextRaca.setText(boi.getRaca());
-            this.jTextPeso.setText(boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
+            this.jTextData.setText(boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
             this.jTextNome.setText(boi.getNome() == null ? "-/-" : boi.getNome());
             this.jTextSexo.setText(boi.isSexo() == Bovino.MACHO ? "Macho" : "Fêmea");
 
             this.setMaeVisible(temMae);
             if (temMae) {
                 this.jTextMae.setText(this.boiControl.getById(boi.getIdMae()).toString());
+            }
+            
+            this.setDateVisible(boi.getNascimento() != null);
+            if (boi.getNascimento() != null) {
+                
             }
         }
     }//GEN-LAST:event_jComboBoxMaeItemStateChanged
@@ -275,8 +312,11 @@ public class JConsulta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelDate;
+    private javax.swing.JLabel jLabelIdade;
     private javax.swing.JLabel jLabelMae;
     private javax.swing.JTextField jTextBrinco;
+    private javax.swing.JTextField jTextData;
+    private javax.swing.JTextField jTextIdade;
     private javax.swing.JTextField jTextMae;
     private javax.swing.JTextField jTextNome;
     private javax.swing.JTextField jTextPeso;

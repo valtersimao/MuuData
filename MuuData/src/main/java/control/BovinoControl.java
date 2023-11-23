@@ -1,10 +1,10 @@
 package control;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import model.Bovino;
 import model.dao.BovinoDAO;
 import tools.Converter;
@@ -47,7 +47,11 @@ public class BovinoControl {
     }
 
     public Bovino getById(long id) {
-        return (Bovino) this.dao.getById(id);
+        Bovino boi = (Bovino) this.dao.getById(id);
+        if (boi.getNascimento() != null) {
+            boi.setIdadeMeses((int) this.calcIdade(boi.getNascimento()));
+        }
+        return boi;
     }
 
     public ArrayList<Bovino> getFemale() {
@@ -82,5 +86,13 @@ public class BovinoControl {
 
     public boolean update(Bovino bovino) {
         return this.dao.update(bovino);
+    }
+    
+    public long calcIdade(Calendar nascimento) {
+        //this.nascimento.
+        LocalDate dataAtual = LocalDate.now();
+        LocalDate dataNascimento = LocalDate.ofInstant(nascimento.toInstant(), nascimento.getTimeZone().toZoneId());
+
+        return ChronoUnit.MONTHS.between(dataAtual, dataNascimento);
     }
 }
