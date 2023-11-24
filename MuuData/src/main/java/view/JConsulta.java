@@ -4,6 +4,7 @@ import control.BovinoControl;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import model.Bovino;
 
 public class JConsulta extends javax.swing.JPanel {
@@ -26,13 +27,21 @@ public class JConsulta extends javax.swing.JPanel {
 
         this.setMaeVisible(false);
         this.setDateVisible(false);
+        this.jButtonUpdate.setVisible(false);
+        this.jButtonSalvar.setVisible(false);
     }
 
     private void setMaeVisible(boolean op) {
         this.jTextMae.setVisible(op);
         this.jLabelMae.setVisible(op);
     }
-
+    
+    private void setUpdatesEnabled(boolean op) {
+        this.jTextNome.setEnabled(op);
+        this.jTextBrinco.setEnabled(op);
+        this.jTextPeso.setEnabled(op);
+    }
+    
     private void setDateVisible(boolean op) {
         this.jLabelDate.setVisible(op);
         this.jTextData.setVisible(op);
@@ -55,6 +64,7 @@ public class JConsulta extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jComboBoxMae = new javax.swing.JComboBox<>();
         jButtonVoltar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -75,6 +85,10 @@ public class JConsulta extends javax.swing.JPanel {
         jTextPeso = new javax.swing.JTextField();
         jLabelIdade = new javax.swing.JLabel();
         jTextIdade = new javax.swing.JTextField();
+        jButtonUpdate = new javax.swing.JButton();
+        jButtonSalvar = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setBackground(new java.awt.Color(255, 255, 153));
 
@@ -181,6 +195,30 @@ public class JConsulta extends javax.swing.JPanel {
         jTextIdade.setDisabledTextColor(new java.awt.Color(60, 63, 65));
         jTextIdade.setEnabled(false);
 
+        jButtonUpdate.setBackground(new java.awt.Color(233, 233, 233));
+        jButtonUpdate.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jButtonUpdate.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonUpdate.setText("Alterar");
+        jButtonUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonUpdate.setFocusable(false);
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
+
+        jButtonSalvar.setBackground(new java.awt.Color(233, 233, 233));
+        jButtonSalvar.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jButtonSalvar.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSalvar.setFocusable(false);
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,47 +235,52 @@ public class JConsulta extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap(47, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jComboBoxMae, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(3, 3, 3)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabelDate)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jTextData))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel8)
+                                                .addComponent(jLabelMae))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jTextNome, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                                        .addComponent(jTextBrinco))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jLabel9)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jTextSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addGap(6, 6, 6)
+                                                            .addComponent(jLabel7)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(jTextMae)
+                                                .addComponent(jTextRaca)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabelIdade)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jTextIdade)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(jButtonUpdate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxMae, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelDate)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextData))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabelMae))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jTextNome, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                                    .addComponent(jTextBrinco))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabel9)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(6, 6, 6)
-                                                        .addComponent(jLabel7)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addComponent(jTextMae)
-                                            .addComponent(jTextRaca)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelIdade)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextIdade)))))))
+                                .addComponent(jButtonSalvar)))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -281,7 +324,11 @@ public class JConsulta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelIdade))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -295,7 +342,7 @@ public class JConsulta extends javax.swing.JPanel {
             this.jTextPeso.setText(boi.getPeso() == null || boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
             this.jTextNome.setText((boi.getNome() == null || boi.getNome().isEmpty()) ? "-/-" : boi.getNome());
             this.jTextSexo.setText(boi.isSexo() == Bovino.MACHO ? "Macho" : "Fêmea");
-
+            
             this.setMaeVisible(temMae);
             if (temMae) {
                 this.jTextMae.setText(this.boiControl.getById(boi.getIdMae()).toString());
@@ -316,13 +363,49 @@ public class JConsulta extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBoxMaeItemStateChanged
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        // TODO add your handling code here:
         this.limpaFields();
         FramePrincipal.trocaPainel("inicio", new JTelaInicial());
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        this.setUpdatesEnabled(true);
+        this.jButtonUpdate.setEnabled(false);
+        this.jButtonSalvar.setEnabled(true);
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
+        
+        if (!this.jTextBrinco.getText().equals(boi.getBrinco()) || !this.jTextNome.getText().equals(boi.getNome())
+            || !this.jTextPeso.getText().equals(boi.getPeso())) {
+            
+            int op = JOptionPane.showConfirmDialog(this, "Você deseja salvar as alterações", "Confirmar", JOptionPane.YES_NO_OPTION);     
+            
+            if (op == JOptionPane.YES_OPTION) {
+                boi.setNome(jTextNome.getText());
+                boi.setBrinco(Integer.parseInt(jTextBrinco.getText()));
+                boi.setPeso(Integer.parseInt(jTextPeso.getText()));
+                
+                if (boiControl.update(boi)) {
+                    JOptionPane.showMessageDialog(this, "sucesso!",
+                            "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro",
+                            "Falha", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                jTextBrinco.setText(""+boi.getBrinco());
+                jTextNome.setText(boi.getNome());
+                jTextPeso.setText(""+boi.getPeso());
+            }
+        }   
+        
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JButton jButtonUpdate;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<Bovino> jComboBoxMae;
     private javax.swing.JLabel jLabel1;
