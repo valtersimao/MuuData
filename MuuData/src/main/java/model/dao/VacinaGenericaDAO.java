@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.naming.spi.DirStateFactory;
 import model.Vacina;
 import tools.FactoryPostgres;
 
@@ -55,7 +54,18 @@ public class VacinaGenericaDAO implements DAO{
 
     @Override
     public boolean delete(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "DELETE FROM muudata.vacinas WHERE id = ";
+        
+        try(PreparedStatement trans = c.prepareStatement(sql)) {
+            trans.setInt(1, (int) id);
+            
+            trans.execute();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Logger.getLogger(VacinaGenericaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
@@ -65,7 +75,26 @@ public class VacinaGenericaDAO implements DAO{
 
     @Override
     public ArrayList<Object> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Object> retorno = new ArrayList<>();
+        
+        String sql = "SELECT id, nome, doses_recomendadas, detalhes FROM muudata.vacinas ORDER BY nome;";
+        
+        try(PreparedStatement trans = c.prepareStatement(sql)) {
+            ResultSet resultado = trans.executeQuery();
+            
+            while(resultado.next()) {
+                Vacina atual = new Vacina(resultado.getInt("id"), 
+                        resultado.getString("nome"),
+                        resultado.getShort("doses_recomendadas"),
+                        resultado.getString("detalhes"));
+                retorno.add(atual);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Logger.getLogger(VacinaGenericaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return retorno;
     }
 
     @Override
