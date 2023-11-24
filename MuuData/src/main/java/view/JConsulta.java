@@ -382,11 +382,16 @@ public class JConsulta extends javax.swing.JPanel {
             int op = JOptionPane.showConfirmDialog(this, "Você deseja salvar as alterações", "Confirmar", JOptionPane.YES_NO_OPTION);     
             
             if (op == JOptionPane.YES_OPTION) {
-                boi.setNome(jTextNome.getText());
-                boi.setBrinco(Integer.parseInt(jTextBrinco.getText()));
-                boi.setPeso(Integer.parseInt(jTextPeso.getText()));
-                
-                if (boiControl.update(boi)) {
+               String nome = jTextNome.getText();
+               int brinco = Integer.parseInt(jTextBrinco.getText());
+               int peso = Integer.parseInt(jTextPeso.getText());
+               int id = boi.getBrinco();
+               
+                if (boiControl.update(peso, nome, brinco, id)) {
+                    boi.setNome(nome);
+                    boi.setBrinco(brinco);
+                    boi.setPeso(peso);
+
                     JOptionPane.showMessageDialog(this, "sucesso!",
                             "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -399,7 +404,6 @@ public class JConsulta extends javax.swing.JPanel {
                 jTextPeso.setText(""+boi.getPeso());
             }
         }   
-        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
