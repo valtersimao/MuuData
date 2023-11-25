@@ -24,7 +24,7 @@ public class JTelaInicial extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(120, 130, 89));
 
-        jButtonCadastroNascimento.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonCadastroNascimento.setBackground(new java.awt.Color(120, 130, 89));
         jButtonCadastroNascimento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jButtonCadastroNascimento.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCadastroNascimento.setText("Cadastrar Nascimento");
@@ -37,7 +37,7 @@ public class JTelaInicial extends javax.swing.JPanel {
             }
         });
 
-        jButtonCadastroAnimal1.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonCadastroAnimal1.setBackground(new java.awt.Color(120, 130, 89));
         jButtonCadastroAnimal1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jButtonCadastroAnimal1.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCadastroAnimal1.setText("Cadastrar Animal");
@@ -50,7 +50,7 @@ public class JTelaInicial extends javax.swing.JPanel {
             }
         });
 
-        jButtonConsultaAnimal.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonConsultaAnimal.setBackground(new java.awt.Color(120, 130, 89));
         jButtonConsultaAnimal.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jButtonConsultaAnimal.setForeground(new java.awt.Color(0, 0, 0));
         jButtonConsultaAnimal.setText("Consultar Animal");
@@ -63,7 +63,7 @@ public class JTelaInicial extends javax.swing.JPanel {
             }
         });
 
-        jButtonUndefined.setBackground(new java.awt.Color(235, 233, 225));
+        jButtonUndefined.setBackground(java.awt.Color.white);
         jButtonUndefined.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jButtonUndefined.setForeground(new java.awt.Color(25, 25, 25));
         jButtonUndefined.setText("UNDEFINED");
@@ -117,7 +117,7 @@ public class JTelaInicial extends javax.swing.JPanel {
                 .addComponent(jButtonCadastroNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonUndefined, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addContainerGap(304, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -129,7 +129,7 @@ public class JTelaInicial extends javax.swing.JPanel {
 
     private void jButtonCadastroNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroNascimentoActionPerformed
         // TODO add your handling code here:
-        FramePrincipal.trocaPainel("cadastraNascimento", new JCadastraNascimento());
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_CADASTRO_NASCIMENTO, new JCadastraNascimento());
     }//GEN-LAST:event_jButtonCadastroNascimentoActionPerformed
 
     private void jButtonConsultaAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaAnimalActionPerformed

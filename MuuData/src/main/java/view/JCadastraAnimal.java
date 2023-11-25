@@ -61,7 +61,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         setBackground(new java.awt.Color(120, 130, 89));
         setFont(new java.awt.Font("DejaVu Serif", 0, 14)); // NOI18N
 
-        jButtonVoltar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonVoltar.setBackground(new java.awt.Color(120, 130, 89));
         jButtonVoltar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButtonVoltar.setForeground(new java.awt.Color(25, 25, 25));
         jButtonVoltar.setText("Voltar");
