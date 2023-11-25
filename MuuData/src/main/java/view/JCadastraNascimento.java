@@ -313,7 +313,7 @@ public class JCadastraNascimento extends javax.swing.JPanel {
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         // TODO add your handling code here:
         this.limpaFields();
-        FramePrincipal.removePainel(FramePrincipal.TELA_CADASTRO_BOVINO);
+        FramePrincipal.removePainel(FramePrincipal.TELA_CADASTRO_NASCIMENTO);
         FramePrincipal.trocaPainel("TELA_INICIAL", new JTelaInicial());
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
