@@ -7,47 +7,54 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class FramePrincipal extends javax.swing.JFrame {
+
+    public static final String TELA_INICIAL = "TELA_INICIAL";
+    public static final String TELA_LOGIN = "TELA_LOGIN";
+    public static final String TELA_CADASTRO_NASCIMENTO = "TELA_CADASTRO_NASCIMENTO";
+    public static final String TELA_CADASTRO_BOVINO = "TELA_CADASTRO_BOVINO";
+    public static final String TELA_CONSULTA = "TELA_CONSULTA";
+
     //barras de rolagem (vertical e horiz.)
     private static JScrollPane painelRolagem;
     private static JPanel painelTroca;
     private static CardLayout baralhoPaineis;
     private static Hashtable<String, JPanel> historicoPaineis;
-    
+
     public FramePrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
         configuraTrocaPaineis();
-        
-        trocaPainel("login", new JTelaLogin());
+
+        trocaPainel(TELA_LOGIN, new JTelaLogin());
     }
-    
-    private void configuraTrocaPaineis(){
+
+    private void configuraTrocaPaineis() {
         //preencher TODO o espaço disponível com barras de rolagem
         this.setLayout(new BorderLayout());
-        
+
         historicoPaineis = new Hashtable<>();
         baralhoPaineis = new CardLayout();
         painelRolagem = new JScrollPane();
-        
+
         //"ligação" entre painel de trocas e os cards (paineis) dentro do baralho
         painelTroca = new JPanel(baralhoPaineis);
-        
+
         //vamos add os elementos para o frame
         this.add(painelRolagem);
         painelRolagem.setViewportView(painelTroca);
-       // painelRolagem.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        // painelRolagem.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     }
-    
+
     public static void removePainel(String nome) {
-        if(historicoPaineis.containsKey(nome)){
+        if (historicoPaineis.containsKey(nome)) {
             historicoPaineis.remove(nome);
         }
     }
-    
-    public static void trocaPainel(String nome, JPanel novoPainel){
-        
+
+    public static void trocaPainel(String nome, JPanel novoPainel) {
+
         //se o novo painel não estive no histórico
-        if(!historicoPaineis.containsKey(nome)){
+        if (!historicoPaineis.containsKey(nome)) {
 
             painelTroca.add(novoPainel, nome);
             baralhoPaineis.show(painelTroca, nome);
@@ -56,13 +63,12 @@ public class FramePrincipal extends javax.swing.JFrame {
             painelTroca.setPreferredSize(novoPainel.getPreferredSize());
 
             historicoPaineis.put(nome, novoPainel);
-        }else{
+        } else {
             //a chave esta dentro do historico
             baralhoPaineis.show(painelTroca, nome);
             painelTroca.setPreferredSize(historicoPaineis.get(nome).getPreferredSize());
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

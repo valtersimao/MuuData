@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,8 +34,8 @@ public class JTelaLogin extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTextNome = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JPasswordField();
         jButtonLogin = new javax.swing.JButton();
         jLabelSenha = new javax.swing.JLabel();
         jButtonCadastrar = new javax.swing.JButton();
@@ -47,18 +48,21 @@ public class JTelaLogin extends javax.swing.JPanel {
         jLabelIcon.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\resources\\muuDataLogo.png"));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nome:");
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("LOGIN");
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Senha:");
 
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        jPasswordField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jPasswordField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jButtonLogin.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButtonLogin.setText("ENTRAR");
@@ -71,6 +75,7 @@ public class JTelaLogin extends javax.swing.JPanel {
         });
 
         jLabelSenha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabelSenha.setForeground(new java.awt.Color(0, 0, 0));
         jLabelSenha.setText("Esqueci minha senha");
         jLabelSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -88,6 +93,7 @@ public class JTelaLogin extends javax.swing.JPanel {
         });
 
         jButtonCadastrar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonCadastrar.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCadastrar.setText("Cadastrar Fazenda");
         jButtonCadastrar.setContentAreaFilled(false);
         jButtonCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -125,14 +131,14 @@ public class JTelaLogin extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField1)))
+                            .addComponent(jTextNome)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabelSenha)
                             .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2)))
@@ -148,11 +154,11 @@ public class JTelaLogin extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,6 +217,18 @@ public class JTelaLogin extends javax.swing.JPanel {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         //REALIZAR LOGIN -- TODO
+        String nome = jTextNome.getText();
+        if (nome == null || nome.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Preencha o campo do nome da fazenda!", "Falha", JOptionPane.WARNING_MESSAGE);
+        } else {
+            //String senha = jPasswordField.get
+            Boolean op = /*verifica*/ true;
+            if (op) {
+                FramePrincipal.trocaPainel("TELA_INICIAL", new JTelaInicial());
+            } else {
+                JOptionPane.showMessageDialog(this, "Login Inválido!", "Falha", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void jLabelSenhaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSenhaMouseReleased
@@ -236,7 +254,7 @@ public class JTelaLogin extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelIcon;
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JTextField jTextNome;
     // End of variables declaration//GEN-END:variables
 }
