@@ -364,6 +364,7 @@ public class JConsulta extends javax.swing.JPanel {
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         this.limpaFields();
+        FramePrincipal.removePainel(FramePrincipal.TELA_CONSULTA);
         FramePrincipal.trocaPainel("inicio", new JTelaInicial());
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
