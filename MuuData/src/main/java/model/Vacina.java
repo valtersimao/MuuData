@@ -1,7 +1,7 @@
 
 package model;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class Vacina {
     private int idVacina;
@@ -10,7 +10,7 @@ public class Vacina {
     private short dosesRecomendadas;
     
     private int idHistorico;
-    private LocalTime dataEvento;
+    private LocalDate dataEvento;
     private short dose;
 
     public Vacina(int idVacina, String nome, short dosesRecomendadas, String detalhes) {
@@ -26,7 +26,7 @@ public class Vacina {
         this.dosesRecomendadas = dosesRecomendadas;
     }
 
-    public Vacina(int idVacina, String nome, short dosesRecomendadas, String detalhes, int idHistorico, LocalTime dataEvento, short dose) {
+    public Vacina(int idVacina, String nome, short dosesRecomendadas, String detalhes, int idHistorico, LocalDate dataEvento, short dose) {
         this.detalhes = detalhes;
         this.idVacina = idVacina;
         this.nome = nome;
@@ -76,11 +76,11 @@ public class Vacina {
         this.idHistorico = idHistorico;
     }
 
-    public LocalTime getDataEvento() {
+    public LocalDate getDataEvento() {
         return dataEvento;
     }
 
-    public void setDataEvento(LocalTime dataEvento) {
+    public void setDataEvento(LocalDate dataEvento) {
         this.dataEvento = dataEvento;
     }
 
