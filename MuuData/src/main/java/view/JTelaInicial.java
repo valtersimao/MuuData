@@ -72,7 +72,7 @@ public class JTelaInicial extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabelIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelIcon.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\resources\\muuDataLogo.png"));
+        jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/muuDataLogo.png"))); // NOI18N
         jLabelIcon.setText("LOGO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

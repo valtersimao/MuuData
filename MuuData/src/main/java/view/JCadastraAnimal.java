@@ -77,7 +77,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 590));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\resources\\muuDataLogo.png"));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/muuDataLogo.png"))); // NOI18N
         jLabel2.setPreferredSize(new java.awt.Dimension(250, 250));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
