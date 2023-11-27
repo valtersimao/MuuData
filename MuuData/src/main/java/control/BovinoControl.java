@@ -104,7 +104,11 @@ public class BovinoControl {
     public boolean update(Bovino bovino) {
         return this.dao.update(bovino);
     }
-
+    
+    public boolean update(int peso, String nome, int brinco, int id) {
+        return this.dao.update(new Bovino(brinco, id, nome, peso));
+    }
+    
     public long calcIdade(LocalDate nascimento) {
         //this.nascimento.
         LocalDate dataAtual = LocalDate.now();

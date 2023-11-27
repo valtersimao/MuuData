@@ -20,6 +20,13 @@ public class Bovino {
     public Bovino() {
     }
 
+     public Bovino(int brinco, int id, String nome, Integer peso) {
+        this.brinco = brinco;
+        this.id = id;
+        this.nome = nome;
+        this.peso = peso;
+    }
+    
     public Bovino(int brinco, String nome, String raca, boolean sexo, Integer peso) {
         this.brinco = brinco;
         this.nome = nome;
