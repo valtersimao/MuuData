@@ -34,8 +34,13 @@ public class VacinaDAO implements DAO{
             trans.setInt(1, vacina.getIdHistorico());
             trans.setInt(2, vacina.getIdVacina());
             trans.setDate(3, java.sql.Date.valueOf(vacina.getDataEvento()));
+            trans.setInt(4, vacina.getDose());
+            
+            trans.execute();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(VacinaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 
