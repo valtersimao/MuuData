@@ -27,24 +27,37 @@ public class JConsulta extends javax.swing.JPanel {
 
         this.setMaeVisible(false);
         this.setDateVisible(false);
+        this.setButtonsEnable(false);
         this.jButtonSalvar.setVisible(false);
     }
-
+    
+    private void setButtonsEnable(boolean op) {
+        this.jButtonGestacao.setEnabled(op);
+        this.jButtonSaude.setEnabled(op);
+    }
+    
     private void setMaeVisible(boolean op) {
         this.jTextMae.setVisible(op);
         this.jLabelMae.setVisible(op);
     }
-
+    
     private void setDateVisible(boolean op) {
         this.jLabelDate.setVisible(op);
         this.jTextData.setVisible(op);
         this.jTextIdade.setVisible(op);
         this.jLabelIdade.setVisible(op);
     }
-
+    
+    private void setUpdatesEnabled(boolean op) {
+        this.jTextNome.setEnabled(op);
+        this.jTextBrinco.setEnabled(op);
+        this.jTextPeso.setEnabled(op);
+    }
+    
     private void limpaFields() {
         this.jComboBoxMae.setSelectedIndex(-1);
         this.jTextData.setText("");
+        this.jTextBrinco.setText("");
         this.jTextNome.setText("");
         this.jTextRaca.setText("");
         this.jTextPeso.setText("");
@@ -72,7 +85,6 @@ public class JConsulta extends javax.swing.JPanel {
         jTextPeso = new javax.swing.JTextField();
         jTextRaca = new javax.swing.JTextField();
         jTextData = new javax.swing.JFormattedTextField();
-        jButtonSalvar = new javax.swing.JButton();
         jTextBrinco = new javax.swing.JTextField();
         jTextSexo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -81,6 +93,11 @@ public class JConsulta extends javax.swing.JPanel {
         jLabelIdade = new javax.swing.JLabel();
         jTextIdade = new javax.swing.JTextField();
         jButtonUpdate = new javax.swing.JButton();
+        jButtonSalvar = new javax.swing.JButton();
+        jButtonGestacao = new javax.swing.JButton();
+        jButtonSaude = new javax.swing.JButton();
+        jButtonUndefined = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(120, 130, 89));
 
@@ -133,6 +150,7 @@ public class JConsulta extends javax.swing.JPanel {
         jTextNome.setBackground(new java.awt.Color(255, 255, 255));
         jTextNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextNome.setForeground(new java.awt.Color(0, 0, 0));
+        jTextNome.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -149,10 +167,12 @@ public class JConsulta extends javax.swing.JPanel {
         jTextPeso.setBackground(new java.awt.Color(255, 255, 255));
         jTextPeso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextPeso.setForeground(new java.awt.Color(0, 0, 0));
+        jTextPeso.setEnabled(false);
 
         jTextRaca.setBackground(new java.awt.Color(255, 255, 255));
         jTextRaca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextRaca.setForeground(new java.awt.Color(0, 0, 0));
+        jTextRaca.setEnabled(false);
 
         jTextData.setBackground(new java.awt.Color(255, 255, 255));
         jTextData.setForeground(new java.awt.Color(0, 0, 0));
@@ -162,7 +182,52 @@ public class JConsulta extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         jTextData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextData.setEnabled(false);
         jTextData.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        jTextBrinco.setBackground(new java.awt.Color(255, 255, 255));
+        jTextBrinco.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextBrinco.setForeground(new java.awt.Color(0, 0, 0));
+        jTextBrinco.setEnabled(false);
+
+        jTextSexo.setBackground(new java.awt.Color(255, 255, 255));
+        jTextSexo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextSexo.setForeground(new java.awt.Color(0, 0, 0));
+        jTextSexo.setEnabled(false);
+
+        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Raça:");
+
+        jTextMae.setBackground(new java.awt.Color(255, 255, 255));
+        jTextMae.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextMae.setForeground(new java.awt.Color(0, 0, 0));
+        jTextMae.setEnabled(false);
+
+        jLabelMae.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabelMae.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelMae.setText("Mãe:");
+
+        jLabelIdade.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabelIdade.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelIdade.setText("Idade:");
+
+        jTextIdade.setBackground(new java.awt.Color(255, 255, 255));
+        jTextIdade.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextIdade.setForeground(new java.awt.Color(0, 0, 0));
+        jTextIdade.setEnabled(false);
+
+        jButtonUpdate.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonUpdate.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonUpdate.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonUpdate.setText("Redefinir");
+        jButtonUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonUpdate.setFocusable(false);
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
 
         jButtonSalvar.setBackground(new java.awt.Color(255, 255, 255));
         jButtonSalvar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -176,55 +241,11 @@ public class JConsulta extends javax.swing.JPanel {
             }
         });
 
-        jTextBrinco.setBackground(new java.awt.Color(255, 255, 255));
-        jTextBrinco.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextBrinco.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextSexo.setBackground(new java.awt.Color(255, 255, 255));
-        jTextSexo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextSexo.setForeground(new java.awt.Color(0, 0, 0));
-
-        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Raça:");
-
-        jTextMae.setBackground(new java.awt.Color(255, 255, 255));
-        jTextMae.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextMae.setForeground(new java.awt.Color(0, 0, 0));
-
-        jLabelMae.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabelMae.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelMae.setText("Mãe:");
-
-        jLabelIdade.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabelIdade.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelIdade.setText("Idade:");
-
-        jTextIdade.setBackground(new java.awt.Color(255, 255, 255));
-        jTextIdade.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextIdade.setForeground(new java.awt.Color(0, 0, 0));
-
-        jButtonUpdate.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonUpdate.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButtonUpdate.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonUpdate.setText("Alterar");
-        jButtonUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonUpdate.setFocusable(false);
-        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -253,6 +274,11 @@ public class JConsulta extends javax.swing.JPanel {
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxMae, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -268,18 +294,17 @@ public class JConsulta extends javax.swing.JPanel {
                                     .addComponent(jTextIdade)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxMae, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,11 +334,11 @@ public class JConsulta extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jTextRaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelMae))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIdade)
                     .addComponent(jTextIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -321,34 +346,92 @@ public class JConsulta extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDate)
                     .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
+
+        jButtonGestacao.setBackground(new java.awt.Color(120, 130, 89));
+        jButtonGestacao.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonGestacao.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonGestacao.setText("Gestação Reprodutiva");
+        jButtonGestacao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonGestacao.setFocusPainted(false);
+        jButtonGestacao.setFocusable(false);
+        jButtonGestacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGestacaoActionPerformed(evt);
+            }
+        });
+
+        jButtonSaude.setBackground(new java.awt.Color(120, 130, 89));
+        jButtonSaude.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonSaude.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonSaude.setText("Histórico de Saúde");
+        jButtonSaude.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSaude.setFocusPainted(false);
+        jButtonSaude.setFocusable(false);
+        jButtonSaude.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaudeActionPerformed(evt);
+            }
+        });
+
+        jButtonUndefined.setBackground(java.awt.Color.white);
+        jButtonUndefined.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonUndefined.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonUndefined.setText("UNDEFINED");
+        jButtonUndefined.setEnabled(false);
+
+        jLabel6.setFont(new java.awt.Font("Arial Black", 1, 26)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Opções do Animal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(227, 227, 227)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(137, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonSaude, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(jButtonGestacao, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(jButtonUndefined, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(152, 152, 152))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(jLabel6)
+                .addGap(60, 60, 60)
+                .addComponent(jButtonGestacao, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
+                .addComponent(jButtonSaude, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addComponent(jButtonUndefined, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -358,6 +441,46 @@ public class JConsulta extends javax.swing.JPanel {
         FramePrincipal.removePainel(FramePrincipal.TELA_CADASTRO_BOVINO);
         FramePrincipal.trocaPainel("TELA_INICIAL", new JTelaInicial());
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jComboBoxMaeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMaeItemStateChanged
+        if (this.jComboBoxMae.getSelectedIndex() >= 0) {
+            Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
+            boolean temMae = (boi.getIdMae() != null) && (boi.getIdMae() != Bovino.ID_DEFAULT);
+            
+            this.setButtonsEnable(true);
+            this.jTextBrinco.setText(boi.getBrinco() + "");
+            this.jTextRaca.setText(boi.getRaca());
+            this.jTextPeso.setText(boi.getPeso() == null || boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
+            this.jTextNome.setText((boi.getNome() == null || boi.getNome().isEmpty()) ? "-/-" : boi.getNome());
+            this.jTextSexo.setText(boi.isSexo() == Bovino.MACHO ? "Macho" : "Fêmea");
+            
+            this.setMaeVisible(temMae);
+            this.jButtonGestacao.setEnabled(!temMae);
+            if (temMae) {
+                this.jTextMae.setText(this.boiControl.getById(boi.getIdMae()).toString());
+            }
+
+            this.setDateVisible(boi.getNascimento() != null);
+            if (boi.getNascimento() != null) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                this.jTextData.setText(formatter.format(boi.getNascimento()));
+
+                int anos = boi.getIdadeMeses() / 12;
+                int meses = boi.getIdadeMeses() - (anos * 12);
+                String idade = anos > 0 ? anos + " anos e " : "";
+                idade += meses + " meses";
+                this.jTextIdade.setText(idade);
+            }
+            
+            
+        }
+    }//GEN-LAST:event_jComboBoxMaeItemStateChanged
+
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        this.setUpdatesEnabled(true);
+        this.jButtonUpdate.setVisible(false);
+        this.jButtonSalvar.setVisible(true);
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
@@ -389,47 +512,24 @@ public class JConsulta extends javax.swing.JPanel {
                 jTextNome.setText(boi.getNome());
                 jTextPeso.setText(""+boi.getPeso());
             }
-        }   
+        } 
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void jComboBoxMaeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMaeItemStateChanged
-        if (this.jComboBoxMae.getSelectedIndex() >= 0) {
-            Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
-            boolean temMae = (boi.getIdMae() != null) && (boi.getIdMae() != Bovino.ID_DEFAULT);
+    private void jButtonGestacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestacaoActionPerformed
+        // TODO add your handling code here:
+        FramePrincipal.trocaPainel("consultaAnimais", new JConsulta());
+    }//GEN-LAST:event_jButtonGestacaoActionPerformed
 
-            this.jTextBrinco.setText(boi.getBrinco() + "");
-            this.jTextRaca.setText(boi.getRaca());
-            this.jTextPeso.setText(boi.getPeso() == null || boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
-            this.jTextNome.setText((boi.getNome() == null || boi.getNome().isEmpty()) ? "-/-" : boi.getNome());
-            this.jTextSexo.setText(boi.isSexo() == Bovino.MACHO ? "Macho" : "Fêmea");
-            
-            this.setMaeVisible(temMae);
-            if (temMae) {
-                this.jTextMae.setText(this.boiControl.getById(boi.getIdMae()).toString());
-            }
-
-            this.setDateVisible(boi.getNascimento() != null);
-            if (boi.getNascimento() != null) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                this.jTextData.setText(formatter.format(boi.getNascimento()));
-
-                int anos = boi.getIdadeMeses() / 12;
-                int meses = boi.getIdadeMeses() - (anos * 12);
-                String idade = anos > 0 ? anos + " anos e " : "";
-                idade += meses + " meses";
-                this.jTextIdade.setText(idade);
-            }
-        }
-    }//GEN-LAST:event_jComboBoxMaeItemStateChanged
-
-    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        this.jButtonUpdate.setEnabled(false);
-        this.jButtonSalvar.setEnabled(true);
-    }//GEN-LAST:event_jButtonUpdateActionPerformed
+    private void jButtonSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaudeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSaudeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonGestacao;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JButton jButtonSaude;
+    private javax.swing.JButton jButtonUndefined;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<Bovino> jComboBoxMae;
@@ -439,6 +539,7 @@ public class JConsulta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelDate;
