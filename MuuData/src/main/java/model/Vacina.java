@@ -2,7 +2,15 @@
 package model;
 
 import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Vacina {
     private int idVacina;
     private String nome;
@@ -12,6 +20,7 @@ public class Vacina {
     private int idHistorico;
     private LocalDate dataEvento;
     private short dose;
+    private int idRelacionamento;
 
     public Vacina(int idVacina, String nome, short dosesRecomendadas, String detalhes) {
         this.detalhes = detalhes;
@@ -33,62 +42,6 @@ public class Vacina {
         this.dosesRecomendadas = dosesRecomendadas;
         this.idHistorico = idHistorico;
         this.dataEvento = dataEvento;
-        this.dose = dose;
-    }
-
-    public String getDetalhes() {
-        return detalhes;
-    }
-
-    public void setDetalhes(String detalhes) {
-        this.detalhes = detalhes;
-    }
-
-    public int getIdVacina() {
-        return idVacina;
-    }
-
-    public void setIdVacina(int idVacina) {
-        this.idVacina = idVacina;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public short getDosesRecomendadas() {
-        return dosesRecomendadas;
-    }
-
-    public void setDosesRecomendadas(short dosesRecomendadas) {
-        this.dosesRecomendadas = dosesRecomendadas;
-    }
-
-    public int getIdHistorico() {
-        return idHistorico;
-    }
-
-    public void setIdHistorico(int idHistorico) {
-        this.idHistorico = idHistorico;
-    }
-
-    public LocalDate getDataEvento() {
-        return dataEvento;
-    }
-
-    public void setDataEvento(LocalDate dataEvento) {
-        this.dataEvento = dataEvento;
-    }
-
-    public short getDose() {
-        return dose;
-    }
-
-    public void setDose(short dose) {
         this.dose = dose;
     }
     
