@@ -4,10 +4,16 @@
  */
 package model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  *
  * @author 0068943
  */
+
+@Getter
+@Setter
 public class Fazenda {
     public static final int GADO_DE_CORTE = 0, GADO_LEITEIRO = 1, GADO_MISTO = 2;
     
@@ -25,38 +31,6 @@ public class Fazenda {
 
     public Fazenda(String nome, String senha) {
         this.nome = nome;
-        this.senha = senha;
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getTipoCriacao() {
-        return tipoCriacao;
-    }
-
-    public void setTipoCriacao(int tipoCriacao) {
-        this.tipoCriacao = tipoCriacao;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
         this.senha = senha;
     }
 }
