@@ -6,6 +6,7 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class VacinaDAO implements DAO{
     @Override
     public boolean insert(Object entite) {
         Vacina vacina = (Vacina) entite;
-        String sql = "INSERT INTO muudata.historico_vacina(id_historico, id_vacina, data_evento, dose) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO muudata.historico_vacina(id_historico, id_vacina, data_evento, dose) VALUES (?,?,?,?) RETURNING id";
         
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setInt(1, vacina.getIdHistorico());
@@ -36,12 +37,15 @@ public class VacinaDAO implements DAO{
             trans.setDate(3, java.sql.Date.valueOf(vacina.getDataEvento()));
             trans.setInt(4, vacina.getDose());
             
-            trans.execute();
-            return true;
+            ResultSet result = trans.executeQuery();
+            if(result.next()) {
+                vacina.setIdRelacionamento(result.getInt("id_relacionamento"));
+                return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(VacinaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -56,12 +60,55 @@ public class VacinaDAO implements DAO{
 
     @Override
     public Object getById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Vacina> retorno = new ArrayList<>();
+        String sql = "SELECT R.data_evento, R.dose, R.id_relacionamento, V.id, V.nome, V.doses_recomendadas, V.detalhes"
+                + " FROM muudata.historico_vacina R JOIN muudata.vacinas V ON V.id = R.id_vacina"
+                + " WHERE R.id_historico = ?";
+        try(PreparedStatement trans = c.prepareStatement(sql)) {
+            trans.setInt(1, (int) id);
+            ResultSet result = trans.executeQuery();
+            
+            while(result.next()) {
+                Vacina vacina = new Vacina(result.getInt("id"), result.getString("nome"),
+                        result.getString("detalhes"),
+                        result.getShort("doses_recomendadas"),
+                        (int)id,
+                        result.getDate("data_evento").toLocalDate(),
+                        result.getShort("dose"),
+                        result.getInt("id_relacionamento"));
+                retorno.add(vacina);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Logger.getLogger(VacinaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return retorno;
     }
 
     @Override
     public ArrayList<Object> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Object> retorno = new ArrayList<>();
+        String sql = "SELECT R.id_historico, R.data_evento, R.dose, R.id_relacionamento, V.id, V.nome, V.doses_recomendadas, V.detalhes"
+                + " FROM muudata.historico_vacina R JOIN muudata.vacinas V ON V.id = R.id_vacina";
+        try(PreparedStatement trans = c.prepareStatement(sql)) {
+            ResultSet result = trans.executeQuery();
+            while(result.next()) {
+                Vacina vacina = new Vacina(result.getInt("id"), result.getString("nome"),
+                        result.getString("detalhes"),
+                        result.getShort("doses_recomendadas"),
+                        result.getInt("id_historico"),
+                        result.getDate("data_evento").toLocalDate(),
+                        result.getShort("dose"),
+                        result.getInt("id_relacionamento"));
+                retorno.add(vacina);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Logger.getLogger(VacinaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return retorno;
     }
 
     @Override
