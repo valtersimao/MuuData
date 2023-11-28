@@ -32,6 +32,7 @@ public class JConsulta extends javax.swing.JPanel {
     private void setButtonsEnable(boolean op) {
         this.jButtonGestacao.setEnabled(op);
         this.jButtonSaude.setEnabled(op);
+        this.jButtonExcluir.setEnabled(op);
     }
 
     private void setMaeVisible(boolean op) {
@@ -62,6 +63,7 @@ public class JConsulta extends javax.swing.JPanel {
     private void edit(boolean op) {
         this.setButtonsVisible(op);
         this.setUpdatesEnabled(op);
+        this.setButtonsEnable(!op);
     }
     
     private void limpaFields() {
@@ -108,8 +110,9 @@ public class JConsulta extends javax.swing.JPanel {
         jButtonCancelar = new javax.swing.JButton();
         jButtonGestacao = new javax.swing.JButton();
         jButtonSaude = new javax.swing.JButton();
-        jButtonUndefined = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jButtonUndefined1 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -250,7 +253,7 @@ public class JConsulta extends javax.swing.JPanel {
         jButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonSalvar.setFocusPainted(false);
         jButtonSalvar.setFocusable(false);
-        jButtonSalvar.setPreferredSize(new java.awt.Dimension(98, 28));
+        jButtonSalvar.setPreferredSize(new java.awt.Dimension(97, 28));
         jButtonSalvar.setVerifyInputWhenFocusTarget(false);
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,19 +321,19 @@ public class JConsulta extends javax.swing.JPanel {
                                             .addGap(7, 7, 7)))
                                     .addComponent(jLabelIdade)
                                     .addComponent(jLabelDate))
-                                .addGap(24, 24, 24)
+                                .addGap(23, 23, 23)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextMae)
                                     .addComponent(jTextIdade)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(jButtonCancelar)
-                                                .addGap(26, 26, 26)))
+                                                .addComponent(jButtonCancelar)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jButtonUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))
@@ -381,7 +384,7 @@ public class JConsulta extends javax.swing.JPanel {
                     .addComponent(jLabelDate)
                     .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonUpdate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -411,16 +414,27 @@ public class JConsulta extends javax.swing.JPanel {
             }
         });
 
-        jButtonUndefined.setBackground(java.awt.Color.white);
-        jButtonUndefined.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButtonUndefined.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonUndefined.setText("UNDEFINED");
-        jButtonUndefined.setEnabled(false);
+        jButtonExcluir.setBackground(java.awt.Color.white);
+        jButtonExcluir.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonExcluir.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonExcluir.setText("Excluir Animal");
+        jButtonExcluir.setEnabled(false);
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 26)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Opções do Animal");
+
+        jButtonUndefined1.setBackground(java.awt.Color.white);
+        jButtonUndefined1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonUndefined1.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonUndefined1.setText("UNDEFINED");
+        jButtonUndefined1.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -436,7 +450,8 @@ public class JConsulta extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonSaude, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonGestacao, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonUndefined, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonUndefined1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(117, 117, 117)
                         .addComponent(jLabel6)))
@@ -447,20 +462,23 @@ public class JConsulta extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64)
                         .addComponent(jLabel6)
                         .addGap(56, 56, 56)
                         .addComponent(jButtonGestacao, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
+                        .addGap(35, 35, 35)
                         .addComponent(jButtonSaude, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jButtonUndefined, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButtonUndefined1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(18, Short.MAX_VALUE)
+                        .addGap(0, 12, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -506,7 +524,7 @@ public class JConsulta extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBoxMaeItemStateChanged
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        edit(true);
+        this.edit(true);
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -530,7 +548,7 @@ public class JConsulta extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Sucesso!",
                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         
-                        edit(false);
+                        this.edit(false);
                     } else {
                         JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro",
                                 "Falha", JOptionPane.ERROR_MESSAGE);
@@ -541,7 +559,7 @@ public class JConsulta extends javax.swing.JPanel {
                     jTextPeso.setText(boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
                 }
             } else {
-                edit(false);
+                this.edit(false);
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Insira o formato correto!",
@@ -559,7 +577,7 @@ public class JConsulta extends javax.swing.JPanel {
             jTextNome.setText(boi.getNome().isEmpty() ? "-/-" : boi.getNome());
             jTextPeso.setText(boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
 
-            edit(false);
+            this.edit(false);
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -568,13 +586,34 @@ public class JConsulta extends javax.swing.JPanel {
         FramePrincipal.trocaPainel(FramePrincipal.TELA_HISTORICO_SAUDE, new JHistoricoSaude(boi));
     }//GEN-LAST:event_jButtonSaudeActionPerformed
 
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
+        
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir esse animal?",
+                "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            
+            if(this.boiControl.delete(boi)) {
+                JOptionPane.showMessageDialog(this, "Sucesso!",
+                                "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                
+                this.jComboBoxMae.setSelectedIndex(-1);
+                this.setButtonsEnable(false);
+                limpaFields();
+            } else {
+                JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro",
+                                "Falha", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonGestacao;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonSaude;
-    private javax.swing.JButton jButtonUndefined;
+    private javax.swing.JButton jButtonUndefined1;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<Bovino> jComboBoxMae;
