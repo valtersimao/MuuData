@@ -1,17 +1,14 @@
 package view;
 
-import java.awt.Color;
-import javax.swing.JOptionPane;
-import view.FramePrincipal;
+import model.Bovino;
 
 /**
  *
  * @author 0068967
  */
 public class JHistoricoSaude extends javax.swing.JPanel {
-
     
-    public JHistoricoSaude() {
+    public JHistoricoSaude(Bovino bovino) {
         initComponents();
     }
 
@@ -51,7 +48,6 @@ public class JHistoricoSaude extends javax.swing.JPanel {
         jButtonGestacao1.setFocusPainted(false);
         jButtonGestacao1.setFocusable(false);
 
-        jButtonUndefined.setBackground(java.awt.Color.white);
         jButtonUndefined.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jButtonUndefined.setForeground(new java.awt.Color(25, 25, 25));
         jButtonUndefined.setText("UNDEFINED");
@@ -98,15 +94,15 @@ public class JHistoricoSaude extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150)
+                .addGap(160, 160, 160)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(49, 49, 49)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

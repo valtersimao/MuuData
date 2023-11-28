@@ -30,7 +30,7 @@
                       <Component id="jButtonCadastroNascimento" max="32767" attributes="0"/>
                       <Component id="jButtonUndefined" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jButtonConsultaAnimal" min="-2" pref="175" max="-2" attributes="0"/>
+                  <Component id="jButtonConsultaAnimal" alignment="1" min="-2" pref="175" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="282" max="32767" attributes="0"/>
           </Group>
@@ -41,7 +41,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jButtonConsultaAnimal" min="-2" pref="60" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonCadastroAnimal1" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonCadastroNascimento" min="-2" pref="60" max="-2" attributes="0"/>

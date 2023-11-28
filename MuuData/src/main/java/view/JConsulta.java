@@ -73,6 +73,7 @@ public class JConsulta extends javax.swing.JPanel {
         this.jTextMae.setText("");
         this.jTextIdade.setText("");
         this.jTextSexo.setText("");
+        this.jTextPeso.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -404,6 +405,11 @@ public class JConsulta extends javax.swing.JPanel {
         jButtonSaude.setEnabled(false);
         jButtonSaude.setFocusPainted(false);
         jButtonSaude.setFocusable(false);
+        jButtonSaude.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaudeActionPerformed(evt);
+            }
+        });
 
         jButtonUndefined.setBackground(java.awt.Color.white);
         jButtonUndefined.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -509,13 +515,13 @@ public class JConsulta extends javax.swing.JPanel {
 
             String nome = jTextNome.getText();
             int brinco = Integer.parseInt(jTextBrinco.getText());
-            int peso = boi.getPeso() == 0 ? 0 : Integer.parseInt(jTextPeso.getText());
+            int peso = Integer.parseInt(jTextPeso.getText()) == 0 ? 0 : Integer.parseInt(jTextPeso.getText());
 
             if (brinco != boi.getBrinco() || !nome.equals(boi.getNome()) || peso != boi.getPeso()) {
                 if (JOptionPane.showConfirmDialog(this, "Deseja salvar as alterações",
                         "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     
-                    int id = boi.getBrinco();
+                    int id = boi.getId();
                     if (boiControl.update(peso, nome, brinco, id)) {
                         boi.setNome(nome);
                         boi.setBrinco(brinco);
@@ -523,7 +529,7 @@ public class JConsulta extends javax.swing.JPanel {
 
                         JOptionPane.showMessageDialog(this, "Sucesso!",
                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
+                        
                         edit(false);
                     } else {
                         JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro",
@@ -556,6 +562,11 @@ public class JConsulta extends javax.swing.JPanel {
             edit(false);
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaudeActionPerformed
+        Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_HISTORICO_SAUDE, new JHistoricoSaude(boi));
+    }//GEN-LAST:event_jButtonSaudeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

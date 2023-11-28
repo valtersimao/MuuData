@@ -198,7 +198,7 @@ public class JTelaLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabelSenhaMouseExited
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        //ADICIONAR FAZENDA -- TODO
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_CADASTRO_FAZENDA, new JCadastraFazenda());
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonCadastrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseEntered
@@ -233,7 +233,6 @@ public class JTelaLogin extends javax.swing.JPanel {
 
     private void jLabelSenhaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSenhaMouseReleased
         this.jLabelSenha.setForeground(Color.blue);
-
     }//GEN-LAST:event_jLabelSenhaMouseReleased
 
     private void jButtonCadastrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMouseReleased
