@@ -6,11 +6,18 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author 0068943
  */
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class Doenca {
     public static final int EM_TRATAMENTO = 0, CURADA = 1, SEM_TRATAR = 2;
     
@@ -25,6 +32,7 @@ public class Doenca {
     private short estado;
     private String observacoes;
     private int idHistorico;
+    private int id;
 
     public Doenca(int id_doenca, String nome, String desricao, ArrayList<String> sintomas, String tratamento, String gravidade) {
         //Criação de uma doenca genérica
@@ -44,99 +52,5 @@ public class Doenca {
         this.tratamento = tratamento;
         this.gravidade = gravidade;
     }
-    
-    public Doenca(int idDoenca, String nome, String desricao, ArrayList<String> sintomas, String tratamento, String gravidade, LocalDate dataEvento, short estado, String observacoes, int idHistorico) {
-        this.idDoenca = idDoenca;
-        this.nome = nome;
-        this.desricao = desricao;
-        this.sintomas = sintomas;
-        this.tratamento = tratamento;
-        this.gravidade = gravidade;
-        this.dataEvento = dataEvento;
-        this.estado = estado;
-        this.observacoes = observacoes;
-        this.idHistorico = idHistorico;
-    }
-
-    public int getIdDoenca() {
-        return idDoenca;
-    }
-
-    public void setIdDoenca(int idDoenca) {
-        this.idDoenca = idDoenca;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDesricao() {
-        return desricao;
-    }
-
-    public void setDesricao(String desricao) {
-        this.desricao = desricao;
-    }
-
-    public ArrayList<String> getSintomas() {
-        return sintomas;
-    }
-
-    public void setSintomas(ArrayList<String> sintomas) {
-        this.sintomas = sintomas;
-    }
-
-    public String getTratamento() {
-        return tratamento;
-    }
-
-    public void setTratamento(String tratamento) {
-        this.tratamento = tratamento;
-    }
-
-    public String getGravidade() {
-        return gravidade;
-    }
-
-    public void setGravidade(String gravidade) {
-        this.gravidade = gravidade;
-    }
-
-    public LocalDate getDataEvento() {
-        return dataEvento;
-    }
-
-    public void setDataEvento(LocalDate dataEvento) {
-        this.dataEvento = dataEvento;
-    }
-
-    public short getEstado() {
-        return estado;
-    }
-
-    public void setEstado(short estado) {
-        this.estado = estado;
-    }
-
-    public String getObservacoes() {
-        return observacoes;
-    }
-
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
-    }
-
-    public int getIdHistorico() {
-        return idHistorico;
-    }
-
-    public void setIdHistorico(int idHistorico) {
-        this.idHistorico = idHistorico;
-    }
-    
     
 }
