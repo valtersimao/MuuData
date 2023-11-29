@@ -134,7 +134,7 @@ public class JTelaInicial extends javax.swing.JPanel {
 
     private void jButtonConsultaAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaAnimalActionPerformed
         // TODO add your handling code here:
-        FramePrincipal.trocaPainel("consultaAnimais", new JConsulta());
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_CONSULTA, new JConsulta());
     }//GEN-LAST:event_jButtonConsultaAnimalActionPerformed
 
 

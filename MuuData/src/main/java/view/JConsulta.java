@@ -16,7 +16,7 @@ public class JConsulta extends javax.swing.JPanel {
 
         config();
     }
-
+    
     private void config() {
         boiControl = new BovinoControl();
 
@@ -110,9 +110,8 @@ public class JConsulta extends javax.swing.JPanel {
         jButtonCancelar = new javax.swing.JButton();
         jButtonGestacao = new javax.swing.JButton();
         jButtonSaude = new javax.swing.JButton();
-        jButtonExcluir = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jButtonUndefined1 = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -414,27 +413,24 @@ public class JConsulta extends javax.swing.JPanel {
             }
         });
 
-        jButtonExcluir.setBackground(java.awt.Color.white);
-        jButtonExcluir.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButtonExcluir.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonExcluir.setText("Excluir Animal");
-        jButtonExcluir.setEnabled(false);
-        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 26)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Opções do Animal");
 
-        jButtonUndefined1.setBackground(java.awt.Color.white);
-        jButtonUndefined1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButtonUndefined1.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonUndefined1.setText("UNDEFINED");
-        jButtonUndefined1.setEnabled(false);
+        jButtonExcluir.setBackground(new java.awt.Color(120, 130, 89));
+        jButtonExcluir.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonExcluir.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonExcluir.setText("Excluir Animal");
+        jButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonExcluir.setEnabled(false);
+        jButtonExcluir.setFocusPainted(false);
+        jButtonExcluir.setFocusable(false);
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -443,18 +439,17 @@ public class JConsulta extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(154, 154, 154)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonSaude, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonGestacao, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonUndefined1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(117, 117, 117)
-                        .addComponent(jLabel6)))
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(110, Short.MAX_VALUE))
@@ -470,12 +465,10 @@ public class JConsulta extends javax.swing.JPanel {
                         .addComponent(jLabel6)
                         .addGap(56, 56, 56)
                         .addComponent(jButtonGestacao, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(60, 60, 60)
                         .addComponent(jButtonSaude, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(60, 60, 60)
                         .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jButtonUndefined1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 12, Short.MAX_VALUE)
@@ -487,7 +480,7 @@ public class JConsulta extends javax.swing.JPanel {
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         // TODO add your handling code here:
         this.limpaFields();
-        FramePrincipal.removePainel(FramePrincipal.TELA_CADASTRO_BOVINO);
+        FramePrincipal.removePainel(FramePrincipal.TELA_CONSULTA);
         FramePrincipal.trocaPainel("TELA_INICIAL", new JTelaInicial());
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
@@ -520,6 +513,8 @@ public class JConsulta extends javax.swing.JPanel {
                 idade += meses + " meses";
                 this.jTextIdade.setText(idade);
             }
+        } else {
+            this.setButtonsEnable(false);
         }
     }//GEN-LAST:event_jComboBoxMaeItemStateChanged
 
@@ -545,12 +540,12 @@ public class JConsulta extends javax.swing.JPanel {
                         boi.setBrinco(brinco);
                         boi.setPeso(peso);
 
-                        JOptionPane.showMessageDialog(this, "Sucesso!",
+                        JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!",
                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         
                         this.edit(false);
                     } else {
-                        JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro",
+                        JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro!",
                                 "Falha", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
@@ -593,14 +588,14 @@ public class JConsulta extends javax.swing.JPanel {
                 "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             
             if(this.boiControl.delete(boi)) {
-                JOptionPane.showMessageDialog(this, "Sucesso!",
+                JOptionPane.showMessageDialog(this, "O animal foi deletado com sucesso!",
                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 
                 this.jComboBoxMae.setSelectedIndex(-1);
                 this.setButtonsEnable(false);
-                limpaFields();
+                this.limpaFields();
             } else {
-                JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro",
+                JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro!",
                                 "Falha", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -613,7 +608,6 @@ public class JConsulta extends javax.swing.JPanel {
     private javax.swing.JButton jButtonGestacao;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JButton jButtonSaude;
-    private javax.swing.JButton jButtonUndefined1;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<Bovino> jComboBoxMae;
