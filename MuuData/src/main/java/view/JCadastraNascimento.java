@@ -93,7 +93,6 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         jLabel1.setText("Novo Nascimento");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/muuDataLogo.png"))); // NOI18N
-        jLabel8.setPreferredSize(new java.awt.Dimension(250, 250));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -107,11 +106,6 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         jComboBoxMae.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxMaeItemStateChanged(evt);
-            }
-        });
-        jComboBoxMae.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxMaeActionPerformed(evt);
             }
         });
 
@@ -138,20 +132,10 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         jTextRaca.setBackground(new java.awt.Color(255, 255, 255));
         jTextRaca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextRaca.setForeground(new java.awt.Color(0, 0, 0));
-        jTextRaca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextRacaActionPerformed(evt);
-            }
-        });
 
         jTextNome.setBackground(new java.awt.Color(255, 255, 255));
         jTextNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextNome.setForeground(new java.awt.Color(0, 0, 0));
-        jTextNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNomeActionPerformed(evt);
-            }
-        });
 
         jTextData.setBackground(new java.awt.Color(255, 255, 255));
         jTextData.setForeground(new java.awt.Color(0, 0, 0));
@@ -302,14 +286,6 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jComboBoxMaeItemStateChanged
 
-    private void jTextRacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextRacaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextRacaActionPerformed
-
-    private void jTextNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomeActionPerformed
-
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
         // TODO add your handling code here:
         this.limpaFields();
@@ -318,8 +294,6 @@ public class JCadastraNascimento extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        // TODO add your handling code here:
-
         //verificação para evitar valores nulos
         try {
 
@@ -342,13 +316,10 @@ public class JCadastraNascimento extends javax.swing.JPanel {
                             String nome = this.jTextNome.getText();
 
                             try {
-
                                 boolean sexo = this.jRadioButtonM.isSelected();
 
-                                op = JOptionPane.showConfirmDialog(this, "Você deseja cadastrar esse animal?",
-                                        "Finalizar", JOptionPane.YES_NO_OPTION);
-
-                                if (op == JOptionPane.YES_OPTION) {
+                                if (JOptionPane.showConfirmDialog(this, "Você deseja cadastrar esse animal?",
+                                    "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
                                     if (boiControl.insert(nome, brinco, raca, sexo, idMae, this.jTextData.getText())) {
                                         JOptionPane.showMessageDialog(this, "Bezerro cadastrado com sucesso!",
@@ -386,10 +357,6 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
-
-    private void jComboBoxMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMaeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxMaeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

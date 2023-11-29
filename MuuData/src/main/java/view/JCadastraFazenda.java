@@ -15,6 +15,8 @@ public class JCadastraFazenda extends javax.swing.JPanel {
 
     public JCadastraFazenda() {
         initComponents();
+        
+        config();
     }
 
     private void config() {
@@ -198,7 +200,8 @@ public class JCadastraFazenda extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Cadastro concluído!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         FramePrincipal.trocaPainel(FramePrincipal.TELA_LOGIN, new JTelaLogin());
                     } else {
-                        JOptionPane.showMessageDialog(this, "Algo deu errado!", "Falha", JOptionPane.WARNING_MESSAGE);
+                        this.limpaFields();
+                        JOptionPane.showMessageDialog(this, "Esse usuário já existe, tente novamente!", "Falha", JOptionPane.WARNING_MESSAGE);
                     }
                 }
             }
@@ -221,7 +224,7 @@ public class JCadastraFazenda extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabelCadastroMousePressed
 
     private void jLabelCadastroMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCadastroMouseReleased
-        this.jLabelCadastro.setForeground(Color.blue);
+        this.jLabelCadastro.setForeground(Color.black);
     }//GEN-LAST:event_jLabelCadastroMouseReleased
 
 

@@ -78,7 +78,6 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 590));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/muuDataLogo.png"))); // NOI18N
-        jLabel2.setPreferredSize(new java.awt.Dimension(250, 250));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 25, 25));
@@ -95,11 +94,6 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         jTextRaca.setBackground(new java.awt.Color(255, 255, 255));
         jTextRaca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextRaca.setForeground(new java.awt.Color(0, 0, 0));
-        jTextRaca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextRacaActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(25, 25, 25));
@@ -108,20 +102,10 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         jTextPeso.setBackground(new java.awt.Color(255, 255, 255));
         jTextPeso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextPeso.setForeground(new java.awt.Color(0, 0, 0));
-        jTextPeso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextPesoActionPerformed(evt);
-            }
-        });
 
         jTextNome.setBackground(new java.awt.Color(255, 255, 255));
         jTextNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextNome.setForeground(new java.awt.Color(0, 0, 0));
-        jTextNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextNomeActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(25, 25, 25));
@@ -255,20 +239,8 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.limpaFields();
         FramePrincipal.removePainel(FramePrincipal.TELA_CADASTRO_BOVINO);
-        FramePrincipal.trocaPainel("TELA_INICIAL", new JTelaInicial());
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_INICIAL, new JTelaInicial());
     }//GEN-LAST:event_jButtonVoltarActionPerformed
-
-    private void jTextRacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextRacaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextRacaActionPerformed
-
-    private void jTextPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPesoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextPesoActionPerformed
-
-    private void jTextNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextNomeActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         try {
@@ -282,6 +254,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
                         int peso = Integer.parseInt(this.jTextPeso.getText());
 
                         int op = JOptionPane.NO_OPTION;
+                        
                         if (this.jTextNome.getText().isEmpty()) {
                             op = JOptionPane.showConfirmDialog(this, "O animal está sem nome, você deseja mudar?",
                                     "Dados incompletos", JOptionPane.YES_NO_OPTION);
@@ -291,10 +264,8 @@ public class JCadastraAnimal extends javax.swing.JPanel {
                             String nome = this.jTextNome.getText();
                             boolean sexo = this.jRadioButtonM.isSelected();
 
-                            op = JOptionPane.showConfirmDialog(this, "Você deseja cadastrar esse animal?",
-                                    "Finalizar", JOptionPane.YES_NO_OPTION);
-
-                            if (op == JOptionPane.YES_OPTION) {
+                            if (JOptionPane.showConfirmDialog(this, "Você deseja cadastrar esse animal?",
+                                    "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
                                 if (boiControl.insert(nome, brinco, peso, raca, sexo)) {
                                     this.limpaFields();
@@ -325,7 +296,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonVoltar;

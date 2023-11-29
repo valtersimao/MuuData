@@ -239,6 +239,7 @@ public class JTelaLogin extends javax.swing.JPanel {
                     FramePrincipal.removePainel(FramePrincipal.TELA_LOGIN);
                     FramePrincipal.trocaPainel(FramePrincipal.TELA_INICIAL, new JTelaInicial());
                 } else {
+                    this.limpaFields();
                     JOptionPane.showMessageDialog(this, "Senha ou usuário incorreto!", "Falha", JOptionPane.WARNING_MESSAGE);
                 }
             }
