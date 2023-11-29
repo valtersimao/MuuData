@@ -114,7 +114,7 @@ public class JHistoricoSaude extends javax.swing.JPanel {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jLabelHistorico)))
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
 
         jTabbedSaude.addTab("Geral", jPanel5);

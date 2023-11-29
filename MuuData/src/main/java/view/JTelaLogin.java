@@ -1,5 +1,7 @@
 package view;
 
+import control.FazendaControl;
+import model.Fazenda;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -9,18 +11,23 @@ import javax.swing.JOptionPane;
  */
 public class JTelaLogin extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JTelaLogin
-     */
+    FazendaControl fazendaControl;
+
     public JTelaLogin() {
         initComponents();
+
+        config();
     }
-    
+
+    private void config() {
+        this.fazendaControl = new FazendaControl();
+    }
+
     private void limpaFields() {
         this.jTextNome.setText("");
         this.jPasswordField.setText("");
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -218,12 +225,22 @@ public class JTelaLogin extends javax.swing.JPanel {
         if (nome == null || nome.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Preencha o campo do nome da fazenda!", "Falha", JOptionPane.WARNING_MESSAGE);
         } else {
-            //String senha = jPasswordField.get
-            Boolean op = /*verifica*/ true;
-            if (op) {
-                FramePrincipal.trocaPainel("TELA_INICIAL", new JTelaInicial());
+            String senha = jPasswordField.getText();
+            if (senha == null || senha.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Preencha o campo da senha!", "Falha", JOptionPane.WARNING_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Login Inválido!", "Falha", JOptionPane.WARNING_MESSAGE);
+                int op = this.fazendaControl.logIn(nome, senha);
+                if (op == 0) {
+                    /*Fazenda fazenda = this.fazendaControl.getFazenda(nome);
+                      FramePrincipal.trocaPainel(FramePrincipal.TELA_INICIAL, new JTelaInicial(fazenda));
+                      LOGIN COM A FAZENDA -- TODO
+                    */
+                    
+                    FramePrincipal.removePainel(FramePrincipal.TELA_LOGIN);
+                    FramePrincipal.trocaPainel(FramePrincipal.TELA_INICIAL, new JTelaInicial());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Senha ou usuário incorreto!", "Falha", JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
     }//GEN-LAST:event_jButtonLoginActionPerformed
@@ -239,7 +256,6 @@ public class JTelaLogin extends javax.swing.JPanel {
     private void jButtonCadastrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarMousePressed
         this.jButtonCadastrar.setForeground(Color.blue);
     }//GEN-LAST:event_jButtonCadastrarMousePressed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;

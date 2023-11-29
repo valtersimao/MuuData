@@ -1,7 +1,9 @@
 package view;
 
+import control.FazendaControl;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import model.Fazenda;
 
 /**
  *
@@ -9,16 +11,22 @@ import javax.swing.JOptionPane;
  */
 public class JCadastraFazenda extends javax.swing.JPanel {
 
+    FazendaControl fazendaControl;
+
     public JCadastraFazenda() {
         initComponents();
     }
-    
+
+    private void config() {
+        this.fazendaControl = new FazendaControl();
+    }
+
     private void limpaFields() {
         this.jTextNome.setText("");
         this.jTextEmail.setText("");
-        this.jTPasswordField.setText("");
+        this.jPasswordField.setText("");
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -29,9 +37,9 @@ public class JCadastraFazenda extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextNome = new javax.swing.JTextField();
-        jButtonLogin = new javax.swing.JButton();
+        jButtonCadastrar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jTPasswordField = new javax.swing.JPasswordField();
+        jPasswordField = new javax.swing.JPasswordField();
         jTextEmail = new javax.swing.JTextField();
         jLabelCadastro = new javax.swing.JLabel();
 
@@ -57,13 +65,13 @@ public class JCadastraFazenda extends javax.swing.JPanel {
 
         jTextNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        jButtonLogin.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButtonLogin.setText("Criar Fazenda");
-        jButtonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonLogin.setFocusable(false);
-        jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCadastrar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonCadastrar.setText("Criar Fazenda");
+        jButtonCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrar.setFocusable(false);
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLoginActionPerformed(evt);
+                jButtonCadastrarActionPerformed(evt);
             }
         });
 
@@ -71,7 +79,7 @@ public class JCadastraFazenda extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Email:");
 
-        jTPasswordField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jPasswordField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jTextEmail.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
@@ -101,7 +109,7 @@ public class JCadastraFazenda extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -120,7 +128,7 @@ public class JCadastraFazenda extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextNome)
                                     .addComponent(jTextEmail)
-                                    .addComponent(jTPasswordField))))))
+                                    .addComponent(jPasswordField))))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -141,9 +149,9 @@ public class JCadastraFazenda extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelCadastro)
                 .addContainerGap(87, Short.MAX_VALUE))
@@ -170,22 +178,32 @@ public class JCadastraFazenda extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
- 
-    private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
+
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         //REALIZAR LOGIN -- TODO
         String nome = jTextNome.getText();
         if (nome == null || nome.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Preencha o campo do nome da fazenda!", "Falha", JOptionPane.WARNING_MESSAGE);
         } else {
-            //String senha = jPasswordField.get
-            Boolean op = /*verifica*/ true;
-            if (op) {
-                FramePrincipal.trocaPainel("TELA_INICIAL", new JTelaInicial());
+            String email = jTextEmail.getText();
+            if (email == null || email.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Preencha o campo do email!", "Falha", JOptionPane.WARNING_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Login Inválido!", "Falha", JOptionPane.WARNING_MESSAGE);
+                String senha = jPasswordField.getText();
+                if (senha == null || senha.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Preencha o campo da senha!", "Falha", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    int op = this.fazendaControl.signIn(senha, nome, email);
+                    if (op == 0) {
+                        JOptionPane.showMessageDialog(this, "Cadastro concluído!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        FramePrincipal.trocaPainel(FramePrincipal.TELA_LOGIN, new JTelaLogin());
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Algo deu errado!", "Falha", JOptionPane.WARNING_MESSAGE);
+                    }
+                }
             }
         }
-    }//GEN-LAST:event_jButtonLoginActionPerformed
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jLabelCadastroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelCadastroMouseEntered
         this.jLabelCadastro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -208,7 +226,7 @@ public class JCadastraFazenda extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonLogin;
+    private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -216,7 +234,7 @@ public class JCadastraFazenda extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelCadastro;
     private javax.swing.JLabel jLabelIcon;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jTPasswordField;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextNome;
     // End of variables declaration//GEN-END:variables

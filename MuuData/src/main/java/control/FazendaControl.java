@@ -27,6 +27,10 @@ public class FazendaControl {
         return dao.getByName(name) != null;
     }
     
+    public Fazenda getFazenda(String name) {
+        return dao.getByName(name);
+    }
+    
     public int logIn(String name, char[] senha) {
         return logIn(name, new String(senha));
     }
