@@ -89,10 +89,10 @@ public class BovinoDAO implements DAO {
 
     @Override
     public boolean delete(long id) {
-        String sql = "DELETE FROM muudata.bovino WHERE id = " + id;
+        String sql = "DELETE FROM muudata.bovino WHERE id = ?";
         try (PreparedStatement trans = c.prepareStatement(sql)) {
 
-            trans.setLong(1, id);
+            trans.setInt(1, (int)id);
 
             trans.execute();
             return true;
