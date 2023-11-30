@@ -3,8 +3,16 @@ package view;
 import model.Fazenda;
 
 public class JTelaInicial extends javax.swing.JPanel {
+    
+    private String fazenda;
 
     public JTelaInicial() {
+        initComponents();
+    }
+    
+    public JTelaInicial(String fazenda) {
+        this.fazenda = fazenda;
+        
         initComponents();
     }
 

@@ -1,7 +1,13 @@
 package model;
 
 import java.time.LocalDate;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class Bovino {
 
     public static final boolean MACHO = true, FEMEA = false;
@@ -57,54 +63,6 @@ public class Bovino {
         this.idMae = idMae;
     }
 
-    public int getIdadeMeses() {
-        return idadeMeses;
-    }
-
-    public void setIdadeMeses(int idadeMeses) {
-        this.idadeMeses = idadeMeses;
-    }
-    
-    public int getBrinco() {
-        return brinco;
-    }
-
-    public void setBrinco(int brinco) {
-        this.brinco = brinco;
-    }
-
-    public Integer getIdMae() {
-        return idMae;
-    }
-
-    public void setIdMae(int idMae) {
-        this.idMae = idMae;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(int identificador) {
-        this.id = identificador;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getRaca() {
-        return raca;
-    }
-
-    public void setRaca(String raca) {
-        this.raca = raca;
-    }
-
     @Override
     public String toString() {
         char sex = sexo ? 'M' : 'F';
@@ -112,30 +70,6 @@ public class Bovino {
             return brinco + " :  (" + sex + ")";
         }
         return brinco + " : " + nome + " (" + sex + ")";
-    }
-
-    public boolean isSexo() {
-        return sexo;
-    }
-
-    public void setSexo(boolean sexo) {
-        this.sexo = sexo;
-    }
-
-    public LocalDate getNascimento() {
-        return nascimento;
-    }
-
-    public void setNascimento(LocalDate nascimento) {
-        this.nascimento = nascimento;
-    }
-
-    public Integer getPeso() {
-        return peso;
-    }
-
-    public void setPeso(int peso) {
-        this.peso = peso;
     }
 
 }

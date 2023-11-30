@@ -237,7 +237,7 @@ public class JTelaLogin extends javax.swing.JPanel {
                      */
 
                     FramePrincipal.removePainel(FramePrincipal.TELA_LOGIN);
-                    FramePrincipal.trocaPainel(FramePrincipal.TELA_INICIAL, new JTelaInicial());
+                    FramePrincipal.trocaPainel(FramePrincipal.TELA_INICIAL, new JTelaInicial(nome));
                 } else {
                     switch (op) {
                         case FazendaControl.USER_NOT_FOUND:
