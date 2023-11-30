@@ -196,12 +196,22 @@ public class JCadastraFazenda extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Preencha o campo da senha!", "Falha", JOptionPane.WARNING_MESSAGE);
                 } else {
                     int op = this.fazendaControl.signIn(senha, nome, email);
-                    if (op == 0) {
+                    if (op == FazendaControl.NO_PROBLEM) {
                         JOptionPane.showMessageDialog(this, "Cadastro concluído!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                         FramePrincipal.trocaPainel(FramePrincipal.TELA_LOGIN, new JTelaLogin());
                     } else {
-                        this.limpaFields();
-                        JOptionPane.showMessageDialog(this, "Esse usuário já existe, tente novamente!", "Falha", JOptionPane.WARNING_MESSAGE);
+                        switch (op) {
+                            case FazendaControl.USER_EXISTS:
+                                JOptionPane.showMessageDialog(this, "Esse usuário já existe, tente novamente!", "Falha", JOptionPane.WARNING_MESSAGE);
+                                break;
+                            case FazendaControl.INVALID_EMAIL:
+                                JOptionPane.showMessageDialog(this, "Esse email é inválido, tente novamente!", "Falha", JOptionPane.WARNING_MESSAGE);
+                                break;
+                            case FazendaControl.ANOTHER_ERROR:    
+                                JOptionPane.showMessageDialog(this, "Ocorreu um erro!", "Falha", JOptionPane.WARNING_MESSAGE);
+                            default:
+                                throw new AssertionError();
+                        }
                     }
                 }
             }

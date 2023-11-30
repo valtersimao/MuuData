@@ -230,17 +230,25 @@ public class JTelaLogin extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Preencha o campo da senha!", "Falha", JOptionPane.WARNING_MESSAGE);
             } else {
                 int op = this.fazendaControl.logIn(nome, senha);
-                if (op == 0) {
+                if (op == FazendaControl.NO_PROBLEM) {
                     /*Fazenda fazenda = this.fazendaControl.getFazenda(nome);
                       FramePrincipal.trocaPainel(FramePrincipal.TELA_INICIAL, new JTelaInicial(fazenda));
                       LOGIN COM A FAZENDA -- TODO
-                    */
-                    
+                     */
+
                     FramePrincipal.removePainel(FramePrincipal.TELA_LOGIN);
-                    FramePrincipal.trocaPainel(FramePrincipal.TELA_INICIAL, new JTelaInicial());
+                    FramePrincipal.trocaPainel(FramePrincipal.TELA_INICIAL, new JTelaInicial(nome));
                 } else {
-                    this.limpaFields();
-                    JOptionPane.showMessageDialog(this, "Senha ou usuário incorreto!", "Falha", JOptionPane.WARNING_MESSAGE);
+                    switch (op) {
+                        case FazendaControl.USER_NOT_FOUND:
+                            JOptionPane.showMessageDialog(this, "Usuário inexistente!", "Falha", JOptionPane.WARNING_MESSAGE);
+
+                            break;
+                        case FazendaControl.INVALID_PASSWORD:
+                            JOptionPane.showMessageDialog(this, "Senha incorreta!", "Falha", JOptionPane.WARNING_MESSAGE);
+                        default:
+                            throw new AssertionError();
+                    }
                 }
             }
         }
