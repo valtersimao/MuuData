@@ -61,7 +61,7 @@ public class FazendaControl {
                     return ANOTHER_ERROR;
                 }
             } else {
-
+                return INVALID_EMAIL;
             }
         } else {
             return USER_EXISTS;
