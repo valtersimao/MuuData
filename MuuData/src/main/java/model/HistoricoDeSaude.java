@@ -2,8 +2,11 @@
 package model;
 
 import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
 
-
+@Getter
+@Setter
 public class HistoricoDeSaude {
     private int id;
     private int idBovino;
@@ -38,54 +41,6 @@ public class HistoricoDeSaude {
         this.descricao = descricao;
         this.observacoes = observacoes;
         this.vacinas = vacinas;
-        this.doencas = doencas;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getIdBovino() {
-        return idBovino;
-    }
-
-    public void setIdBovino(int idBovino) {
-        this.idBovino = idBovino;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getObservacoes() {
-        return observacoes;
-    }
-
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
-    }
-
-    public ArrayList<Vacina> getVacinas() {
-        return vacinas;
-    }
-
-    public void setVacinas(ArrayList<Vacina> vacinas) {
-        this.vacinas = vacinas;
-    }
-
-    public ArrayList<Doenca> getDoencas() {
-        return doencas;
-    }
-
-    public void setDoencas(ArrayList<Doenca> doencas) {
         this.doencas = doencas;
     }
     
