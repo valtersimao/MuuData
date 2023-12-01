@@ -20,8 +20,10 @@ import tools.FactoryPostgres;
 public class BovinoDAO implements DAO {
 
     private final Connection c;
+    private final String fazenda;
 
-    public BovinoDAO() {
+    public BovinoDAO(String fazenda) {
+        this.fazenda = fazenda;
         c = FactoryPostgres.getConexaoPostgres();
     }
 
@@ -29,12 +31,12 @@ public class BovinoDAO implements DAO {
     public boolean insert(Object entite) {
         Bovino bovino = (Bovino) entite;
 
-        String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca, nascimento";
+        String sql = "INSERT INTO muudata.bovino(brinco, nome, peso, sexo, raca, nascimento, nome_fazenda";
 
         if (bovino.getIdMae() != Bovino.ID_DEFAULT) {
-            sql += ", id_mae) VALUES (?,?,?,?,?,?,?) returning id";
+            sql += ", id_mae) VALUES (?,?,?,?,?,?,?,?) returning id";
         } else {
-            sql += ") VALUES (?,?,?,?,?,?) returning id";
+            sql += ") VALUES (?,?,?,?,?,?,?) returning id";
         }
 
         try (PreparedStatement trans = this.c.prepareStatement(sql)) {
@@ -50,8 +52,10 @@ public class BovinoDAO implements DAO {
             } else {
                 trans.setDate(6, java.sql.Date.valueOf(bovino.getNascimento()));
             }
+            
+            trans.setString(7, fazenda);
             if (bovino.getIdMae() != 0) {
-                trans.setInt(7, bovino.getIdMae());
+                trans.setInt(8, bovino.getIdMae());
             }
 
             ResultSet resultSet = trans.executeQuery();
@@ -89,6 +93,7 @@ public class BovinoDAO implements DAO {
 
     @Override
     public boolean delete(long id) {
+        //TODO
         String sql = "DELETE FROM muudata.bovino WHERE id = ?";
         try (PreparedStatement trans = c.prepareStatement(sql)) {
 
@@ -144,8 +149,10 @@ public class BovinoDAO implements DAO {
         ArrayList<Object> retorno = new ArrayList<>();
 
         try {
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino WHERE id != 0 ORDER BY brinco ASC";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino WHERE id != 0 AND nome_fazenda = ? ORDER BY brinco ASC";
             try (PreparedStatement consulta = c.prepareStatement(sql)) {
+                consulta.setString(1, fazenda);
+                
                 ResultSet resultado = consulta.executeQuery();
                 while (resultado.next()) {
                     LocalDate nascimento;
@@ -176,8 +183,10 @@ public class BovinoDAO implements DAO {
         ArrayList<Object> retorno = new ArrayList<>();
 
         try {
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino  WHERE sexo = false AND id != 0 ORDER BY brinco ASC";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino  WHERE sexo = false AND id != 0 AND nome_fazenda = ? ORDER BY brinco ASC";
             try (PreparedStatement consulta = c.prepareStatement(sql)) {
+                consulta.setString(1, fazenda);
+                
                 ResultSet resultado = consulta.executeQuery();
                 while (resultado.next()) {
                     LocalDate nascimento;
@@ -207,6 +216,7 @@ public class BovinoDAO implements DAO {
 
     @Override
     public ArrayList<Object> getWithFilter(Object filter) {
+        //TODO
         //brinco, nome, idMae
         Bovino bovino = (Bovino) filter;
         ArrayList<Object> retorno = new ArrayList<>();

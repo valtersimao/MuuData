@@ -1,6 +1,5 @@
 package view;
 
-import model.Fazenda;
 
 public class JTelaInicial extends javax.swing.JPanel {
     
@@ -145,15 +144,15 @@ public class JTelaInicial extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastroAnimal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroAnimal1ActionPerformed
-        FramePrincipal.trocaPainel(FramePrincipal.TELA_CADASTRO_BOVINO, new JCadastraAnimal());
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_CADASTRO_BOVINO, new JCadastraAnimal(fazenda));
     }//GEN-LAST:event_jButtonCadastroAnimal1ActionPerformed
 
     private void jButtonCadastroNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroNascimentoActionPerformed
-        FramePrincipal.trocaPainel(FramePrincipal.TELA_CADASTRO_NASCIMENTO, new JCadastraNascimento());
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_CADASTRO_NASCIMENTO, new JCadastraNascimento(fazenda));
     }//GEN-LAST:event_jButtonCadastroNascimentoActionPerformed
 
     private void jButtonConsultaAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultaAnimalActionPerformed
-        FramePrincipal.trocaPainel(FramePrincipal.TELA_CONSULTA, new JConsulta());
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_CONSULTA, new JConsulta(fazenda));
     }//GEN-LAST:event_jButtonConsultaAnimalActionPerformed
 
     private void jButtonCadastroNascimento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroNascimento1ActionPerformed

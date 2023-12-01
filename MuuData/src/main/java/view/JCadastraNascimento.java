@@ -12,8 +12,17 @@ public class JCadastraNascimento extends javax.swing.JPanel {
     private DefaultComboBoxModel comboMae;
     private BovinoControl boiControl;
     private ButtonGroup grupoButao;
+    
+    private String fazenda;
 
     public JCadastraNascimento() {
+        initComponents();
+
+        config();
+    }
+    
+    public JCadastraNascimento(String fazenda) {
+        this.fazenda = fazenda;
         initComponents();
 
         config();
@@ -25,7 +34,7 @@ public class JCadastraNascimento extends javax.swing.JPanel {
         this.grupoButao.add(jRadioButtonM);
         this.grupoButao.add(jRadioButtonF);
 
-        this.boiControl = new BovinoControl();
+        this.boiControl = new BovinoControl(fazenda);
 
         this.comboMae = new DefaultComboBoxModel();
         this.jComboBoxMae.setModel(comboMae);

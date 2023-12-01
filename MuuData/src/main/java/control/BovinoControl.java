@@ -13,8 +13,8 @@ public class BovinoControl {
 
     private final BovinoDAO dao;
 
-    public BovinoControl() {
-        this.dao = new BovinoDAO();
+    public BovinoControl(String fazenda) {
+        this.dao = new BovinoDAO(fazenda);
     }
 
     public boolean insert(Bovino bovino) {

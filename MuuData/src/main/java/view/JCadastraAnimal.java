@@ -12,8 +12,10 @@ public class JCadastraAnimal extends javax.swing.JPanel {
 
     private ButtonGroup grupoButao;
     private BovinoControl boiControl;
+    private String fazenda;
 
-    public JCadastraAnimal() {
+    public JCadastraAnimal(String fazenda) {
+        this.fazenda = fazenda;
         initComponents();
 
         config();
@@ -25,7 +27,7 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         this.grupoButao.add(jRadioButtonM);
         this.grupoButao.add(jRadioButtonF);
 
-        this.boiControl = new BovinoControl();
+        this.boiControl = new BovinoControl(fazenda);
     }
 
     private void limpaFields() {

@@ -10,15 +10,24 @@ public class JConsulta extends javax.swing.JPanel {
 
     DefaultComboBoxModel<Bovino> comboAnimais;
     BovinoControl boiControl;
+    private String fazenda;
 
     public JConsulta() {
         initComponents();
 
         config();
     }
+    
+    public JConsulta(String fazenda) {
+        this.fazenda = fazenda;
+        
+        initComponents();
+
+        config();
+    }
 
     private void config() {
-        boiControl = new BovinoControl();
+        boiControl = new BovinoControl(fazenda);
 
         this.comboAnimais = new DefaultComboBoxModel();
         this.jComboBoxMae.setModel(comboAnimais);
