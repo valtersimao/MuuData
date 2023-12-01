@@ -246,6 +246,7 @@ public class JTelaLogin extends javax.swing.JPanel {
                             break;
                         case FazendaControl.INVALID_PASSWORD:
                             JOptionPane.showMessageDialog(this, "Senha incorreta!", "Falha", JOptionPane.WARNING_MESSAGE);
+                            break;
                         default:
                             throw new AssertionError();
                     }
