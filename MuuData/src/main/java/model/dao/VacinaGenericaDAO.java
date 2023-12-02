@@ -29,12 +29,12 @@ public class VacinaGenericaDAO implements DAO{
     @Override
     public boolean insert(Object entite) {
         Vacina vacina = (Vacina) entite;
-        String sql = "INSERT INTO muudata.vacina(nome, doses_recomendadas, detalhes) VALUES (?,?,?) RETURNIG id";
+        String sql = "INSERT INTO muudata.vacina(nome, doses_recomendadas, prioridade) VALUES (?,?,?) RETURNIG id";
         
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setString(1, vacina.getNome());
             trans.setInt(2, vacina.getDosesRecomendadas());
-            trans.setString(3, vacina.getDetalhes());
+            trans.setString(3, vacina.getPrioridade());
             
             ResultSet result = trans.executeQuery();
             if(result.next()){
@@ -49,12 +49,25 @@ public class VacinaGenericaDAO implements DAO{
 
     @Override
     public boolean update(Object entite) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Vacina vacina = (Vacina) entite;
+        String sql = "UPDATE FROM muudata.vacinas SET nome = ?, doses_recomendadas = ?, prioridade = ? WHERE id = ?";
+
+        try (PreparedStatement trans = c.prepareStatement(sql)) {
+            trans.setString(1, vacina.getNome());
+            trans.setInt(2, vacina.getDosesRecomendadas());
+            trans.setString(3, vacina.getPrioridade());
+            trans.setInt(4, vacina.getIdVacina());
+
+            trans.execute();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }
     }
 
     @Override
     public boolean delete(long id) {
-        String sql = "DELETE FROM muudata.vacinas WHERE id = ";
+        String sql = "DELETE FROM muudata.vacinas WHERE id = ?";
         
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setInt(1, (int) id);
@@ -77,7 +90,7 @@ public class VacinaGenericaDAO implements DAO{
     public ArrayList<Object> getAll() {
         ArrayList<Object> retorno = new ArrayList<>();
         
-        String sql = "SELECT id, nome, doses_recomendadas, detalhes FROM muudata.vacinas ORDER BY nome;";
+        String sql = "SELECT id, nome, doses_recomendadas, prioridade FROM muudata.vacinas ORDER BY nome;";
         
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             ResultSet resultado = trans.executeQuery();
@@ -86,7 +99,7 @@ public class VacinaGenericaDAO implements DAO{
                 Vacina atual = new Vacina(resultado.getInt("id"), 
                         resultado.getString("nome"),
                         resultado.getShort("doses_recomendadas"),
-                        resultado.getString("detalhes"));
+                        resultado.getString("prioridade"));
                 retorno.add(atual);
             }
         } catch (SQLException ex) {

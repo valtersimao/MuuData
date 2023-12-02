@@ -89,13 +89,13 @@ public class VacinaDAO implements DAO{
     @Override
     public ArrayList<Object> getAll() {
         ArrayList<Object> retorno = new ArrayList<>();
-        String sql = "SELECT R.id_historico, R.data_evento, R.dose, R.id_relacionamento, V.id, V.nome, V.doses_recomendadas, V.detalhes"
+        String sql = "SELECT R.id_historico, R.data_evento, R.dose, R.id_relacionamento, V.id, V.nome, V.doses_recomendadas, V.prioridade"
                 + " FROM muudata.historico_vacina R JOIN muudata.vacinas V ON V.id = R.id_vacina";
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             ResultSet result = trans.executeQuery();
             while(result.next()) {
                 Vacina vacina = new Vacina(result.getInt("id"), result.getString("nome"),
-                        result.getString("detalhes"),
+                        result.getString("prioridade"),
                         result.getShort("doses_recomendadas"),
                         result.getInt("id_historico"),
                         result.getDate("data_evento").toLocalDate(),
