@@ -410,7 +410,7 @@ public class JConsulta extends javax.swing.JPanel {
         );
 
         jButtonGestacao.setBackground(new java.awt.Color(120, 130, 89));
-        jButtonGestacao.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonGestacao.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButtonGestacao.setForeground(new java.awt.Color(0, 0, 0));
         jButtonGestacao.setText("Gestação do Animal");
         jButtonGestacao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -419,7 +419,7 @@ public class JConsulta extends javax.swing.JPanel {
         jButtonGestacao.setFocusable(false);
 
         jButtonSaude.setBackground(new java.awt.Color(120, 130, 89));
-        jButtonSaude.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonSaude.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButtonSaude.setForeground(new java.awt.Color(0, 0, 0));
         jButtonSaude.setText("Histórico de Saúde");
         jButtonSaude.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -438,7 +438,7 @@ public class JConsulta extends javax.swing.JPanel {
         jLabelOpcoes.setText("Opções do Animal");
 
         jButtonExcluir.setBackground(new java.awt.Color(120, 130, 89));
-        jButtonExcluir.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonExcluir.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButtonExcluir.setForeground(new java.awt.Color(0, 0, 0));
         jButtonExcluir.setText("Excluir Animal");
         jButtonExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -459,10 +459,10 @@ public class JConsulta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(154, 154, 154)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSaude, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonGestacao, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonGestacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSaude, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -503,7 +503,7 @@ public class JConsulta extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jComboBoxMaeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMaeItemStateChanged
-        if (this.jComboBoxMae.getSelectedIndex() >= 0) {
+        if (this.jComboBoxMae.getSelectedIndex() != -1) {
             Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
             boolean temMae = (boi.getIdMae() != null) && (boi.getIdMae() != Bovino.ID_DEFAULT);
 
@@ -517,7 +517,7 @@ public class JConsulta extends javax.swing.JPanel {
             this.setMaeVisible(temMae);
             if (temMae) {
                 this.jTextMae.setText(this.boiControl.getById(boi.getIdMae()).toString());
-                this.jButtonGestacao.setEnabled(false);
+               // this.jButtonGestacao.setEnabled(false);
             }
 
             this.setDateVisible(boi.getNascimento() != null);

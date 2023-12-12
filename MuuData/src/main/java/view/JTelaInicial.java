@@ -11,7 +11,7 @@ public class JTelaInicial extends javax.swing.JPanel {
     
     public JTelaInicial(String fazenda) {
         this.fazenda = fazenda;
-        
+
         initComponents();
     }
 
@@ -22,7 +22,6 @@ public class JTelaInicial extends javax.swing.JPanel {
         jButtonCadastroNascimento = new javax.swing.JButton();
         jButtonCadastroAnimal1 = new javax.swing.JButton();
         jButtonConsultaAnimal = new javax.swing.JButton();
-        jButtonUndefined = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabelIcon = new javax.swing.JLabel();
         jButtonCadastroNascimento1 = new javax.swing.JButton();
@@ -30,7 +29,7 @@ public class JTelaInicial extends javax.swing.JPanel {
         setBackground(new java.awt.Color(120, 130, 89));
 
         jButtonCadastroNascimento.setBackground(new java.awt.Color(120, 130, 89));
-        jButtonCadastroNascimento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonCadastroNascimento.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButtonCadastroNascimento.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCadastroNascimento.setText("Cadastrar Nascimento");
         jButtonCadastroNascimento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -43,7 +42,7 @@ public class JTelaInicial extends javax.swing.JPanel {
         });
 
         jButtonCadastroAnimal1.setBackground(new java.awt.Color(120, 130, 89));
-        jButtonCadastroAnimal1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonCadastroAnimal1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButtonCadastroAnimal1.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCadastroAnimal1.setText("Cadastrar Animal");
         jButtonCadastroAnimal1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -56,7 +55,7 @@ public class JTelaInicial extends javax.swing.JPanel {
         });
 
         jButtonConsultaAnimal.setBackground(new java.awt.Color(120, 130, 89));
-        jButtonConsultaAnimal.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonConsultaAnimal.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButtonConsultaAnimal.setForeground(new java.awt.Color(0, 0, 0));
         jButtonConsultaAnimal.setText("Consultar Animal");
         jButtonConsultaAnimal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -67,12 +66,6 @@ public class JTelaInicial extends javax.swing.JPanel {
                 jButtonConsultaAnimalActionPerformed(evt);
             }
         });
-
-        jButtonUndefined.setBackground(java.awt.Color.white);
-        jButtonUndefined.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButtonUndefined.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonUndefined.setText("UNDEFINED");
-        jButtonUndefined.setEnabled(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -97,7 +90,7 @@ public class JTelaInicial extends javax.swing.JPanel {
         );
 
         jButtonCadastroNascimento1.setBackground(new java.awt.Color(120, 130, 89));
-        jButtonCadastroNascimento1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButtonCadastroNascimento1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButtonCadastroNascimento1.setForeground(new java.awt.Color(0, 0, 0));
         jButtonCadastroNascimento1.setText("Desconectar");
         jButtonCadastroNascimento1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -114,21 +107,20 @@ public class JTelaInicial extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(251, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButtonCadastroAnimal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCadastroNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonUndefined, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCadastroNascimento1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButtonConsultaAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(282, Short.MAX_VALUE))
+                    .addComponent(jButtonCadastroAnimal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonCadastroNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonCadastroNascimento1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonConsultaAnimal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap(163, Short.MAX_VALUE)
                 .addComponent(jButtonConsultaAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonCadastroAnimal1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,9 +128,7 @@ public class JTelaInicial extends javax.swing.JPanel {
                 .addComponent(jButtonCadastroNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonCadastroNascimento1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonUndefined, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -165,7 +155,6 @@ public class JTelaInicial extends javax.swing.JPanel {
     private javax.swing.JButton jButtonCadastroNascimento;
     private javax.swing.JButton jButtonCadastroNascimento1;
     private javax.swing.JButton jButtonConsultaAnimal;
-    private javax.swing.JButton jButtonUndefined;
     private javax.swing.JLabel jLabelIcon;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

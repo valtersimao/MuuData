@@ -22,6 +22,7 @@ public class Bovino {
     private Integer peso;
     private Integer idMae;
     private int idadeMeses;
+    private LocalDate gestPrevist;
 
     public Bovino() {
     }
