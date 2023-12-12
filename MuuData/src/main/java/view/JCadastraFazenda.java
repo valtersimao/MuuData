@@ -59,7 +59,7 @@ public class JCadastraFazenda extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Cadastrar");
+        jLabel2.setText("CADASTRO");
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -68,7 +68,7 @@ public class JCadastraFazenda extends javax.swing.JPanel {
         jTextNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jButtonCadastrar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButtonCadastrar.setText("Criar Fazenda");
+        jButtonCadastrar.setText("CRIAR FAZENDA");
         jButtonCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonCadastrar.setFocusable(false);
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,18 +119,18 @@ public class JCadastraFazenda extends javax.swing.JPanel {
                             .addComponent(jLabelIcon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGap(124, 124, 124)
-                                .addComponent(jLabelCadastro))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4))
-                                    .addComponent(jLabel1))
-                                .addGap(16, 16, 16)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextNome)
-                                    .addComponent(jTextEmail)
-                                    .addComponent(jPasswordField))))))
+                                .addComponent(jLabelCadastro))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextNome)
+                            .addComponent(jTextEmail)
+                            .addComponent(jPasswordField))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
