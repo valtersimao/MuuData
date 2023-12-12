@@ -1,27 +1,38 @@
 package view;
 
+import control.HistoricoControl;
 import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
 import model.Bovino;
+import model.HistoricoDeSaude;
 
 /**
  *
  * @author jotaa
  */
 public class JHistoricoSaude extends javax.swing.JPanel {
+
     private Bovino bovino;
+    private HistoricoControl saudeControl;
+    private HistoricoDeSaude historico;
+    private AbstractTableModel comboVacinas;
     
     public JHistoricoSaude(Bovino bovino) {
         initComponents();
-        
         this.bovino = bovino;
+        
+        
         config();
     }
-     
+
     private void config() {
+        this.jLabelHistorico.setText("Histórico de " + this.bovino.getNome());
         
-        jLabelHistorico.setText("Histórico de " + this.bovino.getNome());
+        this.jTableVacinas.setModel(comboVacinas);
+        this.saudeControl = new HistoricoControl();
+        this.historico = this.saudeControl.getById(bovino.getId());
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -35,7 +46,7 @@ public class JHistoricoSaude extends javax.swing.JPanel {
         jLabelHistorico = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableVacinas = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextNomeVacina = new javax.swing.JTextField();
@@ -54,11 +65,11 @@ public class JHistoricoSaude extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableDoencas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButtonSalvar = new javax.swing.JButton();
-        jButtonSalvar1 = new javax.swing.JButton();
-        jButtonSalvar2 = new javax.swing.JButton();
-        jButtonSalvar3 = new javax.swing.JButton();
-        jButtonSalvar4 = new javax.swing.JButton();
+        jButtonUpdateD = new javax.swing.JButton();
+        jButtonAddD = new javax.swing.JButton();
+        jButtonExcluirD = new javax.swing.JButton();
+        jButtonSalvarD = new javax.swing.JButton();
+        jButtonCancelD = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(120, 130, 89));
         setPreferredSize(new java.awt.Dimension(1000, 674));
@@ -143,20 +154,23 @@ public class JHistoricoSaude extends javax.swing.JPanel {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableVacinas.setBackground(new java.awt.Color(255, 255, 255));
+        jTableVacinas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nome", "Prioridade", "Data", "Doses"
+                "Nome", "Prioridade", "Data", "N° Doses", "Dose"
             }
         ));
-        jTable1.setOpaque(false);
-        jTable1.setSelectionBackground(new java.awt.Color(204, 204, 204));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(1);
+        jTableVacinas.setOpaque(false);
+        jTableVacinas.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setViewportView(jTableVacinas);
+        if (jTableVacinas.getColumnModel().getColumnCount() > 0) {
+            jTableVacinas.getColumnModel().getColumn(0).setPreferredWidth(4);
+            jTableVacinas.getColumnModel().getColumn(1).setPreferredWidth(1);
+            jTableVacinas.getColumnModel().getColumn(2).setPreferredWidth(3);
+            jTableVacinas.getColumnModel().getColumn(3).setPreferredWidth(2);
         }
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 26)); // NOI18N
@@ -180,11 +194,6 @@ public class JHistoricoSaude extends javax.swing.JPanel {
         jTextDose.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextDose.setForeground(new java.awt.Color(0, 0, 0));
         jTextDose.setEnabled(false);
-        jTextDose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextDoseActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -274,6 +283,11 @@ public class JHistoricoSaude extends javax.swing.JPanel {
         jButtonCancelV.setFocusable(false);
         jButtonCancelV.setPreferredSize(new java.awt.Dimension(97, 28));
         jButtonCancelV.setVerifyInputWhenFocusTarget(false);
+        jButtonCancelV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelVActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -286,43 +300,43 @@ public class JHistoricoSaude extends javax.swing.JPanel {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 812, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addGap(185, 185, 185)
-                                        .addComponent(jLabel3))
-                                    .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                                .addComponent(jTextNomeVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(24, 24, 24)
-                                                .addComponent(jLabel9))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                                .addComponent(jButtonUpdateV, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(14, 14, 14)))
-                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(jTextDose, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(24, 24, 24)
-                                                .addComponent(jLabel11)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(24, 24, 24)
-                                                .addComponent(jLabel10)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                                .addGap(32, 32, 32)
-                                                .addComponent(jButtonAddV, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(45, 45, 45)
-                                                .addComponent(jButtonDeleteV, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                .addGap(241, 241, 241)
+                                .addComponent(jLabel3))))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(328, 328, 328)
                         .addComponent(jButtonSaveV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(59, 59, 59)
-                        .addComponent(jButtonCancelV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonCancelV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel8)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jTextNomeVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel9))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonUpdateV, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jTextDose, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jButtonAddV, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(jButtonDeleteV, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -351,13 +365,14 @@ public class JHistoricoSaude extends javax.swing.JPanel {
                     .addComponent(jButtonCancelV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jTabbedSaude.addTab("Vacinas", jPanel6);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTableDoencas.setBackground(new java.awt.Color(255, 255, 255));
         jTableDoencas.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jTableDoencas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -387,70 +402,55 @@ public class JHistoricoSaude extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Registro de Doenças");
 
-        jButtonSalvar.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonSalvar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButtonSalvar.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonSalvar.setText("Redefinir");
-        jButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonSalvar.setFocusPainted(false);
-        jButtonSalvar.setFocusable(false);
-        jButtonSalvar.setPreferredSize(new java.awt.Dimension(97, 28));
-        jButtonSalvar.setVerifyInputWhenFocusTarget(false);
-        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalvarActionPerformed(evt);
-            }
-        });
+        jButtonUpdateD.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonUpdateD.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonUpdateD.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonUpdateD.setText("Redefinir");
+        jButtonUpdateD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonUpdateD.setFocusPainted(false);
+        jButtonUpdateD.setFocusable(false);
+        jButtonUpdateD.setPreferredSize(new java.awt.Dimension(97, 28));
+        jButtonUpdateD.setVerifyInputWhenFocusTarget(false);
 
-        jButtonSalvar1.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonSalvar1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButtonSalvar1.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonSalvar1.setText("Adicionar");
-        jButtonSalvar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonSalvar1.setFocusPainted(false);
-        jButtonSalvar1.setFocusable(false);
-        jButtonSalvar1.setPreferredSize(new java.awt.Dimension(97, 28));
-        jButtonSalvar1.setVerifyInputWhenFocusTarget(false);
-        jButtonSalvar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalvar1ActionPerformed(evt);
-            }
-        });
+        jButtonAddD.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonAddD.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonAddD.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonAddD.setText("Adicionar");
+        jButtonAddD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAddD.setFocusPainted(false);
+        jButtonAddD.setFocusable(false);
+        jButtonAddD.setPreferredSize(new java.awt.Dimension(97, 28));
+        jButtonAddD.setVerifyInputWhenFocusTarget(false);
 
-        jButtonSalvar2.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonSalvar2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButtonSalvar2.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonSalvar2.setText("Excluir");
-        jButtonSalvar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonSalvar2.setFocusPainted(false);
-        jButtonSalvar2.setFocusable(false);
-        jButtonSalvar2.setPreferredSize(new java.awt.Dimension(97, 28));
-        jButtonSalvar2.setVerifyInputWhenFocusTarget(false);
-        jButtonSalvar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalvar2ActionPerformed(evt);
-            }
-        });
+        jButtonExcluirD.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonExcluirD.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonExcluirD.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonExcluirD.setText("Excluir");
+        jButtonExcluirD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonExcluirD.setFocusPainted(false);
+        jButtonExcluirD.setFocusable(false);
+        jButtonExcluirD.setPreferredSize(new java.awt.Dimension(97, 28));
+        jButtonExcluirD.setVerifyInputWhenFocusTarget(false);
 
-        jButtonSalvar3.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonSalvar3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButtonSalvar3.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonSalvar3.setText("Salvar");
-        jButtonSalvar3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonSalvar3.setFocusPainted(false);
-        jButtonSalvar3.setFocusable(false);
-        jButtonSalvar3.setPreferredSize(new java.awt.Dimension(97, 28));
-        jButtonSalvar3.setVerifyInputWhenFocusTarget(false);
+        jButtonSalvarD.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonSalvarD.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonSalvarD.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonSalvarD.setText("Salvar");
+        jButtonSalvarD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSalvarD.setFocusPainted(false);
+        jButtonSalvarD.setFocusable(false);
+        jButtonSalvarD.setPreferredSize(new java.awt.Dimension(97, 28));
+        jButtonSalvarD.setVerifyInputWhenFocusTarget(false);
 
-        jButtonSalvar4.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonSalvar4.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButtonSalvar4.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonSalvar4.setText("Cancel");
-        jButtonSalvar4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonSalvar4.setFocusPainted(false);
-        jButtonSalvar4.setFocusable(false);
-        jButtonSalvar4.setPreferredSize(new java.awt.Dimension(97, 28));
-        jButtonSalvar4.setVerifyInputWhenFocusTarget(false);
+        jButtonCancelD.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonCancelD.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonCancelD.setForeground(new java.awt.Color(25, 25, 25));
+        jButtonCancelD.setText("Cancel");
+        jButtonCancelD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCancelD.setFocusPainted(false);
+        jButtonCancelD.setFocusable(false);
+        jButtonCancelD.setPreferredSize(new java.awt.Dimension(97, 28));
+        jButtonCancelD.setVerifyInputWhenFocusTarget(false);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -460,11 +460,11 @@ public class JHistoricoSaude extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonUpdateD, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addComponent(jButtonSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonAddD, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
-                        .addComponent(jButtonSalvar2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonExcluirD, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(235, 235, 235))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -478,9 +478,9 @@ public class JHistoricoSaude extends javax.swing.JPanel {
                 .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(331, 331, 331)
-                .addComponent(jButtonSalvar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonSalvarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
-                .addComponent(jButtonSalvar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonCancelD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -490,13 +490,13 @@ public class JHistoricoSaude extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(120, 120, 120)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSalvar2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonUpdateD, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAddD, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonExcluirD, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSalvar3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSalvar4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonSalvarD, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCancelD, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -529,44 +529,67 @@ public class JHistoricoSaude extends javax.swing.JPanel {
         FramePrincipal.trocaPainel(FramePrincipal.TELA_CONSULTA, new JConsulta());
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
-    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        
-    }//GEN-LAST:event_jButtonSalvarActionPerformed
-
-    private void jButtonSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSalvar1ActionPerformed
-
-    private void jButtonSalvar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSalvar2ActionPerformed
-
     private void jButtonUpdateVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateVActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButtonUpdateVActionPerformed
 
     private void jButtonAddVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddVActionPerformed
-        // TODO add your handling code here:
+        if (!this.jTextNomeVacina.getText().isEmpty()) {
+
+            String nome = this.jTextNomeVacina.getText();
+            if (!this.jTextDose.getText().isEmpty()) {
+
+                short doses = Short.parseShort(this.jTextDose.getText());
+                if (!this.jTextData.getText().isEmpty()) {
+
+                    if (JOptionPane.showConfirmDialog(this, "Você deseja registrar essa vacina?",
+                            "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+                        String prioridade = this.jTextPrioridade.getText().isEmpty() ? "Não definido" : this.jTextPrioridade.getText();
+
+                        if (saudeControl.insert(this.historico, nome, doses, prioridade, this.jTextData.getText())) {
+                            JOptionPane.showMessageDialog(this, "Vacina registrada com sucesso!",
+                                    "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Houve uma falha no registro",
+                                    "Falha", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } 
+                } else {
+                    JOptionPane.showMessageDialog(this, "Insira a data!",
+                            "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Insira o número de doses!",
+                        "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Insira o nome!",
+                    "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonAddVActionPerformed
 
     private void jButtonDeleteVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteVActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButtonDeleteVActionPerformed
 
-    private void jTextDoseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextDoseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextDoseActionPerformed
+    private void jButtonCancelVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelVActionPerformed
+        
+    }//GEN-LAST:event_jButtonCancelVActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAddD;
     private javax.swing.JButton jButtonAddV;
+    private javax.swing.JButton jButtonCancelD;
     private javax.swing.JButton jButtonCancelV;
     private javax.swing.JButton jButtonDeleteV;
-    private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JButton jButtonSalvar1;
-    private javax.swing.JButton jButtonSalvar2;
-    private javax.swing.JButton jButtonSalvar3;
-    private javax.swing.JButton jButtonSalvar4;
+    private javax.swing.JButton jButtonExcluirD;
+    private javax.swing.JButton jButtonSalvarD;
     private javax.swing.JButton jButtonSaveV;
+    private javax.swing.JButton jButtonUpdateD;
     private javax.swing.JButton jButtonUpdateV;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel10;
@@ -585,8 +608,8 @@ public class JHistoricoSaude extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedSaude;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableDoencas;
+    private javax.swing.JTable jTableVacinas;
     private javax.swing.JFormattedTextField jTextData;
     private javax.swing.JTextField jTextDose;
     private javax.swing.JTextField jTextNomeVacina;

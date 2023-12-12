@@ -28,10 +28,11 @@ public class Vacina {
         this.dosesRecomendadas = dosesRecomendadas;
     }
 
-    public Vacina(String nome, short dosesRecomendadas, String prioridade) {
+    public Vacina(String nome, short dosesRecomendadas, String prioridade, LocalDate dataEvento) {
         this.prioridade = prioridade;
         this.nome = nome;
         this.dosesRecomendadas = dosesRecomendadas;
+        this.dataEvento = dataEvento;
     }
 
     public Vacina(int idVacina, String nome, short dosesRecomendadas, String prioridade, int idHistorico, LocalDate dataEvento, short dose) {
@@ -43,6 +44,5 @@ public class Vacina {
         this.dataEvento = dataEvento;
         this.dose = dose;
     }
-    
-    
+   
 }

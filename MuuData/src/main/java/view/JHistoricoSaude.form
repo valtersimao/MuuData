@@ -215,48 +215,9 @@
                               <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jScrollPane1" min="-2" pref="812" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
-                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="jTextNomeVacina" min="-2" pref="94" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="jButtonUpdateV" min="-2" pref="106" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                                      <Component id="jTextDose" min="-2" pref="94" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jTextPrioridade" min="-2" pref="94" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jTextData" min="-2" pref="100" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                                      <Component id="jButtonAddV" min="-2" pref="106" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                                      <Component id="jButtonDeleteV" min="-2" pref="106" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                      </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -265,6 +226,43 @@
                               <Component id="jButtonSaveV" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                               <Component id="jButtonCancelV" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                      <Component id="jTextNomeVacina" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jButtonUpdateV" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Component id="jTextDose" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jTextPrioridade" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jTextData" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="jButtonAddV" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Component id="jButtonDeleteV" min="-2" pref="106" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace pref="24" max="32767" attributes="0"/>
@@ -300,7 +298,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="280" max="-2" attributes="0"/>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -313,25 +311,23 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="jTableVacinas">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="0">
-                        <Column editable="true" title="ID" type="java.lang.Object"/>
                         <Column editable="true" title="Nome" type="java.lang.Object"/>
                         <Column editable="true" title="Prioridade" type="java.lang.Object"/>
                         <Column editable="true" title="Data" type="java.lang.Object"/>
-                        <Column editable="true" title="Doses" type="java.lang.Object"/>
+                        <Column editable="true" title="N&#xb0; Doses" type="java.lang.Object"/>
+                        <Column editable="true" title="Dose" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="4" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -341,7 +337,12 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="3" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="2" resizable="true">
                           <Title/>
                           <Editor/>
                           <Renderer/>
@@ -424,9 +425,6 @@
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextDoseActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
@@ -605,6 +603,9 @@
                 </Property>
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelVActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -629,11 +630,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButtonSalvar" min="-2" pref="106" max="-2" attributes="0"/>
+                              <Component id="jButtonUpdateD" min="-2" pref="106" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="jButtonSalvar1" min="-2" pref="106" max="-2" attributes="0"/>
+                              <Component id="jButtonAddD" min="-2" pref="106" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                              <Component id="jButtonSalvar2" min="-2" pref="106" max="-2" attributes="0"/>
+                              <Component id="jButtonExcluirD" min="-2" pref="106" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -654,9 +655,9 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="331" max="-2" attributes="0"/>
-                      <Component id="jButtonSalvar3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonSalvarD" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                      <Component id="jButtonSalvar4" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonCancelD" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -668,14 +669,14 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonSalvar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="jButtonSalvar1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="jButtonSalvar2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jButtonUpdateD" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jButtonAddD" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jButtonExcluirD" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonSalvar3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="jButtonSalvar4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jButtonSalvarD" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jButtonCancelD" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="280" max="-2" attributes="0"/>
@@ -694,6 +695,9 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="jTableDoencas">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="14" style="0"/>
                     </Property>
@@ -758,7 +762,7 @@
                 <Property name="text" type="java.lang.String" value="Registro de Doen&#xe7;as"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonSalvar">
+            <Component class="javax.swing.JButton" name="jButtonUpdateD">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -780,11 +784,8 @@
                 </Property>
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvarActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonSalvar1">
+            <Component class="javax.swing.JButton" name="jButtonAddD">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -806,11 +807,8 @@
                 </Property>
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvar1ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonSalvar2">
+            <Component class="javax.swing.JButton" name="jButtonExcluirD">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -832,11 +830,8 @@
                 </Property>
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvar2ActionPerformed"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonSalvar3">
+            <Component class="javax.swing.JButton" name="jButtonSalvarD">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -859,7 +854,7 @@
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonSalvar4">
+            <Component class="javax.swing.JButton" name="jButtonCancelD">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
