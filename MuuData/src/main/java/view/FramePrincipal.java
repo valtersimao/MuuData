@@ -15,6 +15,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     public static final String TELA_CONSULTA = "TELA_CONSULTA";
     public static final String TELA_CADASTRO_FAZENDA = "TELA_CADASTRO_FAZENDA";
     public static final String TELA_HISTORICO_SAUDE = "TELA_HISTORICO_SAUDE";
+    public static final String TELA_HISTORICO_VACINA = "TELA_HISTORICO_VACINA";
+    public static final String TELA_HISTORICO_DOENCA = "TELA_HISTORICO_DOENCA";
     public static final String TELA_GERENCIAMENTO_REPRODUTIVO = "TELA_GERENCIAMENTO_REPRODUTIVO";
     
     //barras de rolagem (vertical e horiz.)
