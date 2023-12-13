@@ -63,7 +63,7 @@ public class BovinoDAO implements DAO {
             if (resultSet.next()) {
                 bovino.setId(resultSet.getInt("id"));
                 
-                new HistoricoDeSaudeDAO().insert(new model.HistoricoDeSaude(resultSet.getInt("id"), "", ""));
+                new HistoricoDeSaudeDAO().insert(new model.HistoricoDeSaude(resultSet.getInt("id"), "", "", ""));
 
                 return true;
             } else {

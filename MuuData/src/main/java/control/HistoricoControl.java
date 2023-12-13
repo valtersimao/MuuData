@@ -26,8 +26,8 @@ public class HistoricoControl {
         doencaDAO = new DoencaDAO();
     }
 
-    public HistoricoDeSaude insert(int idBovino, String descricao, String observacoes) {
-        HistoricoDeSaude historico = new HistoricoDeSaude(idBovino, descricao, observacoes);
+    public HistoricoDeSaude insert(int idBovino, String descricao, String tratamento, String observacoes) {
+        HistoricoDeSaude historico = new HistoricoDeSaude(idBovino, descricao, tratamento, observacoes);
 
         if (dao.insert(historico)) {
             return historico;
@@ -68,8 +68,8 @@ public class HistoricoControl {
         return (HistoricoDeSaude) dao.getById(id);
     }
 
-    public HistoricoDeSaude update(String descricao, String observacoes, int id, int idBovino) {
-        HistoricoDeSaude historico = new HistoricoDeSaude(id, idBovino, descricao, observacoes);
+    public HistoricoDeSaude update(String descricao, String tratamento, String observacoes, int id, int idBovino) {
+        HistoricoDeSaude historico = new HistoricoDeSaude(id, idBovino, descricao, tratamento, observacoes);
 
         if (update(historico)) {
             return historico;
