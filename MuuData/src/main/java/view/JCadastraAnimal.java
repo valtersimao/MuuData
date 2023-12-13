@@ -66,7 +66,8 @@ public class JCadastraAnimal extends javax.swing.JPanel {
         jButtonVoltar.setBackground(new java.awt.Color(120, 130, 89));
         jButtonVoltar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButtonVoltar.setForeground(new java.awt.Color(25, 25, 25));
-        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/returnIcon.png"))); // NOI18N
+        jButtonVoltar.setBorder(null);
         jButtonVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonVoltar.setFocusable(false);
         jButtonVoltar.setPreferredSize(new java.awt.Dimension(72, 30));
@@ -218,8 +219,8 @@ public class JCadastraAnimal extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
+                .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(314, 314, 314)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(350, Short.MAX_VALUE))
         );
