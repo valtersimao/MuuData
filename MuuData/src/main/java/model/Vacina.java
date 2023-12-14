@@ -27,15 +27,17 @@ public class Vacina {
         this.nome = nome;
         this.dosesRecomendadas = dosesRecomendadas;
     }
-
-    public Vacina(String nome, short dosesRecomendadas, String prioridade, LocalDate dataEvento) {
+    
+    public Vacina(String nome, short dosesRecomendadas, String prioridade, int idHistorico, LocalDate dataEvento, short dose) {
         this.prioridade = prioridade;
         this.nome = nome;
         this.dosesRecomendadas = dosesRecomendadas;
+        this.idHistorico = idHistorico;
         this.dataEvento = dataEvento;
+        this.dose = dose;
     }
-
-    public Vacina(int idVacina, String nome, short dosesRecomendadas, String prioridade, int idHistorico, LocalDate dataEvento, short dose) {
+    
+    public Vacina(int idVacina, String nome, short dosesRecomendadas, String prioridade, int idHistorico, LocalDate dataEvento, short dose, int idRelacionamento) {
         this.prioridade = prioridade;
         this.idVacina = idVacina;
         this.nome = nome;
@@ -43,6 +45,7 @@ public class Vacina {
         this.idHistorico = idHistorico;
         this.dataEvento = dataEvento;
         this.dose = dose;
+        this.idRelacionamento = idRelacionamento;
     }
    
 }

@@ -3,12 +3,15 @@ package control;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import model.HistoricoDeSaude;
 import model.Vacina;
 import model.Doenca;
-import model.dao.DoencaDAO;
 import model.dao.HistoricoDeSaudeDAO;
 import model.dao.VacinaDAO;
+import model.dao.VacinaGenericaDAO;
+import model.dao.DoencaDAO;
+import model.dao.DoencaGenericaDAO;
 
 /**
  *
@@ -18,11 +21,13 @@ public class HistoricoControl {
 
     private final HistoricoDeSaudeDAO dao;
     private final VacinaDAO vacinaDAO;
+    private final VacinaGenericaDAO vacinaGenericaDAO;
     private final DoencaDAO doencaDAO;
 
     public HistoricoControl() {
         dao = new HistoricoDeSaudeDAO();
         vacinaDAO = new VacinaDAO();
+        vacinaGenericaDAO = new VacinaGenericaDAO();
         doencaDAO = new DoencaDAO();
     }
 
@@ -36,21 +41,22 @@ public class HistoricoControl {
         }
     }
 
-    public boolean insert(HistoricoDeSaude historico, String nome, short doses, String prioridade, String data) {
+    public Vacina insert(HistoricoDeSaude historico, String nome, short doses, String prioridade, String data) { 
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate dataEvento = LocalDate.parse(data, formatter);
             
-            Vacina vacina = new Vacina(nome, doses, prioridade, dataEvento);
+            Vacina vacina = new Vacina(nome, doses, prioridade, doses, dataEvento, doses);
+            
             vacina.setIdHistorico(historico.getId());
-
-            if (vacinaDAO.insert(vacina)) {
-                return true;
+            
+            if (vacinaDAO.insert(vacina) && vacinaGenericaDAO.insert(vacina)) {
+                return vacina;
             } else {
-                return false;
+                return null;
             }
         } catch (DateTimeParseException e) {
-            return false;
+            return null;
         }
     }
 
@@ -67,7 +73,19 @@ public class HistoricoControl {
     public HistoricoDeSaude getById(int id) {
         return (HistoricoDeSaude) dao.getById(id);
     }
+    
+    public ArrayList<Vacina> getAll() {
+        ArrayList<Object> retorno = this.vacinaDAO.getAll();
+        ArrayList<Vacina> vacinas = new ArrayList<>();
 
+        retorno.forEach((it) -> {
+            Vacina vacina = (Vacina) it;
+            vacinas.add(vacina);
+        });
+
+        return vacinas;
+    }
+    
     public HistoricoDeSaude update(String descricao, String tratamento, String observacoes, int id, int idBovino) {
         HistoricoDeSaude historico = new HistoricoDeSaude(id, idBovino, descricao, tratamento, observacoes);
 

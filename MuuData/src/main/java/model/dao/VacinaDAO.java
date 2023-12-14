@@ -70,12 +70,11 @@ public class VacinaDAO implements DAO{
             
             while(result.next()) {
                 Vacina vacina = new Vacina(result.getInt("id"), result.getString("nome"),
-                        result.getString("prioridade"),
-                        result.getShort("doses_recomendadas"),
-                        (int)id,
+                  result.getShort("doses_recomendadas"),
+                        result.getString("prioridade"), (int)id,
                         result.getDate("data_evento").toLocalDate(),
-                        result.getShort("dose"),
-                        result.getInt("id_relacionamento"));
+                             result.getShort("dose"),
+                   result.getInt("id_relacionamento"));
                 retorno.add(vacina);
             }
         } catch (SQLException ex) {
@@ -95,12 +94,12 @@ public class VacinaDAO implements DAO{
             ResultSet result = trans.executeQuery();
             while(result.next()) {
                 Vacina vacina = new Vacina(result.getInt("id"), result.getString("nome"),
+                  result.getShort("doses_recomendadas"),
                         result.getString("prioridade"),
-                        result.getShort("doses_recomendadas"),
-                        result.getInt("id_historico"),
+                       result.getInt("id_historico"),
                         result.getDate("data_evento").toLocalDate(),
-                        result.getShort("dose"),
-                        result.getInt("id_relacionamento"));
+                             result.getShort("dose"),
+                   result.getInt("id_relacionamento"));
                 retorno.add(vacina);
             }
         } catch (SQLException ex) {
