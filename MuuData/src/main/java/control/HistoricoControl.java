@@ -41,20 +41,25 @@ public class HistoricoControl {
         }
     }
 
-    public Vacina insert(HistoricoDeSaude historico, String nome, short doses, String prioridade, String data) { 
+    public Vacina insert(HistoricoDeSaude historico, String nome, short doses, String prioridade, String data) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate dataEvento = LocalDate.parse(data, formatter);
-            
+
             Vacina vacina = new Vacina(nome, doses, prioridade, doses, dataEvento, doses);
-            
             vacina.setIdHistorico(historico.getId());
-            
-            if (vacinaDAO.insert(vacina) && vacinaGenericaDAO.insert(vacina)) {
-                return vacina;
-            } else {
-                return null;
+
+            if (vacinaGenericaDAO.insert(vacina)) {
+                int idVacina = vacina.getIdVacina();
+
+                if (idVacina > 0) {
+                    if (vacinaDAO.insert(vacina)) {
+                        return vacina;
+                    }
+                }
             }
+
+            return null;
         } catch (DateTimeParseException e) {
             return null;
         }
@@ -73,7 +78,7 @@ public class HistoricoControl {
     public HistoricoDeSaude getById(int id) {
         return (HistoricoDeSaude) dao.getById(id);
     }
-    
+
     public ArrayList<Vacina> getAll() {
         ArrayList<Object> retorno = this.vacinaDAO.getAll();
         ArrayList<Vacina> vacinas = new ArrayList<>();
@@ -85,7 +90,7 @@ public class HistoricoControl {
 
         return vacinas;
     }
-    
+
     public HistoricoDeSaude update(String descricao, String tratamento, String observacoes, int id, int idBovino) {
         HistoricoDeSaude historico = new HistoricoDeSaude(id, idBovino, descricao, tratamento, observacoes);
 
@@ -98,5 +103,19 @@ public class HistoricoControl {
 
     public boolean update(HistoricoDeSaude historico) {
         return dao.update(historico);
+    }
+
+    public Vacina update(String nome, String prioridade, short doses, int idVacina) {
+        Vacina vacina = new Vacina(idVacina, nome, doses, prioridade);
+
+        if (update(vacina)) {
+            return vacina;
+        } else {
+            return null;
+        }
+    }
+
+    public boolean update(Vacina vacina) {
+        return vacinaGenericaDAO.update(vacina);
     }
 }

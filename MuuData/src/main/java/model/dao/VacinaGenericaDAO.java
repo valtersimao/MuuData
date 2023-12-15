@@ -29,7 +29,7 @@ public class VacinaGenericaDAO implements DAO{
     @Override
     public boolean insert(Object entite) {
         Vacina vacina = (Vacina) entite;
-        String sql = "INSERT INTO muudata.vacina(nome, doses_recomendadas, prioridade) VALUES (?,?,?) RETURNIG id";
+        String sql = "INSERT INTO muudata.vacinas(nome, doses_recomendadas, prioridade) VALUES (?,?,?) returning id";
         
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setString(1, vacina.getNome());
