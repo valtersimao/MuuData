@@ -47,5 +47,9 @@ public class Vacina {
         this.dose = dose;
         this.idRelacionamento = idRelacionamento;
     }
-   
+
+    @Override
+    public String toString() {
+        return "Vacina : " + nome;
+    }
 }
