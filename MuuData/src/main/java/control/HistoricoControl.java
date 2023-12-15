@@ -78,7 +78,11 @@ public class HistoricoControl {
     public HistoricoDeSaude getById(int id) {
         return (HistoricoDeSaude) dao.getById(id);
     }
-
+    
+    public ArrayList<Vacina> getById(HistoricoDeSaude historico) {
+        return (ArrayList<Vacina>) vacinaDAO.getById(historico.getId());
+    }
+    
     public ArrayList<Vacina> getAll() {
         ArrayList<Object> retorno = this.vacinaDAO.getAll();
         ArrayList<Vacina> vacinas = new ArrayList<>();
@@ -117,5 +121,9 @@ public class HistoricoControl {
 
     public boolean update(Vacina vacina) {
         return vacinaGenericaDAO.update(vacina);
+    }
+    
+    public boolean delete(int id) {
+        return vacinaDAO.delete(id) && vacinaGenericaDAO.delete(id);
     }
 }

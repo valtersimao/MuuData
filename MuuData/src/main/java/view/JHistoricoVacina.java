@@ -19,6 +19,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
     private DefaultTableModel tabela;
 
     private ArrayList<Vacina> vacinas;
+    private int select = -1;
 
     public JHistoricoVacina() {
     }
@@ -26,13 +27,13 @@ public class JHistoricoVacina extends javax.swing.JPanel {
     public JHistoricoVacina(HistoricoDeSaude historico) {
         initComponents();
         this.historico = historico;
-
+        
         config();
     }
 
     private void config() {
         this.saudeControl = new HistoricoControl();
-        this.vacinas = saudeControl.getAll();
+        this.vacinas = saudeControl.getById(historico);
         this.tabela = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -60,6 +61,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         this.jButtonUpdate.setVisible(!op);
         this.jButtonAdd.setVisible(!op);
         this.jButtonDelete.setVisible(!op);
+        this.jTableVacinas.setEnabled(!op);
         this.jButtonSalvar.setVisible(op);
         this.jButtonCancelar.setVisible(op);
     }
@@ -92,6 +94,14 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jTextDoses.setEnabled(op);
         jTextNome.setEnabled(op);
         jTextPrioridade.setEnabled(op);
+    }
+
+    private void limpaFields() {
+        this.jTextNome.setText("");
+        this.jTextDoses.setText("");
+        this.jTextPrioridade.setText("");
+        this.jTextData.setText("");
+        this.setButtonsEnable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -452,7 +462,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                         .addGap(30, 30, 30)
                         .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -520,7 +529,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                         this.tabela.addRow(row);
                         this.tabela.fireTableDataChanged();
                         this.vacinas.add(vacina);
-                        
+
                         this.setButtonsVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(this, "Houve uma falha no registro",
@@ -539,46 +548,43 @@ public class JHistoricoVacina extends javax.swing.JPanel {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         int linha = this.jTableVacinas.getSelectedRow();
+        Vacina vacina = this.vacinas.get(linha);
 
-        if (linha > -1) {
-            Vacina vacina = this.vacinas.get(linha);
+        if (!jTextNome.getText().isEmpty() && !jTextDoses.getText().isEmpty() && !jTextPrioridade.getText().isEmpty() && !jTextData.getText().isEmpty()) {
 
-            if (!jTextNome.getText().isEmpty() && !jTextDoses.getText().isEmpty() && !jTextPrioridade.getText().isEmpty() && !jTextData.getText().isEmpty()) {
+            String nome = this.jTextNome.getText();
+            String prioridade = this.jTextPrioridade.getText();
+            short doses = Short.parseShort(jTextDoses.getText());
 
-                String nome = this.jTextNome.getText();
-                String prioridade = this.jTextPrioridade.getText();
-                short doses = Short.parseShort(jTextDoses.getText());
+            if (!nome.equals(vacina.getNome()) || !prioridade.equals(vacina.getPrioridade()) || doses != vacina.getDose()) {
+                if (JOptionPane.showConfirmDialog(this, "Deseja salvar as alterações?",
+                        "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-                if (!nome.equals(vacina.getNome()) || !prioridade.equals(vacina.getPrioridade()) || doses != vacina.getDose()) {
-                    if (JOptionPane.showConfirmDialog(this, "Deseja salvar as alterações?",
-                            "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    int idVacina = vacina.getIdVacina();
+                    vacina = saudeControl.update(nome, prioridade, doses, idVacina);
 
-                        int idVacina = vacina.getIdVacina();
-                        vacina = saudeControl.update(nome, prioridade, doses, idVacina);
+                    if (vacina != null) {
+                        JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!",
+                                "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        this.vacinas.set(linha, vacina);
+                        this.tabela.setValueAt(vacina.getNome(), linha, 0);
+                        this.tabela.setValueAt(vacina.getPrioridade(), linha, 1);
+                        this.tabela.setValueAt(vacina.getDose(), linha, 3);
+                        this.tabela.setValueAt(vacina.getDose(), linha, 4);
+                        this.tabela.fireTableDataChanged();
 
-                        if (vacina != null) {
-                            JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!",
-                                    "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                            this.vacinas.set(linha, vacina);
-                            this.tabela.setValueAt(vacina.getNome(), linha, 0);
-                            this.tabela.setValueAt(vacina.getPrioridade(), linha, 1);
-                            this.tabela.setValueAt(vacina.getDose(), linha, 3);
-                            this.tabela.setValueAt(vacina.getDose(), linha, 4);
-                            this.tabela.fireTableDataChanged();
-                            
-                            this.setButtonsVisible(true);
-                            this.enableFields(false);
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Houve uma falha nas alterações!",
-                                    "Falha", JOptionPane.ERROR_MESSAGE);
-                            this.preencheFields();
-                        }
+                        this.setButtonsVisible(true);
+                        this.enableFields(false);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Houve uma falha nas alterações!",
+                                "Falha", JOptionPane.ERROR_MESSAGE);
+                        this.preencheFields();
                     }
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Não deixe nenhum campo vazio!",
-                        "Atenção", JOptionPane.WARNING_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não deixe nenhum campo vazio!",
+                    "Atenção", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -591,11 +597,41 @@ public class JHistoricoVacina extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        int linha = this.jTableVacinas.getSelectedRow();
 
+        if (linha >= 0) {
+            Vacina vacina = this.vacinas.get(linha);
+
+            if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir essa vacina?",
+                    "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+                if (this.saudeControl.delete(vacina.getIdVacina())) {
+                    JOptionPane.showMessageDialog(this, "O registro foi deletado com sucesso!",
+                            "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    this.vacinas.remove(vacina);
+                    this.tabela.removeRow(linha);
+                    this.tabela.fireTableDataChanged();
+                    
+                    this.limpaFields();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Houve uma falha ao tentar deletar o registro!",
+                            "Falha", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jTableVacinasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVacinasMouseClicked
-        this.preencheFields();
+        int unselect = this.jTableVacinas.getSelectedRow();
+
+        if (unselect == this.select) {
+            this.jTableVacinas.clearSelection();
+            limpaFields();
+            this.select = -1;
+        } else {
+            this.preencheFields();
+            this.select = unselect;
+        }
     }//GEN-LAST:event_jTableVacinasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

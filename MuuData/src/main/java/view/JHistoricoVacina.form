@@ -119,7 +119,6 @@
                       <Component id="jButtonDelete" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonSalvar" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jButtonCancelar" min="-2" pref="45" max="-2" attributes="0"/>

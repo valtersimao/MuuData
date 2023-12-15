@@ -83,7 +83,27 @@ public class VacinaGenericaDAO implements DAO{
 
     @Override
     public Object getById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Vacina retorno = null;
+        String sql = "SELECT nome, doses_recomendadas, prioridade FROM muudata.vacinas WHERE id = ?";
+        
+        try(PreparedStatement trans = c.prepareStatement(sql)) {
+            trans.setInt(1, (int) id);
+            
+            ResultSet resultado = trans.executeQuery();
+            
+            while(resultado.next()) {
+                retorno = new Vacina(resultado.getInt("id"), 
+                        resultado.getString("nome"),
+                        resultado.getShort("doses_recomendadas"),
+                        resultado.getString("prioridade"));
+                return retorno;
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Logger.getLogger(VacinaGenericaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
 
     @Override

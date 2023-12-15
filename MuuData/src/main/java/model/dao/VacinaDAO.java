@@ -56,7 +56,18 @@ public class VacinaDAO implements DAO{
 
     @Override
     public boolean delete(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "DELETE FROM muudata.historico_vacina WHERE id_vacina = ?";
+        
+        try(PreparedStatement trans = c.prepareStatement(sql)) {
+            trans.setInt(1, (int) id);
+            
+            trans.execute();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Logger.getLogger(VacinaGenericaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
