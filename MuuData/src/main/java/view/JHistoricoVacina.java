@@ -32,8 +32,19 @@ public class JHistoricoVacina extends javax.swing.JPanel {
 
     private void config() {
         this.saudeControl = new HistoricoControl();
-        this.tabela = new DefaultTableModel();
         this.vacinas = saudeControl.getAll();
+        this.tabela = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        this.tabela.addColumn("Nome");
+        this.tabela.addColumn("Prioridade");
+        this.tabela.addColumn("Data");
+        this.tabela.addColumn("Doses Recomendadas");
+        this.tabela.addColumn("Dose");
 
         for (Vacina vacina : vacinas) {
             Object[] row = {vacina.getNome(), vacina.getPrioridade(), vacina.getDataEvento(), vacina.getDosesRecomendadas(), vacina.getDose()};
@@ -41,7 +52,8 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         }
 
         this.jTableVacinas.setModel(tabela);
-        this.edit(false);
+        this.tabela.fireTableDataChanged();
+        this.setButtonsVisible(false);
     }
 
     private void setButtonsVisible(boolean op) {
@@ -51,23 +63,35 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         this.jButtonSalvar.setVisible(op);
         this.jButtonCancelar.setVisible(op);
     }
-    
+
     private void setButtonsEnable(boolean op) {
-        this.jButtonUpdate.setEnabled(!op);
+        this.jButtonUpdate.setEnabled(op);
         this.jButtonDelete.setEnabled(op);
-        this.jButtonAdd.setEnabled(op);
-    }
-    
-    private void setFieldsEnable(boolean op) {
-        this.jTextNome.setEnabled(op);
-        this.jTextDoses.setEnabled(op);
-        this.jTextPrioridade.setEnabled(op);
-        this.jTextData.setEnabled(op);
+        this.jButtonAdd.setEnabled(!op);
+        this.jTextData.setEnabled(!op);
     }
 
-    private void edit(boolean op) {
-        this.setButtonsVisible(op);
-        this.setFieldsEnable(op);
+    private void preencheFields() {
+        if (this.jTableVacinas.getSelectedRow() >= 0) {
+            Vacina vacina = this.vacinas.get(this.jTableVacinas.getSelectedRow());
+
+            this.jTextNome.setText(vacina.getNome());
+            this.jTextDoses.setText(vacina.getDose() + "");
+            this.jTextPrioridade.setText(vacina.getPrioridade());
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            this.jTextData.setText(formatter.format(vacina.getDataEvento()));
+
+            this.setButtonsVisible(false);
+            this.setButtonsEnable(true);
+            this.enableFields(false);
+        }
+    }
+
+    private void enableFields(boolean op) {
+        jTextDoses.setEnabled(op);
+        jTextNome.setEnabled(op);
+        jTextPrioridade.setEnabled(op);
     }
 
     @SuppressWarnings("unchecked")
@@ -81,8 +105,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jLabelIcon1 = new javax.swing.JLabel();
         jButtonDoenca = new javax.swing.JButton();
         jButtonVacina = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableVacinas = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jTextNome = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -97,6 +119,8 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jButtonUpdate = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableVacinas = new javax.swing.JTable();
 
         jLabel1.setText("jLabel1");
 
@@ -204,30 +228,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                 .addContainerGap(213, Short.MAX_VALUE))
         );
 
-        jTableVacinas.setBackground(new java.awt.Color(255, 255, 255));
-        jTableVacinas.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jTableVacinas.setForeground(new java.awt.Color(0, 0, 0));
-        jTableVacinas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nome", "Prioridade", "Data", "N° Doses", "Dose"
-            }
-        ));
-        jTableVacinas.setCellSelectionEnabled(true);
-        jTableVacinas.setGridColor(new java.awt.Color(128, 128, 128));
-        jTableVacinas.setRowHeight(25);
-        jTableVacinas.setSelectionBackground(new java.awt.Color(120, 130, 89));
-        jTableVacinas.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jTableVacinas.setShowGrid(true);
-        jTableVacinas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableVacinasMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTableVacinas);
-
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Nome:");
@@ -235,7 +235,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jTextNome.setBackground(new java.awt.Color(255, 255, 255));
         jTextNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextNome.setForeground(new java.awt.Color(0, 0, 0));
-        jTextNome.setEnabled(false);
         jTextNome.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -249,13 +248,11 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jTextDoses.setBackground(new java.awt.Color(255, 255, 255));
         jTextDoses.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextDoses.setForeground(new java.awt.Color(0, 0, 0));
-        jTextDoses.setEnabled(false);
         jTextDoses.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jTextPrioridade.setBackground(new java.awt.Color(255, 255, 255));
         jTextPrioridade.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextPrioridade.setForeground(new java.awt.Color(0, 0, 0));
-        jTextPrioridade.setEnabled(false);
         jTextPrioridade.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jTextData.setBackground(new java.awt.Color(255, 255, 255));
@@ -266,7 +263,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
             ex.printStackTrace();
         }
         jTextData.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextData.setEnabled(false);
         jTextData.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextData.setMinimumSize(new java.awt.Dimension(64, 30));
 
@@ -300,10 +296,16 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jButtonDelete.setText("Excluir");
         jButtonDelete.setBorder(null);
         jButtonDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonDelete.setEnabled(false);
         jButtonDelete.setFocusPainted(false);
         jButtonDelete.setFocusable(false);
         jButtonDelete.setPreferredSize(new java.awt.Dimension(97, 28));
         jButtonDelete.setVerifyInputWhenFocusTarget(false);
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
 
         jButtonUpdate.setBackground(new java.awt.Color(120, 130, 89));
         jButtonUpdate.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -311,6 +313,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jButtonUpdate.setText("Redefinir");
         jButtonUpdate.setBorder(null);
         jButtonUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonUpdate.setEnabled(false);
         jButtonUpdate.setFocusPainted(false);
         jButtonUpdate.setFocusable(false);
         jButtonUpdate.setPreferredSize(new java.awt.Dimension(97, 28));
@@ -331,6 +334,11 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jButtonCancelar.setFocusable(false);
         jButtonCancelar.setPreferredSize(new java.awt.Dimension(97, 28));
         jButtonCancelar.setVerifyInputWhenFocusTarget(false);
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
 
         jButtonSalvar.setBackground(new java.awt.Color(120, 130, 89));
         jButtonSalvar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -342,6 +350,34 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jButtonSalvar.setFocusable(false);
         jButtonSalvar.setPreferredSize(new java.awt.Dimension(97, 28));
         jButtonSalvar.setVerifyInputWhenFocusTarget(false);
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
+
+        jTableVacinas.setBackground(new java.awt.Color(255, 255, 255));
+        jTableVacinas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTableVacinas.setForeground(new java.awt.Color(0, 0, 0));
+        jTableVacinas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTableVacinas.setGridColor(new java.awt.Color(128, 128, 128));
+        jTableVacinas.setRowHeight(25);
+        jTableVacinas.setSelectionBackground(new java.awt.Color(120, 130, 89));
+        jTableVacinas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableVacinas.setShowGrid(false);
+        jTableVacinas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableVacinasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableVacinas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -350,16 +386,17 @@ public class JHistoricoVacina extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(255, 255, 255))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(41, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(255, 255, 255))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11)
                                     .addComponent(jLabel10)
@@ -373,58 +410,56 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                                     .addComponent(jTextDoses, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(84, 84, 84)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                    .addComponent(jButtonAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButtonUpdate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jButtonDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(41, Short.MAX_VALUE))))
+                                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel3)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8))
+                            .addGap(15, 15, 15)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9)
+                                .addComponent(jTextDoses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel11))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addGap(15, 15, 15)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jTextDoses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
+                        .addGap(75, 75, 75)
                         .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -460,67 +495,108 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         this.jButtonDoenca.setFont(new java.awt.Font("Arial Black", java.awt.Font.PLAIN, 20));
     }//GEN-LAST:event_jButtonDoencaMouseExited
 
-    private void jTableVacinasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVacinasMouseClicked
-        if (this.jTableVacinas.getSelectedRow() >= 0) {
-            Vacina vacina = this.vacinas.get(this.jTableVacinas.getSelectedRow());
-
-            this.jTextNome.setText(vacina.getNome());
-            this.jTextDoses.setText(vacina.getDose() + "");
-            this.jTextPrioridade.setText(vacina.getPrioridade());
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            this.jTextData.setText(formatter.format(vacina.getDataEvento()));
-
-            this.setButtonsEnable(true);
-        }
-    }//GEN-LAST:event_jTableVacinasMouseClicked
-
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        
+        this.setButtonsVisible(true);
+        this.enableFields(true);
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        if (!this.jTextNome.getText().isEmpty()) {
-
-            String nome = this.jTextNome.getText();
-            if (!this.jTextDoses.getText().isEmpty()) {
-
+        if (!this.jTextNome.getText().isEmpty() && !this.jTextDoses.getText().isEmpty() && !this.jTextData.getText().isEmpty()) {
+            try {
+                String nome = this.jTextNome.getText();
+                String data = this.jTextData.getText();
                 short doses = Short.parseShort(this.jTextDoses.getText());
-                if (!this.jTextData.getText().isEmpty()) {
+                String prioridade = this.jTextPrioridade.getText().isEmpty() ? "Não definido" : this.jTextPrioridade.getText();
 
-                    String data = this.jTextData.getText();
-                    String prioridade = this.jTextPrioridade.getText().isEmpty() ? "Não definido" : this.jTextPrioridade.getText();
+                if (JOptionPane.showConfirmDialog(this, "Você deseja registrar essa vacina?",
+                        "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-                    if (JOptionPane.showConfirmDialog(this, "Você deseja registrar essa vacina?",
-                            "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    Vacina vacina = saudeControl.insert(this.historico, nome, doses, prioridade, data);
 
-                        Vacina vacina = saudeControl.insert(this.historico, nome, doses, prioridade, data);
-
-                        if (vacina != null) {
-                            JOptionPane.showMessageDialog(this, "Vacina registrada com sucesso!",
-                                    "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                            Object[] row = {nome, prioridade, data, doses, doses};
-                            this.tabela.addRow(row);
-
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Houve uma falha no registro",
-                                    "Falha", JOptionPane.ERROR_MESSAGE);
-                        }
+                    if (vacina != null) {
+                        JOptionPane.showMessageDialog(this, "Vacina registrada com sucesso!",
+                                "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        Object[] row = {nome, prioridade, data, doses, doses};
+                        this.tabela.addRow(row);
+                        this.tabela.fireTableDataChanged();
+                        this.vacinas.add(vacina);
+                        
+                        this.setButtonsVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Houve uma falha no registro",
+                                "Falha", JOptionPane.ERROR_MESSAGE);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Insira a data!",
-                            "Dados incompletos", JOptionPane.WARNING_MESSAGE);
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Insira o número de doses!",
-                        "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Insira o formato correto!",
+                        "Dados incorretos", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Insira o nome!",
+            JOptionPane.showMessageDialog(this, "Não deixe campos vazios!",
                     "Dados incompletos", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAddActionPerformed
 
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        int linha = this.jTableVacinas.getSelectedRow();
+
+        if (linha > -1) {
+            Vacina vacina = this.vacinas.get(linha);
+
+            if (!jTextNome.getText().isEmpty() && !jTextDoses.getText().isEmpty() && !jTextPrioridade.getText().isEmpty() && !jTextData.getText().isEmpty()) {
+
+                String nome = this.jTextNome.getText();
+                String prioridade = this.jTextPrioridade.getText();
+                short doses = Short.parseShort(jTextDoses.getText());
+
+                if (!nome.equals(vacina.getNome()) || !prioridade.equals(vacina.getPrioridade()) || doses != vacina.getDose()) {
+                    if (JOptionPane.showConfirmDialog(this, "Deseja salvar as alterações?",
+                            "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+                        int idVacina = vacina.getIdVacina();
+                        vacina = saudeControl.update(nome, prioridade, doses, idVacina);
+
+                        if (vacina != null) {
+                            JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!",
+                                    "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                            this.vacinas.set(linha, vacina);
+                            this.tabela.setValueAt(vacina.getNome(), linha, 0);
+                            this.tabela.setValueAt(vacina.getPrioridade(), linha, 1);
+                            this.tabela.setValueAt(vacina.getDose(), linha, 3);
+                            this.tabela.setValueAt(vacina.getDose(), linha, 4);
+                            this.tabela.fireTableDataChanged();
+                            
+                            this.setButtonsVisible(true);
+                            this.enableFields(false);
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Houve uma falha nas alterações!",
+                                    "Falha", JOptionPane.ERROR_MESSAGE);
+                            this.preencheFields();
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Não deixe nenhum campo vazio!",
+                        "Atenção", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Deseja descartar as alterações?",
+                "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            this.setButtonsVisible(false);
+            this.preencheFields();
+        }
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jTableVacinasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVacinasMouseClicked
+        this.preencheFields();
+    }//GEN-LAST:event_jTableVacinasMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdd;
@@ -540,7 +616,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelIcon1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableVacinas;
     private javax.swing.JFormattedTextField jTextData;
     private javax.swing.JTextField jTextDoses;
