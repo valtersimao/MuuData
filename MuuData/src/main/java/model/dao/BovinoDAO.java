@@ -96,7 +96,7 @@ public class BovinoDAO implements DAO {
     @Override
     public boolean delete(long id) {
         //TODO
-        String sql = "DELETE FROM muudata.bovino WHERE id = ?";
+        String sql = "UPDATE muudata.bovino SET vivo = false WHERE id = ?";
         try (PreparedStatement trans = c.prepareStatement(sql)) {
 
             trans.setInt(1, (int)id);
@@ -151,7 +151,7 @@ public class BovinoDAO implements DAO {
         ArrayList<Object> retorno = new ArrayList<>();
 
         try {
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino WHERE id != 0 AND nome_fazenda = ? ORDER BY brinco ASC";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino WHERE id != 0 AND nome_fazenda = ? AND vivo = true ORDER BY brinco ASC";
             try (PreparedStatement consulta = c.prepareStatement(sql)) {
                 consulta.setString(1, fazenda);
                 
@@ -185,7 +185,7 @@ public class BovinoDAO implements DAO {
         ArrayList<Object> retorno = new ArrayList<>();
 
         try {
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino  WHERE sexo = false AND id != 0 AND nome_fazenda = ? ORDER BY brinco ASC";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino  WHERE sexo = false AND id != 0 AND nome_fazenda = ?  AND vivo = true ORDER BY brinco ASC";
             try (PreparedStatement consulta = c.prepareStatement(sql)) {
                 consulta.setString(1, fazenda);
                 

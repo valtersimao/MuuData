@@ -30,7 +30,7 @@ public class HistoricoDeSaudeDAO implements DAO{
     @Override
     public boolean insert(Object entite) {
         HistoricoDeSaude historico = (HistoricoDeSaude) entite;
-        String sql = "INSERT INTO muudata.historico_de_saude (id_bovino, descricao, observacoes, tratamento) VALUES (?,?,?) RETURNING id";
+        String sql = "INSERT INTO muudata.historico_de_saude (id_bovino, descricao, observacoes, tratamento) VALUES (?,?,?,?) RETURNING id";
         
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setInt(1, historico.getIdBovino());
