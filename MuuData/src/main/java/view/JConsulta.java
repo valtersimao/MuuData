@@ -236,6 +236,11 @@ public class JConsulta extends javax.swing.JPanel {
         jTextMae.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextMae.setForeground(new java.awt.Color(0, 0, 0));
         jTextMae.setEnabled(false);
+        jTextMae.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTextMaeMousePressed(evt);
+            }
+        });
         jTextMae.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextMaeActionPerformed(evt);
@@ -629,12 +634,14 @@ public class JConsulta extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jTextMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMaeActionPerformed
+    }//GEN-LAST:event_jTextMaeActionPerformed
+
+    private void jTextMaeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextMaeMousePressed
         // TODO add your handling code here:
         Integer brincoMae = ((Bovino) this.jComboBoxMae.getSelectedItem()).getIdMae();
 
-        this.editInfo(this.boiControl.getById(brincoMae));
-
-    }//GEN-LAST:event_jTextMaeActionPerformed
+        new JFrameConsultaMae(boiControl.getById(brincoMae)).setVisible(true);
+    }//GEN-LAST:event_jTextMaeMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
