@@ -17,10 +17,10 @@ public class JConsulta extends javax.swing.JPanel {
 
         config();
     }
-    
+
     public JConsulta(String fazenda) {
         this.fazenda = fazenda;
-        
+
         initComponents();
 
         config();
@@ -70,15 +70,15 @@ public class JConsulta extends javax.swing.JPanel {
         this.jLabelIdade.setVisible(op);
     }
 
-    private void edit(boolean op) {
+    private void setEditable(boolean op) {
         this.setButtonsVisible(op);
         this.setUpdatesEnabled(op);
         this.setButtonsEnable(!op);
     }
 
-    private void restaura(Bovino boi) {
+    private void editInfo(Bovino boi) {
         jTextBrinco.setText("" + boi.getBrinco());
-        jTextNome.setText(boi.getNome().isEmpty() ? "-/-" : boi.getNome());
+        jTextNome.setText(boi.getNome().isBlank()? "-/-" : boi.getNome());
         jTextPeso.setText(boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
     }
 
@@ -236,6 +236,11 @@ public class JConsulta extends javax.swing.JPanel {
         jTextMae.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextMae.setForeground(new java.awt.Color(0, 0, 0));
         jTextMae.setEnabled(false);
+        jTextMae.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextMaeActionPerformed(evt);
+            }
+        });
 
         jLabelMae.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabelMae.setForeground(new java.awt.Color(0, 0, 0));
@@ -512,13 +517,13 @@ public class JConsulta extends javax.swing.JPanel {
             this.jTextBrinco.setText(boi.getBrinco() + "");
             this.jTextRaca.setText(boi.getRaca());
             this.jTextPeso.setText(boi.getPeso() == null || boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
-            this.jTextNome.setText((boi.getNome() == null || boi.getNome().isEmpty()) ? "-/-" : boi.getNome());
+            this.jTextNome.setText((boi.getNome() == null || boi.getNome().isBlank()) ? "-/-" : boi.getNome());
             this.jTextSexo.setText(boi.isSexo() == Bovino.MACHO ? "Macho" : "Fêmea");
 
             this.setMaeVisible(temMae);
             if (temMae) {
                 this.jTextMae.setText(this.boiControl.getById(boi.getIdMae()).toString());
-               // this.jButtonGestacao.setEnabled(false);
+                // this.jButtonGestacao.setEnabled(false);
             }
 
             this.setDateVisible(boi.getNascimento() != null);
@@ -538,16 +543,23 @@ public class JConsulta extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBoxMaeItemStateChanged
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        this.edit(true);
+        this.setEditable(true);
+        if(this.jTextPeso.getText().equals("-/-")) {
+            this.jTextPeso.setText("");
+        }
+        if(this.jTextNome.getText().equals("-/-")) {
+            this.jTextNome.setText("");
+        }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         try {
             Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
 
-            String nome = jTextNome.getText();
-            int brinco = jTextBrinco.getText().isEmpty() ? 0 : Integer.parseInt(jTextBrinco.getText());
-            int peso = Integer.parseInt(jTextPeso.getText()) == 0 ? 0 : Integer.parseInt(jTextPeso.getText());
+            String nome = this.jTextNome.getText().equals("-/-") ? "" : this.jTextNome.getText();
+            int brinco = this.jTextBrinco.getText().isEmpty() ? 0 : Integer.parseInt(this.jTextBrinco.getText());
+            int peso = this.jTextPeso.getText().isEmpty() ? 0 : Integer.parseInt(this.jTextPeso.getText());    
+            
 
             if (brinco != boi.getBrinco() || !nome.equals(boi.getNome()) || peso != boi.getPeso()) {
                 if (JOptionPane.showConfirmDialog(this, "Deseja salvar as alterações?",
@@ -558,20 +570,20 @@ public class JConsulta extends javax.swing.JPanel {
                         boi.setNome(nome);
                         boi.setBrinco(brinco);
                         boi.setPeso(peso);
-
+                        this.editInfo(boi);
                         JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!",
                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-                        this.edit(false);
+                        this.setEditable(false);
                     } else {
                         JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro!",
                                 "Falha", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    this.restaura(boi);
+                    this.editInfo(boi);
                 }
             } else {
-                this.edit(false);
+                this.setEditable(false);
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Insira o formato correto!",
@@ -585,8 +597,8 @@ public class JConsulta extends javax.swing.JPanel {
         if (JOptionPane.showConfirmDialog(this, "Deseja descartar as alterações?",
                 "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-            this.edit(false);
-            this.restaura(boi);
+            this.setEditable(false);
+            this.editInfo(boi);
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -615,6 +627,14 @@ public class JConsulta extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jTextMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMaeActionPerformed
+        // TODO add your handling code here:
+        Integer brincoMae = ((Bovino) this.jComboBoxMae.getSelectedItem()).getIdMae();
+
+        this.editInfo(this.boiControl.getById(brincoMae));
+
+    }//GEN-LAST:event_jTextMaeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
