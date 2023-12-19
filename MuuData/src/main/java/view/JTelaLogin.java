@@ -1,14 +1,9 @@
 package view;
 
 import control.FazendaControl;
-import model.Fazenda;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author 0068967
- */
 public class JTelaLogin extends javax.swing.JPanel {
 
     FazendaControl fazendaControl;
