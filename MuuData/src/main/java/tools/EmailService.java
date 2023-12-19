@@ -66,7 +66,7 @@ public class EmailService {
             // Envio da mensagem
             Transport.send(message);
 
-            System.out.println("E-mail enviado com sucesso!");
+//            System.out.println("E-mail enviado com sucesso!");
             return true;
 
         } catch (MessagingException e) {
