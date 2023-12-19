@@ -533,6 +533,8 @@ public class JConsulta extends javax.swing.JPanel {
                 idade += meses + " meses";
                 this.jTextIdade.setText(idade);
             }
+            
+            this.jButtonGestacao.setEnabled(!boi.isSexo());
         } else {
             this.setButtonsEnable(false);
         }
