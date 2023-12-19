@@ -1,15 +1,67 @@
-
 package view;
 
+import control.BovinoControl;
+import java.time.format.DateTimeFormatter;
 import model.Bovino;
 
-public class JFrameConsultaMae extends javax.swing.JFrame {  
-    
-    Bovino boi;
-    public JFrameConsultaMae(Bovino boi) {
+public class JFrameConsultaMae extends javax.swing.JFrame {
+
+    private Bovino boi;
+    private BovinoControl boiControl;
+    private String nomeFilho;
+
+    public JFrameConsultaMae(Bovino boi, BovinoControl boiControl, String nomeFilho) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.boi = boi;
+        this.boiControl = boiControl;
+        this.nomeFilho = nomeFilho;
+        config();
+    }
+
+    private void config() {
+        this.jLabel1.setText(jLabel1.getText() + this.nomeFilho);
+        editInfo(this.boi);
+
+        boolean temMae = (boi.getIdMae() != null) && (boi.getIdMae() != Bovino.ID_DEFAULT);
+
+        this.setMaeVisible(temMae);
+        if (temMae) {
+            this.jTextMae.setText(this.boiControl.getById(boi.getIdMae()).toString());
+            // this.jButtonGestacao.setEnabled(false);
+        }
+
+        this.setDateVisible(boi.getNascimento() != null);
+        if (boi.getNascimento() != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            this.jTextData.setText(formatter.format(boi.getNascimento()));
+
+            int anos = boi.getIdadeMeses() / 12;
+            int meses = boi.getIdadeMeses() - (anos * 12);
+            String idade = anos > 0 ? anos + " anos e " : "";
+            idade += meses + " meses";
+            this.jTextIdade.setText(idade);
+        }
+    }
+
+    private void setDateVisible(boolean op) {
+        this.jLabelDate.setVisible(op);
+        this.jTextData.setVisible(op);
+        this.jTextIdade.setVisible(op);
+        this.jLabelIdade.setVisible(op);
+    }
+
+    private void setMaeVisible(boolean op) {
+        this.jTextMae.setVisible(op);
+        this.jLabelMae.setVisible(op);
+    }
+
+    private void editInfo(Bovino boi) {
+        jTextBrinco.setText("" + boi.getBrinco());
+        jTextNome.setText(boi.getNome().isBlank() ? "-/-" : boi.getNome());
+        jTextPeso.setText(boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
+        jTextRaca.setText(boi.getRaca());
+        jTextSexo.setText(boi.isSexo() ? "Macho" : "Femea");
     }
 
     @SuppressWarnings("unchecked")
@@ -37,7 +89,7 @@ public class JFrameConsultaMae extends javax.swing.JFrame {
         jLabelIdade = new javax.swing.JLabel();
         jTextIdade = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(120, 130, 89));
 
         jPanel2.setBackground(new java.awt.Color(120, 130, 89));
@@ -52,7 +104,7 @@ public class JFrameConsultaMae extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Lista de Animais");
+        jLabel1.setText("Mãe de");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/muuDataLogo.png"))); // NOI18N
 
@@ -117,6 +169,12 @@ public class JFrameConsultaMae extends javax.swing.JFrame {
         jTextMae.setForeground(new java.awt.Color(0, 0, 0));
         jTextMae.setEnabled(false);
         jTextMae.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTextMaeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jTextMaeMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTextMaeMousePressed(evt);
             }
@@ -185,9 +243,10 @@ public class JFrameConsultaMae extends javax.swing.JFrame {
                 .addGap(69, 69, 69)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,46 +323,25 @@ public class JFrameConsultaMae extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextMaeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextMaeMousePressed
-        // TODO add your handling code here:
-       // Integer brincoMae = ((Bovino) this.jComboBoxMae.getSelectedItem()).getIdMae();
+        Integer brincoMae = this.boi.getIdMae();
+        String nomeFi = this.boi.getNome().isBlank() ? this.boi.getBrinco() + "" : this.boi.getNome();
 
-       // this.editInfo(this.boiControl.getById(brincoMae));
+        new JFrameConsultaMae(boiControl.getById(brincoMae), boiControl, nomeFi).setVisible(true);
+
+
     }//GEN-LAST:event_jTextMaeMousePressed
+
+    private void jTextMaeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextMaeMouseEntered
+        this.jTextMae.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jTextMae.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));    }//GEN-LAST:event_jTextMaeMouseEntered
+
+    private void jTextMaeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextMaeMouseExited
+        jTextMae.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+    }//GEN-LAST:event_jTextMaeMouseExited
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameConsultaMae.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameConsultaMae.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameConsultaMae.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameConsultaMae.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrameConsultaMae().setVisible(true);
-            }
-        });*/
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
