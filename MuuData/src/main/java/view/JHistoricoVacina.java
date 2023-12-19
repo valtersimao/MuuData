@@ -486,15 +486,18 @@ public class JHistoricoVacina extends javax.swing.JPanel {
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         if (!this.jTextData.getText().isEmpty()) {
             try {
-                String nome = this.jTextNome.getText();
+                Vacina vacina = (Vacina) this.jComboBoxVacinas.getSelectedItem();
+                
+                String nome = vacina.getNome();
+                short doses = vacina.getDose();
+                String prioridade = vacina.getPrioridade();
                 String data = this.jTextData.getText();
-                short doses = Short.parseShort(this.jTextDoses.getText());
-                String prioridade = this.jTextPrioridade.getText().isEmpty() ? "Não definido" : this.jTextPrioridade.getText();
-
+                
                 if (JOptionPane.showConfirmDialog(this, "Você deseja registrar essa vacina?",
                         "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    int id = vacina.getIdVacina();
                     
-                    Vacina vacina = saudeControl.insert(this.historico, nome, doses, prioridade, data);
+                    vacina = saudeControl.insert(this.historico, id, nome, doses, prioridade, data);
                     
                     if (vacina != null) {
                         JOptionPane.showMessageDialog(this, "Vacina registrada com sucesso!",

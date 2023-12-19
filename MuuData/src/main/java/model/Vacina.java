@@ -28,8 +28,9 @@ public class Vacina {
         this.dosesRecomendadas = dosesRecomendadas;
     }
     
-    public Vacina(String nome, short dosesRecomendadas, String prioridade, int idHistorico, LocalDate dataEvento, short dose) {
+    public Vacina(int idVacina, String nome, short dosesRecomendadas, String prioridade, int idHistorico, LocalDate dataEvento, short dose) {
         this.prioridade = prioridade;
+        this.idVacina = idVacina;
         this.nome = nome;
         this.dosesRecomendadas = dosesRecomendadas;
         this.idHistorico = idHistorico;

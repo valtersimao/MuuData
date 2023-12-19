@@ -41,12 +41,12 @@ public class HistoricoControl {
         }
     }
 
-    public Vacina insert(HistoricoDeSaude historico, String nome, short doses, String prioridade, String data) {
+    public Vacina insert(HistoricoDeSaude historico, int id, String nome, short doses, String prioridade, String data) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate dataEvento = LocalDate.parse(data, formatter);
 
-            Vacina vacina = new Vacina(nome, doses, prioridade, doses, dataEvento, doses);
+            Vacina vacina = new Vacina(id, nome, doses, prioridade, doses, dataEvento, doses);
             vacina.setIdHistorico(historico.getId());
 
             if (vacinaDAO.insert(vacina)) {
