@@ -58,6 +58,9 @@ public class JHistoricoDoenca extends javax.swing.JPanel {
         jLabelIcon1 = new javax.swing.JLabel();
         jButtonDoenca = new javax.swing.JButton();
         jButtonVacina = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableVacinas = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -165,17 +168,66 @@ public class JHistoricoDoenca extends javax.swing.JPanel {
                 .addContainerGap(213, Short.MAX_VALUE))
         );
 
+        jTableVacinas.setBackground(new java.awt.Color(255, 255, 255));
+        jTableVacinas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTableVacinas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Descrição", "Data", "Gravidade", "Tratamento"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableVacinas.setFocusable(false);
+        jTableVacinas.setGridColor(new java.awt.Color(128, 128, 128));
+        jTableVacinas.setRowHeight(25);
+        jTableVacinas.setSelectionBackground(new java.awt.Color(120, 130, 89));
+        jTableVacinas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableVacinas.setShowGrid(false);
+        jTableVacinas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableVacinasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableVacinas);
+
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 26)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Ficha Médica");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(810, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(305, 305, 305)
+                        .addComponent(jLabel3)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -211,13 +263,20 @@ public class JHistoricoDoenca extends javax.swing.JPanel {
         this.jButtonVacina.setFont(new java.awt.Font("Arial Black", java.awt.Font.PLAIN, 20));
     }//GEN-LAST:event_jButtonVacinaMouseExited
 
+    private void jTableVacinasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVacinasMouseClicked
+
+    }//GEN-LAST:event_jTableVacinasMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDoenca;
     private javax.swing.JButton jButtonHistorico;
     private javax.swing.JButton jButtonVacina;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelIcon1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableVacinas;
     // End of variables declaration//GEN-END:variables
 }
