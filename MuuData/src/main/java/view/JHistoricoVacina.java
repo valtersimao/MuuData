@@ -43,7 +43,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         this.tabela = (DefaultTableModel) this.jTableVacinas.getModel();
 
         for (Vacina vacina : vacinas) {
-            Object[] row = {vacina.getNome(), vacina.getPrioridade(), formato.format(vacina.getDataEvento()), vacina.getDosesRecomendadas(), vacina.getDose()};
+            Object[] row = {vacina.getNome(), vacina.getDescricao(), formato.format(vacina.getDataEvento()), vacina.getDosesRecomendadas(), vacina.getDose()};
             this.tabela.addRow(row);
         }
 
@@ -316,6 +316,8 @@ public class JHistoricoVacina extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Criar vacina");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusable(false);
@@ -361,7 +363,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(280, 280, 280)
                                 .addComponent(jComboBoxVacinas, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(31, 31, 31)
                                 .addComponent(jButton1)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -374,7 +376,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxVacinas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -451,7 +453,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
 
             this.jTextNome.setText(vacina.getNome());
             this.jTextDoses.setText(vacina.getDose() + "");
-            this.jTextPrioridade.setText(vacina.getPrioridade());
+            this.jTextPrioridade.setText(vacina.getDescricao());
             this.jTextData.setText(formato.format(vacina.getDataEvento()));
             this.select = unselect;
             this.edit(false);
@@ -490,19 +492,19 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                 
                 String nome = vacina.getNome();
                 short doses = vacina.getDose();
-                String prioridade = vacina.getPrioridade();
+                String descricao = vacina.getDescricao();
                 String data = this.jTextData.getText();
                 
                 if (JOptionPane.showConfirmDialog(this, "Você deseja registrar essa vacina?",
                         "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     int id = vacina.getIdVacina();
                     
-                    vacina = saudeControl.insert(this.historico, id, nome, doses, prioridade, data);
+                    vacina = saudeControl.insert(this.historico, id, nome, doses, descricao, data);
                     
                     if (vacina != null) {
                         JOptionPane.showMessageDialog(this, "Vacina registrada com sucesso!",
                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                        Object[] row = {nome, prioridade, data, doses, doses};
+                        Object[] row = {nome, descricao, data, doses, doses};
                         this.tabela.addRow(row);
                         this.tabela.fireTableDataChanged();
                         this.vacinas.add(vacina);
@@ -530,7 +532,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
 
             this.jTextNome.setText(vacina.getNome());
             this.jTextDoses.setText(vacina.getDose() + "");
-            this.jTextPrioridade.setText(vacina.getPrioridade());
+            this.jTextPrioridade.setText(vacina.getDescricao());
             this.jTextData.setText(formato.format(vacina.getDataEvento()));
             
             this.edit(true);
