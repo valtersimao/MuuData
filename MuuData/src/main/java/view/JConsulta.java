@@ -78,7 +78,7 @@ public class JConsulta extends javax.swing.JPanel {
 
     private void editInfo(Bovino boi) {
         jTextBrinco.setText("" + boi.getBrinco());
-        jTextNome.setText(boi.getNome().isBlank()? "-/-" : boi.getNome());
+        jTextNome.setText(boi.getNome().isBlank() ? "-/-" : boi.getNome());
         jTextPeso.setText(boi.getPeso() == 0 ? "-/-" : boi.getPeso() + "");
     }
 
@@ -549,10 +549,10 @@ public class JConsulta extends javax.swing.JPanel {
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         this.setEditable(true);
-        if(this.jTextPeso.getText().equals("-/-")) {
+        if (this.jTextPeso.getText().equals("-/-")) {
             this.jTextPeso.setText("");
         }
-        if(this.jTextNome.getText().equals("-/-")) {
+        if (this.jTextNome.getText().equals("-/-")) {
             this.jTextNome.setText("");
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
@@ -563,8 +563,7 @@ public class JConsulta extends javax.swing.JPanel {
 
             String nome = this.jTextNome.getText().equals("-/-") ? "" : this.jTextNome.getText();
             int brinco = this.jTextBrinco.getText().isEmpty() ? 0 : Integer.parseInt(this.jTextBrinco.getText());
-            int peso = this.jTextPeso.getText().isEmpty() ? 0 : Integer.parseInt(this.jTextPeso.getText());    
-            
+            int peso = this.jTextPeso.getText().isEmpty() ? 0 : Integer.parseInt(this.jTextPeso.getText());
 
             if (brinco != boi.getBrinco() || !nome.equals(boi.getNome()) || peso != boi.getPeso()) {
                 if (JOptionPane.showConfirmDialog(this, "Deseja salvar as alterações?",
@@ -575,7 +574,7 @@ public class JConsulta extends javax.swing.JPanel {
                         boi.setNome(nome);
                         boi.setBrinco(brinco);
                         boi.setPeso(peso);
-                        this.editInfo(boi);
+
                         JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!",
                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
@@ -584,12 +583,12 @@ public class JConsulta extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Houve uma falha no cadastro!",
                                 "Falha", JOptionPane.ERROR_MESSAGE);
                     }
-                } else {
-                    this.editInfo(boi);
                 }
+                
             } else {
                 this.setEditable(false);
             }
+            this.editInfo(boi);
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Insira o formato correto!",
                     "Dados incorretos", JOptionPane.ERROR_MESSAGE);
