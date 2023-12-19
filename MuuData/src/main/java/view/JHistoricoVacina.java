@@ -92,6 +92,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableVacinas = new javax.swing.JTable();
         jComboBoxVacinas = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -245,7 +246,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Registro de Vacinas");
 
-        jButtonAdd.setBackground(new java.awt.Color(120, 130, 89));
         jButtonAdd.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButtonAdd.setForeground(new java.awt.Color(25, 25, 25));
         jButtonAdd.setText("Adicionar");
@@ -261,7 +261,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
             }
         });
 
-        jButtonDelete.setBackground(new java.awt.Color(120, 130, 89));
         jButtonDelete.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButtonDelete.setForeground(new java.awt.Color(25, 25, 25));
         jButtonDelete.setText("Excluir");
@@ -317,6 +316,15 @@ public class JHistoricoVacina extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Criar vacina");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setFocusable(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -352,7 +360,9 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                                 .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(280, 280, 280)
-                                .addComponent(jComboBoxVacinas, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jComboBoxVacinas, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -362,7 +372,9 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel3)
                 .addGap(41, 41, 41)
-                .addComponent(jComboBoxVacinas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxVacinas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -522,7 +534,12 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jComboBoxVacinasItemStateChanged
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonDoenca;
