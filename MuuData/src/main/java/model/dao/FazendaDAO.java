@@ -93,4 +93,20 @@ public class FazendaDAO implements DAO{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public boolean updatePassword(String name, String password) {
+        String sql = "UPDATE muudata.fazenda SET senha = ? WHERE name = ?";
+        
+        try(PreparedStatement trans = c.prepareStatement(sql)) {
+            trans.setString(1, password);
+            trans.setString(2, name);
+            
+            trans.execute();
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(FazendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
 }
