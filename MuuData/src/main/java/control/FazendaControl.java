@@ -95,7 +95,7 @@ public class FazendaControl {
         if (fazenda != null) {
             recoverPassword(getFazenda(name).getEmail());
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -107,8 +107,12 @@ public class FazendaControl {
     }
 
     public boolean changePassword(String password, String name) {
-        String hashedPassword = this.passwordService.hashPassword(password);
+        if (this.isNumberCorrect) {
+            String hashedPassword = this.passwordService.hashPassword(password);
 
-        return this.dao.updatePassword(name, hashedPassword);
+            return this.dao.updatePassword(name, hashedPassword);
+        }else{
+            return false;
+        }
     }
 }
