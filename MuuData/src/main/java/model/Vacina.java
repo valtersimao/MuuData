@@ -20,25 +20,22 @@ public class Vacina {
     private LocalDate dataEvento;
     private short dose;
     private int idRelacionamento;
-
-    public Vacina(int idVacina, String nome, short dosesRecomendadas, String prioridade) {
-        this.descricao = prioridade;
+    
+    public Vacina(String nome, short dosesRecomendadas, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dosesRecomendadas = dosesRecomendadas;
+    }
+    
+    public Vacina(int idVacina, String nome, short dosesRecomendadas, String descricao) {
+        this.descricao = descricao;
         this.idVacina = idVacina;
         this.nome = nome;
         this.dosesRecomendadas = dosesRecomendadas;
     }
-
-    public Vacina(int idVacina, String nome, short dosesRecomendadas, String prioridade, int idHistorico, LocalDate dataEvento, short dose) {
-        this.descricao = prioridade;
-        this.nome = nome;
-        this.dosesRecomendadas = dosesRecomendadas;
-        this.idHistorico = idHistorico;
-        this.dataEvento = dataEvento;
-        this.dose = dose;
-    }
     
-    public Vacina(int idVacina, String nome, short dosesRecomendadas, String prioridade, int idHistorico, LocalDate dataEvento, short dose, int idRelacionamento) {
-        this.descricao = prioridade;
+    public Vacina(int idVacina, String nome, short dosesRecomendadas, String descricao, int idHistorico, LocalDate dataEvento, short dose, int idRelacionamento) {
+        this.descricao = descricao;
         this.idVacina = idVacina;
         this.nome = nome;
         this.dosesRecomendadas = dosesRecomendadas;
@@ -50,6 +47,6 @@ public class Vacina {
 
     @Override
     public String toString() {
-        return "Vacina : " + nome;
+        return idVacina + " : " + nome;
     }
 }
