@@ -10,6 +10,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     public static final String TELA_INICIAL = "TELA_INICIAL";
     public static final String TELA_LOGIN = "TELA_LOGIN";
+    public static final String TELA_RECUPERAR_SENHA = "TELA_SENHA";
     public static final String TELA_CADASTRO_NASCIMENTO = "TELA_CADASTRO_NASCIMENTO";
     public static final String TELA_CADASTRO_BOVINO = "TELA_CADASTRO_BOVINO";
     public static final String TELA_CONSULTA = "TELA_CONSULTA";

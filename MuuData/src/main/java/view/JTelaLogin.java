@@ -211,7 +211,8 @@ public class JTelaLogin extends javax.swing.JPanel {
 
     private void jLabelSenhaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSenhaMousePressed
         this.jLabelSenha.setForeground(Color.cyan);
-        //ESQUECEU A SENHA -- TODO
+        FramePrincipal.removePainel(FramePrincipal.TELA_LOGIN);
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_RECUPERAR_SENHA, new JRecuperarSenha(this.jTextNome.getText()));
     }//GEN-LAST:event_jLabelSenhaMousePressed
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
