@@ -1,7 +1,9 @@
 package view;
 
 import control.HistoricoControl;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -15,14 +17,15 @@ import model.Vacina;
  */
 public class JHistoricoVacina extends javax.swing.JPanel {
 
+    private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     private HistoricoControl saudeControl;
     private HistoricoDeSaude historico;
-    private DefaultTableModel tabela;
+    private DefaultTableModel tabela; 
     private DefaultComboBoxModel comboVacinas;
 
     private ArrayList<Vacina> vacinas;
     private int select = -1;
-    private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public JHistoricoVacina() {
     }
@@ -38,12 +41,12 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         this.saudeControl = new HistoricoControl();
         this.comboVacinas = new DefaultComboBoxModel();
         this.comboVacinas.addAll(saudeControl.getAll());
-        
+
         this.vacinas = saudeControl.getById(historico);
         this.tabela = (DefaultTableModel) this.jTableVacinas.getModel();
 
         for (Vacina vacina : vacinas) {
-            Object[] row = {vacina.getNome(), vacina.getDescricao(), formato.format(vacina.getDataEvento()), vacina.getDosesRecomendadas(), vacina.getDose()};
+            Object[] row = {vacina.getNome(), vacina.getDescricao(), formato.format(vacina.getDataEvento()), vacina.getDosesRecomendadas()};
             this.tabela.addRow(row);
         }
 
@@ -59,14 +62,14 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         this.jButtonAdd.setVisible(op);
         this.jButtonDelete.setVisible(this.jTableVacinas.getSelectedRow() >= 0);
     }
-    
+
     private void limpaFields() {
         this.jTextNome.setText("");
         this.jTextDoses.setText("");
-        this.jTextPrioridade.setText("");
+        this.jTextDescricao.setText("");
         this.jTextData.setText("");
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -83,7 +86,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jTextDoses = new javax.swing.JTextField();
-        jTextPrioridade = new javax.swing.JTextField();
+        jTextDescricao = new javax.swing.JTextField();
         jTextData = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -92,7 +95,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableVacinas = new javax.swing.JTable();
         jComboBoxVacinas = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jButtonCadastra = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -215,17 +218,17 @@ public class JHistoricoVacina extends javax.swing.JPanel {
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Prioridade:");
+        jLabel10.setText("Descrição");
 
         jTextDoses.setBackground(new java.awt.Color(255, 255, 255));
         jTextDoses.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextDoses.setEnabled(false);
         jTextDoses.setPreferredSize(new java.awt.Dimension(64, 30));
 
-        jTextPrioridade.setBackground(new java.awt.Color(255, 255, 255));
-        jTextPrioridade.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextPrioridade.setEnabled(false);
-        jTextPrioridade.setPreferredSize(new java.awt.Dimension(64, 30));
+        jTextDescricao.setBackground(new java.awt.Color(255, 255, 255));
+        jTextDescricao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextDescricao.setEnabled(false);
+        jTextDescricao.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jTextData.setBackground(new java.awt.Color(255, 255, 255));
         try {
@@ -246,7 +249,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Registro de Vacinas");
 
-        jButtonAdd.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonAdd.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jButtonAdd.setForeground(new java.awt.Color(25, 25, 25));
         jButtonAdd.setText("Adicionar");
         jButtonAdd.setBorder(null);
@@ -261,7 +264,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
             }
         });
 
-        jButtonDelete.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButtonDelete.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jButtonDelete.setForeground(new java.awt.Color(25, 25, 25));
         jButtonDelete.setText("Excluir");
         jButtonDelete.setBorder(null);
@@ -309,6 +312,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
 
         jComboBoxVacinas.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxVacinas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jComboBoxVacinas.setMaximumRowCount(10);
         jComboBoxVacinas.setFocusable(false);
         jComboBoxVacinas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -316,14 +320,15 @@ public class JHistoricoVacina extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Criar vacina");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCadastra.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonCadastra.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButtonCadastra.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonCadastra.setText("Criar vacina");
+        jButtonCadastra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastra.setFocusable(false);
+        jButtonCadastra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCadastraActionPerformed(evt);
             }
         });
 
@@ -335,11 +340,15 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(41, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(253, 253, 253)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(280, 280, 280)
+                                .addComponent(jComboBoxVacinas, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jButtonCadastra))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(158, 158, 158)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,20 +360,16 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jTextNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextPrioridade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextDoses, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(65, 65, 65)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButtonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(253, 253, 253)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(280, 280, 280)
-                                .addComponent(jComboBoxVacinas, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(jButton1)))
+                                    .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(148, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -376,7 +381,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxVacinas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonCadastra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -389,7 +394,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                             .addComponent(jLabel9))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -442,7 +447,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
     private void jTableVacinasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVacinasMouseClicked
         int unselect = this.jTableVacinas.getSelectedRow();
         this.jComboBoxVacinas.setSelectedIndex(-1);
-        
+
         if (unselect == this.select) {
             this.jTableVacinas.clearSelection();
             this.edit(false);
@@ -452,8 +457,8 @@ public class JHistoricoVacina extends javax.swing.JPanel {
             Vacina vacina = this.vacinas.get(unselect);
 
             this.jTextNome.setText(vacina.getNome());
-            this.jTextDoses.setText(vacina.getDose() + "");
-            this.jTextPrioridade.setText(vacina.getDescricao());
+            this.jTextDoses.setText(vacina.getDosesRecomendadas()+ "");
+            this.jTextDescricao.setText(vacina.getDescricao());
             this.jTextData.setText(formato.format(vacina.getDataEvento()));
             this.select = unselect;
             this.edit(false);
@@ -486,42 +491,35 @@ public class JHistoricoVacina extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        if (!this.jTextData.getText().isEmpty()) {
-            try {
-                Vacina vacina = (Vacina) this.jComboBoxVacinas.getSelectedItem();
-                
-                String nome = vacina.getNome();
-                short doses = vacina.getDose();
-                String descricao = vacina.getDescricao();
-                String data = this.jTextData.getText();
-                
-                if (JOptionPane.showConfirmDialog(this, "Você deseja registrar essa vacina?",
-                        "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    int id = vacina.getIdVacina();
-                    
-                    vacina = saudeControl.insert(this.historico, id, nome, doses, descricao, data);
-                    
-                    if (vacina != null) {
-                        JOptionPane.showMessageDialog(this, "Vacina registrada com sucesso!",
-                                "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                        Object[] row = {nome, descricao, data, doses, doses};
-                        this.tabela.addRow(row);
-                        this.tabela.fireTableDataChanged();
-                        this.vacinas.add(vacina);
+        try {
+            Vacina vacina = (Vacina) this.jComboBoxVacinas.getSelectedItem();
 
-                        this.edit(false);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Houve uma falha no registro",
-                                "Falha", JOptionPane.ERROR_MESSAGE);
-                    }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dataEvento = LocalDate.parse(this.jTextData.getText(), formatter);
+            vacina.setDataEvento(dataEvento);
+
+            if (JOptionPane.showConfirmDialog(this, "Você deseja registrar essa vacina?",
+                    "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                
+                vacina = saudeControl.insert(this.historico, vacina);
+
+                if (vacina != null) {
+                    JOptionPane.showMessageDialog(this, "Vacina registrada com sucesso!",
+                            "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    Object[] row = {vacina.getNome(), vacina.getDescricao(), formato.format(vacina.getDataEvento()), vacina.getDosesRecomendadas()};
+                    this.tabela.addRow(row);
+                    this.tabela.fireTableDataChanged();
+                    this.vacinas.add(vacina);
+
+                    this.edit(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Houve uma falha no registro!",
+                            "Falha", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Insira o formato correto!",
-                        "Dados incorretos", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
+        } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(this, "Insira a data!",
-                    "Dados incompletos", JOptionPane.WARNING_MESSAGE);
+                    "Dados incompletos", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonAddActionPerformed
 
@@ -531,21 +529,21 @@ public class JHistoricoVacina extends javax.swing.JPanel {
             jTableVacinas.clearSelection();
 
             this.jTextNome.setText(vacina.getNome());
-            this.jTextDoses.setText(vacina.getDose() + "");
-            this.jTextPrioridade.setText(vacina.getDescricao());
-            this.jTextData.setText(formato.format(vacina.getDataEvento()));
-            
+            this.jTextDoses.setText(vacina.getDosesRecomendadas() + "");
+            this.jTextDescricao.setText(vacina.getDescricao());
+            this.jTextData.setText(vacina.getDataEvento() == null ? "" : formato.format(vacina.getDataEvento()));
+
             this.edit(true);
         }
     }//GEN-LAST:event_jComboBoxVacinasItemStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonCadastraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastraActionPerformed
+        new JCadastraVacina(comboVacinas).setVisible(true);
+    }//GEN-LAST:event_jButtonCadastraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAdd;
+    private javax.swing.JButton jButtonCadastra;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonDoenca;
     private javax.swing.JButton jButtonHistorico;
@@ -563,8 +561,8 @@ public class JHistoricoVacina extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableVacinas;
     private javax.swing.JFormattedTextField jTextData;
+    private javax.swing.JTextField jTextDescricao;
     private javax.swing.JTextField jTextDoses;
     private javax.swing.JTextField jTextNome;
-    private javax.swing.JTextField jTextPrioridade;
     // End of variables declaration//GEN-END:variables
 }
