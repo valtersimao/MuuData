@@ -80,7 +80,7 @@ public class GestacaoDAO implements DAO {
 
     @Override
     public Object getById(long id) {
-        ArrayList<Gestacao> retorno = new ArrayList<>();
+        ArrayList<Object> retorno = new ArrayList<>();
         String sql = "SELECT id, id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao WHERE id_bovino = ? ORDER BY data_evento DESC";
 
         try (PreparedStatement trans = c.prepareStatement(sql)) {
@@ -91,7 +91,7 @@ public class GestacaoDAO implements DAO {
             while (resultado.next()) {
                 Gestacao temp;
                 LocalDate dataEvento = resultado.getDate("data_evento").toLocalDate();
-                temp = new Gestacao(resultado.getInt("id_bovino"),
+                temp = new Gestacao(resultado.getInt("id"),
                         resultado.getInt("id_bovino"),
                         dataEvento, resultado.getInt("tipo_atividade"), 
                         resultado.getInt("situacao_gestacao"));
@@ -116,7 +116,7 @@ public class GestacaoDAO implements DAO {
             while (resultado.next()) {
                 Gestacao gestacao;
                 LocalDate dataEvento = resultado.getDate("data_evento").toLocalDate();
-                gestacao = new Gestacao(resultado.getInt("id_bovino"),
+                gestacao = new Gestacao(resultado.getInt("id"),
                         resultado.getInt("id_bovino"),
                         dataEvento, resultado.getInt("tipo_atividade"), 
                         resultado.getInt("situacao_gestacao"));
@@ -154,5 +154,5 @@ public class GestacaoDAO implements DAO {
         }
         return retorno;
     }
-
+    
 }

@@ -429,6 +429,11 @@ public class JConsulta extends javax.swing.JPanel {
         jButtonGestacao.setEnabled(false);
         jButtonGestacao.setFocusPainted(false);
         jButtonGestacao.setFocusable(false);
+        jButtonGestacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGestacaoActionPerformed(evt);
+            }
+        });
 
         jButtonSaude.setBackground(new java.awt.Color(120, 130, 89));
         jButtonSaude.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -641,6 +646,11 @@ public class JConsulta extends javax.swing.JPanel {
     private void jTextMaeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextMaeMouseExited
         jTextMae.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
     }//GEN-LAST:event_jTextMaeMouseExited
+
+    private void jButtonGestacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestacaoActionPerformed
+        Bovino boi = (Bovino) this.jComboBoxMae.getSelectedItem();
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_GERENCIAMENTO_REPRODUTIVO, new JGestacao(boi, boiControl));
+    }//GEN-LAST:event_jButtonGestacaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

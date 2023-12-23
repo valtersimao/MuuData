@@ -92,7 +92,11 @@ public class BovinoControl {
 
         return bovinos;
     }
-
+    
+    public ArrayList<Bovino> getFilhos(int id) {
+        return this.dao.getFilhos(id);
+    }
+    
     public boolean delete(Bovino bovino) {
         return this.dao.delete(bovino.getId());
     }

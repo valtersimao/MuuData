@@ -64,7 +64,7 @@ public class BovinoDAO implements DAO {
                 bovino.setId(resultSet.getInt("id"));
                 
                 new HistoricoDeSaudeDAO().insert(new model.HistoricoDeSaude(resultSet.getInt("id"), "", "", ""));
-
+              
                 return true;
             } else {
                 return false;
@@ -185,7 +185,7 @@ public class BovinoDAO implements DAO {
         ArrayList<Object> retorno = new ArrayList<>();
 
         try {
-            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae  FROM muudata.bovino  WHERE sexo = false AND id != 0 AND nome_fazenda = ?  AND vivo = true ORDER BY brinco ASC";
+            String sql = "SELECT id,brinco,nome,sexo,peso,nascimento,raca,id_mae FROM muudata.bovino  WHERE sexo = false AND id != 0 AND nome_fazenda = ?  AND vivo = true ORDER BY brinco ASC";
             try (PreparedStatement consulta = c.prepareStatement(sql)) {
                 consulta.setString(1, fazenda);
                 
@@ -283,6 +283,37 @@ public class BovinoDAO implements DAO {
             }
         } catch (SQLException ex) {
 
+        }
+        return retorno;
+    }
+    
+    public ArrayList<Bovino> getFilhos(int id) {
+        ArrayList<Bovino> retorno = new ArrayList<>();
+
+        try {
+            String sql = "SELECT brinco, nome, sexo, nascimento, raca FROM muudata.bovino WHERE id_mae = ? ORDER BY nascimento ASC";
+            try (PreparedStatement trans = c.prepareStatement(sql)) {
+                trans.setInt(1, id);
+                
+                ResultSet resultado = trans.executeQuery();
+                while (resultado.next()) {
+                    LocalDate nascimento;
+                    if(resultado.getDate("nascimento")!=null){
+                        nascimento = resultado.getDate("nascimento").toLocalDate();
+                    }else{
+                        nascimento = null;
+                    }
+                    Bovino atual = new Bovino(resultado.getInt("brinco"),
+                            resultado.getString("nome"),
+                            resultado.getString("raca"),
+                            resultado.getBoolean("sexo"),
+                            nascimento, id);
+                    
+                    retorno.add(atual);
+                }
+            }
+        } catch (SQLException ex) {
+            System.err.println("SQL ERROR " + ex.getMessage());
         }
         return retorno;
     }
