@@ -81,7 +81,7 @@ public class GestacaoDAO implements DAO {
     @Override
     public Object getById(long id) {
         ArrayList<Object> retorno = new ArrayList<>();
-        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao WHERE id_bovino = ? ORDER BY data_evento DESC";
+        String sql = "SELECT id, id_bovino, data_evento, tipo_atividade, situacao_gestacao FROM muudata.gestacao WHERE id_bovino = ? ORDER BY data_evento ASC";
 
         try (PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setInt(1, (int) id);

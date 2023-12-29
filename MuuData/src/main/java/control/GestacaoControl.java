@@ -15,16 +15,20 @@ public class GestacaoControl {
         this.dao = new GestacaoDAO();
     }
 
-    public boolean insert(String data, int idBovino, int tipoAtividade, int situacaoGestacao) {
+    public Gestacao insert(int idBovino, int tipoAtividade, int situacaoGestacao, String data) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate dataEvento = LocalDate.parse(data, formatter);
 
             Gestacao gest = new Gestacao(idBovino, dataEvento, tipoAtividade, situacaoGestacao);
 
-            return dao.insert(gest);
+            if (dao.insert(gest)) {
+                return gest;
+            }
+            
+            return null;
         } catch (DateTimeParseException e) {
-            return false;
+            return null;
         }
     }
 
@@ -32,18 +36,22 @@ public class GestacaoControl {
         return this.dao.update(gestacao);
     }
 
-    public boolean update(String data, int idBovino, int id) {
+    public Gestacao update(String data, int tipo, int situacao, int id) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate dataEvento = LocalDate.parse(data, formatter);
 
-            Gestacao gest = new Gestacao(id, dataEvento, idBovino);
-
-            return dao.update(gest);
+            Gestacao gest = new Gestacao(id, dataEvento, situacao);
+            gest.setTipoAtividade(tipo);
+            
+            if (this.update(gest)) {
+                return gest;
+            }
+            
+            return null;
         } catch (DateTimeParseException e) {
-            return false;
+            return null;
         }
-
     }
 
     public ArrayList<Gestacao> getById(int id) {
