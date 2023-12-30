@@ -47,10 +47,10 @@ public class HistoricoControl {
     public Vacina insert(HistoricoDeSaude historico, Vacina vacina) {
         vacina.setIdHistorico(historico.getId());
 
-        if (vacinaDAO.existsInHistorico(vacina)) {
+        /*if (vacinaDAO.existsInHistorico(vacina)) {
             JOptionPane.showMessageDialog(null, "A vacina selecionada já existe no registro!");
             return null;
-        }
+        }*/
 
         if (vacinaDAO.insert(vacina)) {
             return vacina;
