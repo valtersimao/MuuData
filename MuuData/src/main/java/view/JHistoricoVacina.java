@@ -11,10 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import model.HistoricoDeSaude;
 import model.Vacina;
 
-/**
- *
- * @author jotaa
- */
 public class JHistoricoVacina extends javax.swing.JPanel {
 
     private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");

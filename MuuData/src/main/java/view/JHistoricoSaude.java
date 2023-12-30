@@ -6,10 +6,6 @@ import model.Bovino;
 import model.Fazenda;
 import model.HistoricoDeSaude;
 
-/**
- *
- * @author jotaa
- */
 public class JHistoricoSaude extends javax.swing.JPanel {
 
     private Bovino bovino;

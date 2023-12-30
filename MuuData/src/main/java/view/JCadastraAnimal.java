@@ -4,10 +4,6 @@ import control.BovinoControl;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author 0068967
- */
 public class JCadastraAnimal extends javax.swing.JPanel {
 
     private ButtonGroup grupoButao;

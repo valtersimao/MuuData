@@ -11,10 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import model.Bovino;
 import model.Gestacao;
 
-/**
- *
- * @author jotaa
- */
 public class JGestacao extends javax.swing.JPanel {
 
     private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");

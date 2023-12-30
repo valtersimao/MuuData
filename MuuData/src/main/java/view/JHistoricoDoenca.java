@@ -4,10 +4,6 @@ import control.HistoricoControl;
 import javax.swing.JOptionPane;
 import model.HistoricoDeSaude;
 
-/**
- *
- * @author jotaa
- */
 public class JHistoricoDoenca extends javax.swing.JPanel {
 
     private HistoricoControl saudeControl;
