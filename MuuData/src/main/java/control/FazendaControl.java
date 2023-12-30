@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package control;
 
 import java.util.Random;
@@ -10,10 +6,6 @@ import model.dao.FazendaDAO;
 import tools.EmailService;
 import tools.PasswordService;
 
-/**
- *
- * @author 0068943
- */
 public class FazendaControl {
 
     public static final int NO_PROBLEM = 0, USER_NOT_FOUND = 1, USER_EXISTS = 2, INVALID_PASSWORD = 3, INVALID_EMAIL = 4, ANOTHER_ERROR = 5;

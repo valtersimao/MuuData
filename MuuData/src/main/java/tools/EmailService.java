@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package tools;
 
 import jakarta.mail.Authenticator;
@@ -15,11 +11,6 @@ import java.util.Properties;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-
-/**
- *
- * @author 0068943
- */
 public class EmailService {
     private final Session session;
     private Properties props;

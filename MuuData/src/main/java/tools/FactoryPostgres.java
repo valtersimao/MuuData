@@ -4,10 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author 0068943
- */
 public class FactoryPostgres {
     private static Connection conexaoPG;
     

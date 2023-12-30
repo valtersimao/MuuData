@@ -1,12 +1,7 @@
-
 package model.dao;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author arthur
- */
 public interface DAO {
     public boolean insert(Object entite);
     public boolean update(Object entite);

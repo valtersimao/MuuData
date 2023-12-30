@@ -10,10 +10,6 @@ import model.dao.VacinaDAO;
 import model.dao.VacinaGenericaDAO;
 import model.dao.DoencaDAO;
 
-/**
- *
- * @author 0068943
- */
 public class HistoricoControl {
 
     private final HistoricoDeSaudeDAO dao;
