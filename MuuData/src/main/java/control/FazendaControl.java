@@ -80,6 +80,7 @@ public class FazendaControl {
                 emailService.sendValidateEmail(recoveryNumber, email);
             }
         };
+        emailSender.run();
     }
 
     public boolean recoverPasswordByName(String name) {
