@@ -14,8 +14,7 @@ public class HistoricoDeSaude {
     private String observacoes;
     
     private ArrayList<Vacina> vacinas;
-    private ArrayList<Doenca> doencas;
-
+    
     public HistoricoDeSaude(int idBovino, String descricao, String tratamento, String observacoes) {
         this.idBovino = idBovino;
         this.descricao = descricao;
@@ -23,7 +22,6 @@ public class HistoricoDeSaude {
         this.observacoes = observacoes;
         
         this.vacinas = new ArrayList<>();
-        this.doencas = new ArrayList<>();
     }
 
     public HistoricoDeSaude(int id, int idBovino, String descricao, String tratamento, String observacoes) {
@@ -34,10 +32,9 @@ public class HistoricoDeSaude {
         this.observacoes = observacoes;
         
         this.vacinas = new ArrayList<>();
-        this.doencas = new ArrayList<>();
     }
 
-    public HistoricoDeSaude(int id, int idBovino, String descricao, String tratamento, String observacoes, ArrayList<Vacina> vacinas, ArrayList<Doenca> doencas) {
+    public HistoricoDeSaude(int id, int idBovino, String descricao, String tratamento, String observacoes, ArrayList<Vacina> vacinas) {
         this.id = id;
         this.idBovino = idBovino;
         this.descricao = descricao;
@@ -45,7 +42,6 @@ public class HistoricoDeSaude {
         this.observacoes = observacoes;
         
         this.vacinas = vacinas;
-        this.doencas = doencas;
     }
     
     

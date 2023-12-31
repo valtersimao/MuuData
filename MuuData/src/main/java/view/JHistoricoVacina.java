@@ -75,7 +75,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jButtonVoltar = new javax.swing.JButton();
         jButtonHistorico = new javax.swing.JButton();
         jLabelIcon1 = new javax.swing.JLabel();
-        jButtonDoenca = new javax.swing.JButton();
         jButtonVacina = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jTextNome = new javax.swing.JTextField();
@@ -137,26 +136,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
         jLabelIcon1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/muuDataMiniLogo.png"))); // NOI18N
 
-        jButtonDoenca.setFont(new java.awt.Font("Arial Black", 0, 20)); // NOI18N
-        jButtonDoenca.setForeground(new java.awt.Color(0, 0, 0));
-        jButtonDoenca.setText("Doenças");
-        jButtonDoenca.setContentAreaFilled(false);
-        jButtonDoenca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonDoenca.setFocusable(false);
-        jButtonDoenca.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonDoencaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonDoencaMouseExited(evt);
-            }
-        });
-        jButtonDoenca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDoencaActionPerformed(evt);
-            }
-        });
-
         jButtonVacina.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jButtonVacina.setForeground(new java.awt.Color(0, 0, 0));
         jButtonVacina.setText("Vacinas");
@@ -179,7 +158,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonVacina)
-                            .addComponent(jButtonDoenca)
                             .addComponent(jButtonHistorico))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -194,9 +172,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                 .addComponent(jButtonHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jButtonVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jButtonDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -397,7 +373,7 @@ public class JHistoricoVacina extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(jTextData, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
@@ -427,19 +403,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
     private void jButtonHistoricoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonHistoricoMouseExited
         this.jButtonHistorico.setFont(new java.awt.Font("Arial Black", java.awt.Font.PLAIN, 20));
     }//GEN-LAST:event_jButtonHistoricoMouseExited
-
-    private void jButtonDoencaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoencaActionPerformed
-        HistoricoDeSaude historico = this.historico;
-        FramePrincipal.trocaPainel(FramePrincipal.TELA_HISTORICO_DOENCA, new JHistoricoDoenca(historico));
-    }//GEN-LAST:event_jButtonDoencaActionPerformed
-
-    private void jButtonDoencaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDoencaMouseEntered
-        this.jButtonDoenca.setFont(new java.awt.Font("Arial Black", java.awt.Font.PLAIN, 24));
-    }//GEN-LAST:event_jButtonDoencaMouseEntered
-
-    private void jButtonDoencaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDoencaMouseExited
-        this.jButtonDoenca.setFont(new java.awt.Font("Arial Black", java.awt.Font.PLAIN, 20));
-    }//GEN-LAST:event_jButtonDoencaMouseExited
 
     private void jTableVacinasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableVacinasMouseClicked
         int unselect = this.jTableVacinas.getSelectedRow();
@@ -542,7 +505,6 @@ public class JHistoricoVacina extends javax.swing.JPanel {
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonCadastra;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonDoenca;
     private javax.swing.JButton jButtonHistorico;
     private javax.swing.JButton jButtonVacina;
     private javax.swing.JButton jButtonVoltar;

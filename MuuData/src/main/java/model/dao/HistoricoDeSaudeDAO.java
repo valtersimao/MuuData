@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Doenca;
 import model.HistoricoDeSaude;
 import model.Vacina;
 import tools.FactoryPostgres;
@@ -94,8 +93,7 @@ public class HistoricoDeSaudeDAO implements DAO{
                         result.getString("descricao"),
                         result.getString("tratamento"),
                         result.getString("observacoes"),
-                        (ArrayList<Vacina>)new VacinaDAO().getById(result.getInt("id")),
-                        (ArrayList<Doenca>)new DoencaDAO().getById(result.getInt("id")));
+                        (ArrayList<Vacina>)new VacinaDAO().getById(result.getInt("id")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(HistoricoDeSaudeDAO.class.getName()).log(Level.SEVERE, null, ex);
