@@ -29,9 +29,9 @@ public class FazendaControl {
         return dao.getByName(name);
     }
     
-    public int getNumCabeca(String name) {
+   /* public int getNumCabeca(String name) {
         
-    }
+    }*/
 
     public int logIn(String name, char[] senha) {
         return logIn(name, new String(senha));
