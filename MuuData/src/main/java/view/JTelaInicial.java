@@ -1,18 +1,21 @@
 package view;
 
+import control.FazendaControl;
 
 public class JTelaInicial extends javax.swing.JPanel {
-    
+
     private String fazenda;
+    private FazendaControl fazendaControl;
 
     public JTelaInicial() {
         initComponents();
     }
-    
+
     public JTelaInicial(String fazenda) {
         this.fazenda = fazenda;
-
+        this.fazendaControl = new FazendaControl();
         initComponents();
+        this.jLabelNome.setText(fazenda);
     }
 
     @SuppressWarnings("unchecked")
@@ -24,6 +27,9 @@ public class JTelaInicial extends javax.swing.JPanel {
         jButtonConsultaAnimal = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabelIcon = new javax.swing.JLabel();
+        jLabelNome = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelCabecasa = new javax.swing.JLabel();
         jButtonCadastroNascimento1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(120, 130, 89));
@@ -73,20 +79,49 @@ public class JTelaInicial extends javax.swing.JPanel {
         jLabelIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/muuDataLogo.png"))); // NOI18N
         jLabelIcon.setText("LOGO");
 
+        jLabelNome.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 18)); // NOI18N
+        jLabelNome.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelNome.setText("|||");
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Nº Total de cabeças:");
+
+        jLabelCabecasa.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabelCabecasa.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelCabecasa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCabecasa.setText("0");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelIcon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelCabecasa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 371, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelNome)
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelCabecasa))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jButtonCadastroNascimento1.setBackground(new java.awt.Color(120, 130, 89));
@@ -115,7 +150,7 @@ public class JTelaInicial extends javax.swing.JPanel {
                     .addComponent(jButtonCadastroNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCadastroNascimento1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonConsultaAnimal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +181,6 @@ public class JTelaInicial extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonConsultaAnimalActionPerformed
 
     private void jButtonCadastroNascimento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroNascimento1ActionPerformed
-        FramePrincipal.removePainel(FramePrincipal.TELA_INICIAL);
         FramePrincipal.trocaPainel(FramePrincipal.TELA_LOGIN, new JTelaLogin());
     }//GEN-LAST:event_jButtonCadastroNascimento1ActionPerformed
 
@@ -155,7 +189,10 @@ public class JTelaInicial extends javax.swing.JPanel {
     private javax.swing.JButton jButtonCadastroNascimento;
     private javax.swing.JButton jButtonCadastroNascimento1;
     private javax.swing.JButton jButtonConsultaAnimal;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelCabecasa;
     private javax.swing.JLabel jLabelIcon;
+    private javax.swing.JLabel jLabelNome;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
