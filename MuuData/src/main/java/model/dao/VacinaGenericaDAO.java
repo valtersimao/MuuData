@@ -102,7 +102,7 @@ public class VacinaGenericaDAO implements DAO{
     public ArrayList<Object> getAll() {
         ArrayList<Object> retorno = new ArrayList<>();
         
-        String sql = "SELECT id, nome, doses_recomendadas, descricao FROM muudata.vacinas ORDER BY id;";
+        String sql = "SELECT id, nome, doses_recomendadas, descricao FROM muudata.vacinas ORDER BY nome;";
         
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             ResultSet resultado = trans.executeQuery();

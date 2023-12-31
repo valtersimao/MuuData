@@ -67,7 +67,7 @@ public class VacinaDAO implements DAO {
         ArrayList<Vacina> retorno = new ArrayList<>();
         String sql = "SELECT R.data_evento, R.dose, R.id, R.id_vacina, V.nome, V.doses_recomendadas, V.descricao"
                 + " FROM muudata.historico_vacina R JOIN muudata.vacinas V ON R.id_vacina = V.id"
-                + " WHERE R.id_historico = ? ORDER by R.id";
+                + " WHERE R.id_historico = ? ORDER by R.data_evento DESC";
         try (PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setInt(1, (int) id);
             ResultSet result = trans.executeQuery();
@@ -93,7 +93,7 @@ public class VacinaDAO implements DAO {
     public ArrayList<Object> getAll() {
         ArrayList<Object> retorno = new ArrayList<>();
         String sql = "SELECT R.id_historico, R.data_evento, R.dose, R.id, R.id_vacina, V.nome, V.doses_recomendadas, V.descricao"
-                + " FROM muudata.historico_vacina R JOIN muudata.vacinas V ON R.id_vacina = V.id ORDER by R.id";
+                + " FROM muudata.historico_vacina R JOIN muudata.vacinas V ON R.id_vacina = V.id ORDER by R.data_evento DESC";
         try (PreparedStatement trans = c.prepareStatement(sql)) {
             ResultSet result = trans.executeQuery();
             while (result.next()) {
