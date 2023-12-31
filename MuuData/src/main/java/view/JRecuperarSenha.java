@@ -1,13 +1,18 @@
 package view;
 
+import control.FazendaControl;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 public class JRecuperarSenha extends javax.swing.JPanel {
 
-    public JRecuperarSenha(String nome) {
+    private FazendaControl fazendaControl;
+
+    public JRecuperarSenha(String nome, FazendaControl control) {
         initComponents();
         this.jTextNome.setText(nome);
         setVisibleCodigo(false);
+        this.fazendaControl = control;
     }
 
     @SuppressWarnings("unchecked")
@@ -141,16 +146,41 @@ public class JRecuperarSenha extends javax.swing.JPanel {
     private void setVisibleCodigo(boolean op) {
         this.jTextNome.setVisible(!op);
         this.jLabelNome.setVisible(!op);
-        
+
         this.jTextCodigo.setVisible(op);
         this.jLabelCod.setVisible(op);
     }
-    
+
     private void jButtonPróximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPróximoActionPerformed
-        if(this.jTextNome.isVisible()) {
-            setVisibleCodigo(true);
+        if (this.jTextNome.isVisible()) {
+            String nome = this.jTextNome.getText();
+            if (nome.isBlank() || !fazendaControl.doesNameExists(nome)) {
+                JOptionPane.showMessageDialog(this, "Informe um nome válido:",
+                        "Falha", JOptionPane.WARNING_MESSAGE);
+            } else {
+                fazendaControl.recoverPasswordByName(nome);
+                setVisibleCodigo(true);
+            }
+        } else {
+            String cod = this.jTextCodigo.getText();
+
+            if (cod.isBlank()) {
+                JOptionPane.showMessageDialog(this, "Falha",
+                        "Informe o código enviado no seu email!", JOptionPane.WARNING_MESSAGE);
+            } else {
+                boolean recupera = fazendaControl.validateRecoveryNumber(Integer.parseInt(cod));
+                if (recupera) {
+                    String novaSenha = JOptionPane.showInputDialog(this, "Insira uma nova senha: ", 
+                            "Trocar a senha", JOptionPane.INFORMATION_MESSAGE);
+                    fazendaControl.changePassword(novaSenha, this.jTextNome.getText());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Informe o código correto!",
+                            "Falha", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+
         }
-        
+
     }//GEN-LAST:event_jButtonPróximoActionPerformed
 
     private void jLabelVoltarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVoltarMouseEntered
@@ -165,7 +195,7 @@ public class JRecuperarSenha extends javax.swing.JPanel {
     private void jLabelVoltarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVoltarMousePressed
         this.jLabelVoltar.setForeground(Color.cyan);
         FramePrincipal.removePainel(FramePrincipal.TELA_RECUPERAR_SENHA);
-        FramePrincipal.trocaPainel(FramePrincipal.TELA_LOGIN,new JTelaLogin());
+        FramePrincipal.trocaPainel(FramePrincipal.TELA_LOGIN, new JTelaLogin());
     }//GEN-LAST:event_jLabelVoltarMousePressed
 
     private void jLabelVoltarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVoltarMouseReleased
