@@ -85,6 +85,23 @@ public class FazendaDAO implements DAO{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public int getQuantBovinos(String nomeFazenda) {
+        String sql = "SELECT COUNT(*) FROM muudata.bovino B WHERE B.nome_fazenda = ?";
+        
+        try(PreparedStatement trans = c.prepareStatement(sql)) {
+            trans.setString(1, nomeFazenda);
+            
+            ResultSet result = trans.executeQuery();
+            
+            if(result.next()) {
+                return (int)result.getLong("count");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FazendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+    
     public boolean updatePassword(String name, String password) {
         String sql = "UPDATE muudata.fazenda SET senha = ? WHERE nome = ?";
         

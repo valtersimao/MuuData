@@ -16,6 +16,7 @@ public class JTelaInicial extends javax.swing.JPanel {
         this.fazendaControl = new FazendaControl();
         initComponents();
         this.jLabelNome.setText(fazenda);
+        this.jLabelCabecasa.setText(fazendaControl.getQuantBovinos(fazenda));
     }
 
     @SuppressWarnings("unchecked")
