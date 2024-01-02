@@ -112,4 +112,14 @@ public class FazendaControl {
             return false;
         }
     }
+    
+    public String getQuantBovinos(String name) {
+        int numBovinos = dao.getQuantBovinos(name);
+        
+        if(numBovinos != -1){
+            return numBovinos+"";
+        }else {
+            return "ERRO";
+        }
+    }
 }
