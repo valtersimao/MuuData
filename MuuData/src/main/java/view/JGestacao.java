@@ -22,7 +22,7 @@ public class JGestacao extends javax.swing.JPanel {
     private ArrayList<Gestacao> gestacoes;
     private ArrayList<Bovino> filhotes;
     private int select = -1;
-    
+
     public JGestacao(Bovino bovino, BovinoControl control) {
         initComponents();
         this.boiControl = control;
@@ -45,8 +45,8 @@ public class JGestacao extends javax.swing.JPanel {
     }
 
     private void geral() {
-        this.jLabelMae.setText("Bovinos Associados à "+boi.getNome());
-        this.jTextNome.setText(boi.getBrinco()+"");
+        this.jLabelMae.setText("Bovinos Associados à " + boi.getNome());
+        this.jTextNome.setText(boi.getBrinco() + "");
         this.jTextRaca.setText(boi.getRaca());
         this.jTextSexo.setText(boi.isSexo() == Bovino.MACHO ? "Macho" : "Femea");
         this.jTextOrigem.setText(boi.getNascimento() != null ? "Nascimento" : "Compra");
@@ -55,21 +55,27 @@ public class JGestacao extends javax.swing.JPanel {
 
     private void listarGestacoes() {
         for (Gestacao gest : gestacoes) {
-            String situacao="";
+            String situacao = "";
             switch (gest.getSituacaoGestacao()) {
-                case 0: situacao = "Em Andamento"; break;
-                case 1: situacao = "Finalizada"; break;
-                case 2: situacao = "Abortada"; break;
+                case 0:
+                    situacao = "Em Andamento";
+                    break;
+                case 1:
+                    situacao = "Finalizada";
+                    break;
+                case 2:
+                    situacao = "Abortada";
+                    break;
             }
-            
+
             Object[] row = {gest.getTipoAtividade() == 0 ? "Natural" : "Artificial", formato.format(gest.getDataEvento()), situacao};
             this.tabelaGest.addRow(row);
         }
-        
+
         this.jTableGestacoes.setModel(tabelaGest);
         this.tabelaGest.fireTableDataChanged();
     }
-    
+
     private void listarFilhos() {
         for (Bovino boi : filhotes) {
             Object[] row = {boi.getNome(), boi.getBrinco(), formato.format(boi.getNascimento()), boi.isSexo() == Bovino.MACHO ? "Macho" : "Femea", boi.getRaca()};
@@ -79,7 +85,7 @@ public class JGestacao extends javax.swing.JPanel {
         this.jTableFilhos.setModel(tabelaFilhos);
         this.tabelaFilhos.fireTableDataChanged();
     }
-       
+
     private void edit(boolean op) {
         this.jLabelTipo.setVisible(op);
         this.jSeparatorTipo.setVisible(op);
@@ -87,12 +93,13 @@ public class JGestacao extends javax.swing.JPanel {
         this.jButtonAdd.setVisible(op);
         this.jButtonUpdate.setVisible(!op);
     }
-    
+
     private void limparFields() {
         this.jComboBoxTipo.setSelectedIndex(-1);
         this.jComboBoxSituacao.setSelectedIndex(-1);
         this.jTextData.setText("");
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -583,18 +590,18 @@ public class JGestacao extends javax.swing.JPanel {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         if (this.jComboBoxTipo.getSelectedIndex() >= 0 && this.jComboBoxSituacao.getSelectedIndex() >= 0 && !this.jTextData.getText().isEmpty()) {
-            
+
             int tipo = (int) this.jComboBoxTipo.getSelectedIndex();
             int situacao = (int) this.jComboBoxSituacao.getSelectedIndex();
             String data = this.jTextData.getText();
-            
+
             if (JOptionPane.showConfirmDialog(this, "Você deseja finalizar o registro?",
                     "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                
+
                 Gestacao gestacao = gestControl.insert(this.boi.getId(), tipo, situacao, data);
-                
+
                 if (gestacao != null) {
-                    JOptionPane.showMessageDialog(this, "Vacina registrada com sucesso!",
+                    JOptionPane.showMessageDialog(this, "Evento registrada com sucesso!",
                             "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     this.gestacoes = gestControl.getById(boi.getId());
                     this.tabelaGest.setRowCount(0);
@@ -614,32 +621,35 @@ public class JGestacao extends javax.swing.JPanel {
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         int linha = this.jTableGestacoes.getSelectedRow();
         Gestacao gestacao = this.gestacoes.get(linha);
-        
-        if (gestacao.getSituacaoGestacao() != this.jComboBoxSituacao.getSelectedIndex() 
-            ||  !this.jTextData.getText().equals(formato.format(gestacao.getDataEvento()))) {
-            
+
+        if (gestacao.getSituacaoGestacao() != this.jComboBoxSituacao.getSelectedIndex()
+                || !this.jTextData.getText().equals(formato.format(gestacao.getDataEvento()))) {
+
             String data = this.jTextData.getText();
             int tipo = gestacao.getTipoAtividade();
             int situacao = this.jComboBoxSituacao.getSelectedIndex();
-            
+
             if (JOptionPane.showConfirmDialog(this, "Você deseja salvar as alterações?",
                     "Finalizar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                
+
                 int id = gestacao.getId();
                 gestacao = gestControl.update(data, tipo, situacao, id);
-                
+
                 if (gestacao != null) {
                     JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!",
-                                "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                            "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     this.gestacoes.set(linha, gestacao);
                     this.tabelaGest.setRowCount(0);
                     listarGestacoes();
-                    
+
                     this.edit(true);
                     this.limparFields();
                 } else {
                     JOptionPane.showMessageDialog(this, "Houve uma falha na alteração!",
-                                "Falha", JOptionPane.ERROR_MESSAGE);
+                            "Falha", JOptionPane.ERROR_MESSAGE);
+                }
+                if (situacao == 1) {
+                    FramePrincipal.trocaPainel(FramePrincipal.TELA_CADASTRO_NASCIMENTO, new JCadastraNascimento());
                 }
             }
         } else {
@@ -658,14 +668,20 @@ public class JGestacao extends javax.swing.JPanel {
             this.select = -1;
         } else {
             Gestacao gest = this.gestacoes.get(unselect);
-            
-            String situacao="";
+
+            String situacao = "";
             switch (gest.getSituacaoGestacao()) {
-                case 0: situacao = "Em Andamento"; break;
-                case 1: situacao = "Finalizada"; break;
-                case 2: situacao = "Abortada"; break;
+                case 0:
+                    situacao = "Em Andamento";
+                    break;
+                case 1:
+                    situacao = "Finalizada";
+                    break;
+                case 2:
+                    situacao = "Abortada";
+                    break;
             }
-            
+
             this.jComboBoxSituacao.setSelectedItem(situacao);
             this.jTextData.setText(formato.format(gest.getDataEvento()));
             this.select = unselect;

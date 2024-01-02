@@ -16,7 +16,6 @@ public class JTelaInicial extends javax.swing.JPanel {
         this.fazendaControl = new FazendaControl();
         initComponents();
         this.jLabelNome.setText(fazenda);
-        this.jLabelCabecasa.setText(fazendaControl.getQuantBovinos(fazenda));
     }
 
     @SuppressWarnings("unchecked")
@@ -35,6 +34,11 @@ public class JTelaInicial extends javax.swing.JPanel {
         jButtonCadastroNascimento1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(120, 130, 89));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jButtonCadastroNascimento.setBackground(new java.awt.Color(120, 130, 89));
         jButtonCadastroNascimento.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -201,6 +205,11 @@ public class JTelaInicial extends javax.swing.JPanel {
     private void jButtonCadastroNascimento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroNascimento1ActionPerformed
         FramePrincipal.trocaPainel(FramePrincipal.TELA_LOGIN, new JTelaLogin());
     }//GEN-LAST:event_jButtonCadastroNascimento1ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.jLabelCabecasa.setText(fazendaControl.getQuantBovinos(fazenda));
+
+    }//GEN-LAST:event_formComponentShown
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastroAnimal1;
