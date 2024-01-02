@@ -6,9 +6,9 @@ import javax.swing.SwingUtilities;
  *
  * @author jotaa
  */
-public class Carregando extends javax.swing.JFrame {
+public class Inicializar extends javax.swing.JFrame {
 
-    public Carregando() {
+    public Inicializar() {
         initComponents();
         this.setLocationRelativeTo(null);
         
@@ -25,6 +25,12 @@ public class Carregando extends javax.swing.JFrame {
                     e.printStackTrace();
                 }
             }
+            
+            SwingUtilities.invokeLater(() -> {
+                setVisible(false); 
+                dispose(); 
+                new FramePrincipal().setVisible(true);
+            });
         }).start();
     }
 
@@ -39,7 +45,7 @@ public class Carregando extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(120, 130, 89));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/muuDataLogo.png"))); // NOI18N
 
@@ -48,9 +54,9 @@ public class Carregando extends javax.swing.JFrame {
         porcentagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         porcentagem.setText("%");
 
-        progressBar.setBackground(new java.awt.Color(204, 204, 204));
-        progressBar.setForeground(new java.awt.Color(120, 130, 89));
-        progressBar.setBorder(null);
+        progressBar.setBackground(new java.awt.Color(120, 130, 89));
+        progressBar.setForeground(new java.awt.Color(0, 0, 0));
+        progressBar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         progressBar.setBorderPainted(false);
         progressBar.setFocusable(false);
         progressBar.setString("");
@@ -59,24 +65,24 @@ public class Carregando extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(184, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(214, 214, 214))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 185, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(213, 213, 213))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(porcentagem)
-                .addGap(304, 304, 304))
-            .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(porcentagem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -95,8 +101,10 @@ public class Carregando extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
-        SwingUtilities.invokeLater(() -> {
-                new Carregando().setVisible(true);       
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Inicializar().setVisible(true);
+            }
         });
     }
 
