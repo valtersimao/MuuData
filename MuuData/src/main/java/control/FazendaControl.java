@@ -77,14 +77,14 @@ public class FazendaControl {
 
         this.recoveryNumber = r.nextInt(1000, 10000);
 
-        Runnable emailSender = new Runnable() {
-            @Override
-            public void run() {
+//        Runnable emailSender = new Runnable() {
+//            @Override
+//            public void run() {
                 EmailService emailService = new EmailService();
                 emailService.sendValidateEmail(recoveryNumber, email);
-            }
-        };
-        emailSender.run();
+//            }
+//        };
+//        emailSender.run();
     }
 
     public boolean recoverPasswordByName(String name) {

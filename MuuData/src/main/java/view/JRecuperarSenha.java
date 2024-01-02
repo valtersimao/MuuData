@@ -3,6 +3,7 @@ package view;
 import control.FazendaControl;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 
 public class JRecuperarSenha extends javax.swing.JPanel {
 
@@ -158,7 +159,13 @@ public class JRecuperarSenha extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Informe um nome válido:",
                         "Falha", JOptionPane.WARNING_MESSAGE);
             } else {
-                fazendaControl.recoverPasswordByName(nome);
+                new SwingWorker() {
+                    @Override
+                    protected Object doInBackground() throws Exception {
+                        fazendaControl.recoverPasswordByName(nome);
+                        return null;
+                    }
+                }.execute();
                 setVisibleCodigo(true);
             }
         } else {
@@ -170,7 +177,7 @@ public class JRecuperarSenha extends javax.swing.JPanel {
             } else {
                 boolean recupera = fazendaControl.validateRecoveryNumber(Integer.parseInt(cod));
                 if (recupera) {
-                    String novaSenha = JOptionPane.showInputDialog(this, "Insira uma nova senha: ", 
+                    String novaSenha = JOptionPane.showInputDialog(this, "Insira uma nova senha: ",
                             "Trocar a senha", JOptionPane.INFORMATION_MESSAGE);
                     fazendaControl.changePassword(novaSenha, this.jTextNome.getText());
                 } else {
