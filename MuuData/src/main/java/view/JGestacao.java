@@ -4,8 +4,6 @@ import control.BovinoControl;
 import control.GestacaoControl;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Bovino;
@@ -91,6 +89,7 @@ public class JGestacao extends javax.swing.JPanel {
     }
     
     private void limparFields() {
+        this.jComboBoxTipo.setSelectedIndex(-1);
         this.jComboBoxSituacao.setSelectedIndex(-1);
         this.jTextData.setText("");
     }
@@ -597,12 +596,10 @@ public class JGestacao extends javax.swing.JPanel {
                 if (gestacao != null) {
                     JOptionPane.showMessageDialog(this, "Vacina registrada com sucesso!",
                             "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    gestacoes.add(gestacao);
-                    Comparator<Gestacao> comparador = Comparator.comparing(Gestacao::getDataEvento);
-                    Collections.sort(gestacoes, comparador);
-                    tabelaGest.setRowCount(0);
+                    this.gestacoes = gestControl.getById(boi.getId());
+                    this.tabelaGest.setRowCount(0);
                     listarGestacoes();
-                    
+                    limparFields();
                 } else {
                     JOptionPane.showMessageDialog(this, "Houve uma falha no registro!",
                             "Falha", JOptionPane.ERROR_MESSAGE);
@@ -635,7 +632,7 @@ public class JGestacao extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "As alterações foram salvas com sucesso!",
                                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     this.gestacoes.set(linha, gestacao);
-                    tabelaGest.setRowCount(0);
+                    this.tabelaGest.setRowCount(0);
                     listarGestacoes();
                     
                     this.edit(true);
