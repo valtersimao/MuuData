@@ -103,7 +103,7 @@ public class FazendaDAO implements DAO{
     }
     
     public boolean updatePassword(String name, String password) {
-        String sql = "UPDATE muudata.fazenda SET senha = ? WHERE nome = ?";
+        String sql = "UPDATE muudata.fazenda SET senha = ? WHERE nome = ? AND vivo = true AND presente = true";
         
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setString(1, password);
