@@ -86,7 +86,7 @@ public class FazendaDAO implements DAO{
     }
     
     public int getQuantBovinos(String nomeFazenda) {
-        String sql = "SELECT COUNT(*) FROM muudata.bovino B WHERE B.nome_fazenda = ?";
+        String sql = "SELECT COUNT(*) FROM muudata.bovino B WHERE B.nome_fazenda = ? AND vivo = true AND presente = true";
         
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setString(1, nomeFazenda);
@@ -103,7 +103,7 @@ public class FazendaDAO implements DAO{
     }
     
     public boolean updatePassword(String name, String password) {
-        String sql = "UPDATE muudata.fazenda SET senha = ? WHERE nome = ? AND vivo = true AND presente = true";
+        String sql = "UPDATE muudata.fazenda SET senha = ? WHERE nome = ?";
         
         try(PreparedStatement trans = c.prepareStatement(sql)) {
             trans.setString(1, password);
