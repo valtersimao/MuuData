@@ -162,70 +162,52 @@ public class JGestacao extends javax.swing.JPanel {
         });
 
         jLabelHistorico.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
-        jLabelHistorico.setForeground(new java.awt.Color(0, 0, 0));
         jLabelHistorico.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelHistorico.setText("Gerenciamento Reprodutivo");
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
         jTabbedPane1.setFocusable(false);
         jTabbedPane1.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextRaca.setBackground(new java.awt.Color(255, 255, 255));
         jTextRaca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextRaca.setForeground(new java.awt.Color(0, 0, 0));
         jTextRaca.setEnabled(false);
 
         jLabel16.setFont(new java.awt.Font("Arial Black", 1, 20)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Sexo:");
 
-        jTextSexo.setBackground(new java.awt.Color(255, 255, 255));
         jTextSexo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextSexo.setForeground(new java.awt.Color(0, 0, 0));
         jTextSexo.setEnabled(false);
 
         jLabel17.setFont(new java.awt.Font("Arial Black", 1, 20)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("Origem:");
 
-        jTextOrigem.setBackground(new java.awt.Color(255, 255, 255));
         jTextOrigem.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextOrigem.setForeground(new java.awt.Color(0, 0, 0));
         jTextOrigem.setEnabled(false);
 
         jLabel18.setFont(new java.awt.Font("Arial Black", 1, 28)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Informações Gerais");
 
         jLabel14.setFont(new java.awt.Font("Arial Black", 1, 20)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Brinco:");
 
         jLabel20.setFont(new java.awt.Font("Arial Black", 1, 20)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("N° de partos:");
 
-        jTextNome.setBackground(new java.awt.Color(255, 255, 255));
         jTextNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextNome.setForeground(new java.awt.Color(0, 0, 0));
         jTextNome.setEnabled(false);
 
-        jTextPartos.setBackground(new java.awt.Color(255, 255, 255));
         jTextPartos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextPartos.setForeground(new java.awt.Color(0, 0, 0));
         jTextPartos.setEnabled(false);
 
         jLabel15.setFont(new java.awt.Font("Arial Black", 1, 20)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Raça:");
 
@@ -238,9 +220,9 @@ public class JGestacao extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -285,7 +267,7 @@ public class JGestacao extends javax.swing.JPanel {
                     .addComponent(jSeparator1))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap(67, Short.MAX_VALUE)
                 .addComponent(jLabel18)
                 .addGap(70, 70, 70)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -305,7 +287,7 @@ public class JGestacao extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(jTextPartos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Geral", jPanel2);
@@ -317,23 +299,18 @@ public class JGestacao extends javax.swing.JPanel {
         jSeparatorData.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel22.setFont(new java.awt.Font("Arial Black", 1, 20)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Situação:");
 
         jLabelTipo.setFont(new java.awt.Font("Arial Black", 1, 20)); // NOI18N
-        jLabelTipo.setForeground(new java.awt.Color(0, 0, 0));
         jLabelTipo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTipo.setText("Tipo:");
 
         jLabelData.setFont(new java.awt.Font("Arial Black", 1, 20)); // NOI18N
-        jLabelData.setForeground(new java.awt.Color(0, 0, 0));
         jLabelData.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelData.setText("Data:");
 
-        jTextData.setBackground(new java.awt.Color(255, 255, 255));
         jTextData.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTextData.setForeground(new java.awt.Color(0, 0, 0));
         try {
             jTextData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -345,11 +322,9 @@ public class JGestacao extends javax.swing.JPanel {
         jSeparatorTipo.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel21.setFont(new java.awt.Font("Arial Black", 1, 28)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Atividade Reprodutiva");
 
-        jButtonAdd.setBackground(new java.awt.Color(255, 255, 255));
         jButtonAdd.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jButtonAdd.setForeground(new java.awt.Color(25, 25, 25));
         jButtonAdd.setText("Registrar");
@@ -362,9 +337,7 @@ public class JGestacao extends javax.swing.JPanel {
             }
         });
 
-        jTableGestacoes.setBackground(new java.awt.Color(255, 255, 255));
         jTableGestacoes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTableGestacoes.setForeground(new java.awt.Color(0, 0, 0));
         jTableGestacoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -394,24 +367,19 @@ public class JGestacao extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(jTableGestacoes);
 
-        jComboBoxTipo.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxTipo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jComboBoxTipo.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Natural", "Artificial" }));
         jComboBoxTipo.setSelectedIndex(-1);
         jComboBoxTipo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jComboBoxTipo.setFocusable(false);
 
-        jComboBoxSituacao.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxSituacao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jComboBoxSituacao.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Em Andamento", "Finalizada", "Abortada" }));
         jComboBoxSituacao.setSelectedIndex(-1);
         jComboBoxSituacao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jComboBoxSituacao.setFocusable(false);
         jComboBoxSituacao.setOpaque(true);
 
-        jButtonUpdate.setBackground(new java.awt.Color(255, 255, 255));
         jButtonUpdate.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jButtonUpdate.setForeground(new java.awt.Color(25, 25, 25));
         jButtonUpdate.setText("Redefinir");
@@ -494,9 +462,7 @@ public class JGestacao extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTableFilhos.setBackground(new java.awt.Color(255, 255, 255));
         jTableFilhos.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTableFilhos.setForeground(new java.awt.Color(0, 0, 0));
         jTableFilhos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -528,8 +494,6 @@ public class JGestacao extends javax.swing.JPanel {
         }
 
         jLabelMae.setFont(new java.awt.Font("Arial Black", 1, 30)); // NOI18N
-        jLabelMae.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelMae.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelMae.setText("Bovinos Associados à");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -538,12 +502,10 @@ public class JGestacao extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(99, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelMae))
                 .addContainerGap(99, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(312, Short.MAX_VALUE)
-                .addComponent(jLabelMae)
-                .addContainerGap(313, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -578,7 +540,7 @@ public class JGestacao extends javax.swing.JPanel {
                 .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addComponent(jLabelHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents

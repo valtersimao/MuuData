@@ -47,6 +47,6 @@ public class Vacina {
 
     @Override
     public String toString() {
-        return idVacina + " : " + nome;
+        return nome;
     }
 }
