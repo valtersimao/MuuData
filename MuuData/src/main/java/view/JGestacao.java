@@ -569,6 +569,9 @@ public class JGestacao extends javax.swing.JPanel {
                     this.tabelaGest.setRowCount(0);
                     listarGestacoes();
                     limparFields();
+                    if (situacao == 1) {
+                        FramePrincipal.trocaPainel(FramePrincipal.TELA_CADASTRO_NASCIMENTO, new JCadastraNascimento());
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "Houve uma falha no registro!",
                             "Falha", JOptionPane.ERROR_MESSAGE);
