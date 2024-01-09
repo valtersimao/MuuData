@@ -198,6 +198,7 @@ public class JCadastraFazenda extends javax.swing.JPanel {
                     int op = this.fazendaControl.signIn(senha, nome, email);
                     if (op == FazendaControl.NO_PROBLEM) {
                         JOptionPane.showMessageDialog(this, "Cadastro concluído!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        limpafields();
                         FramePrincipal.trocaPainel(FramePrincipal.TELA_LOGIN, new JTelaLogin());
                     } else {
                         switch (op) {
