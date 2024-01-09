@@ -204,6 +204,7 @@ public class JTelaInicial extends javax.swing.JPanel {
 
     private void jButtonCadastroNascimento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroNascimento1ActionPerformed
         FramePrincipal.trocaPainel(FramePrincipal.TELA_LOGIN, new JTelaLogin());
+        FramePrincipal.removePainel(FramePrincipal.TELA_INICIAL);
     }//GEN-LAST:event_jButtonCadastroNascimento1ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
